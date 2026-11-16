@@ -30,11 +30,14 @@ def _pay_item_kinds() -> frozenset[str]:
     """Return every discriminator of the public ``PayItem`` union.
 
     Returns:
-        The kinds accepted by the public pay-item model.
+        The kinds accepted by the public pay-item model, every value of
+        each variant's ``kind`` literal.
     """
     union = get_args(PayItem)[0]
     return frozenset(
-        str(model.model_fields["kind"].default) for model in get_args(union)
+        str(kind)
+        for model in get_args(union)
+        for kind in get_args(model.model_fields["kind"].annotation)
     )
 
 

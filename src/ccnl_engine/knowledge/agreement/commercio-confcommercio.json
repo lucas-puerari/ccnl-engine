@@ -188,7 +188,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Operatori di vendita paid also by commission: the levels OV1 and OV2 hold the fixed table only. Not modelled: the monthly guarantee of the commission-paid staff (art. 217: a monthly average at least 5% above the paga base nazionale conglobata over at most a year), the 13th and 14th on the average of the fixed and variable elements of the twelve months before (artt. 220-221, protocol art. 15), and the company premium of 10% of the guaranteed minimums for firms with more than seven operatori (protocol art. 27).",
+        "text": "Operatori di vendita paid also by commission (protocollo aggiuntivo, artt. 15-16): the commissions of the month are BonusEvent of kind 'commission', pay of the period in the TFR base; the tredicesima and quattordicesima hold the monthly average of the commissions stated as PeriodFacts.commission_average (artt. 220-221, protocol art. 15). The guarantee of art. 217 (a monthly average at least 5% above the paga base nazionale conglobata) is met by construction: the fixed part of an operatore is the table of art. 15, and with the contingenza it exceeds 105% of the paga base on every date.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -200,7 +200,8 @@
               "OV2"
             ]
           },
-          "remediation": "Model the commission earnings of the operatori di vendita as an input, then the art. 217 guarantee, the commission average of the extra months and the art. 27 premium."
+          "remediation": "Resolved: commissions as BonusEvent kind 'commission'; the commission average in the extra months; the art. 217 guarantee met by the art. 15 table (review of 2026-11-16).",
+          "status": "resolved"
         }
       },
       {
@@ -215,6 +216,49 @@
           },
           "remediation": "Resolved by the maintainer decision of 2026-11-15: a day of notice is a calendar day of the month, paid at the monthly pay over 30, as art. 209 refers the monthly pay to all the days of the calendar month; the 1/26 daily quota of art. 210 measures the working days of the absences and deductions, not the calendar days of a notice.",
           "status": "resolved"
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Protocollo operatori di vendita art. 27: in firms with more than seven operatori di vendita a company premium of 10% of the \"minimi garantiti previsti dall’art. 38 CCNL 5 marzo 1975\" is due. Those minimi are not in the Testo Unico 2019 nor in the accordo integrativo of 28 March 2024, so the premium is not paid.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ov_company_premium",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "OV1",
+              "OV2"
+            ]
+          },
+          "status": "unsourced",
+          "remediation": "Source the minimi garantiti of art. 38 of the CCNL of 5 March 1975 and pay 10% of them to the operatori of a firm with more than seven.",
+          "searched": [
+            {
+              "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+              "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016",
+              "title": "CCNL Terziario Distribuzione e Servizi, Testo Unico 30 luglio 2019 (protocollo operatori di vendita, art. 27, p. 464)"
+            },
+            {
+              "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+              "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001",
+              "title": "Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (tabelle operatori di vendita)"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 217 c. 1: the fixed part of the staff paid by commission is set by the employer case by case, with a monthly average at least 5% above the paga base nazionale conglobata. The engine pays the table of the level as the fixed part, so a fixed part agreed below the table, outside the operatori di vendita of the protocol, is not modelled.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "commission_fixed_part",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the fixed part agreed under art. 217 as an input, settle whether the contingenza stays owed on it, and pay the monthly guarantee with its year-end conguaglio."
         }
       }
     ]
@@ -4352,7 +4396,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "deacc19b25aed041b594d8b59353cd07a7cce8394e48f3b037bfe58efa6e5369",
+    "source_hash": "80010ea5e5fc8f085524472bedd7bff809c41fc04431095e02a242a3a0472fff",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5968,6 +6012,28 @@
             "review_id": "2026-11-16-ai-commercio-confcommercio-shift"
           }
         }
+      }
+    },
+    "commission_levels": {
+      "levels": [
+        "OV1",
+        "OV2"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-tds-confcommercio-testo-unico-2019",
+            "title": "CCNL Terziario Distribuzione e Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          },
+          "page": "456",
+          "section": "Protocollo aggiuntivo operatori di vendita, art. 15",
+          "quote": "Per l’Operatore di Vendita retribuito anche con provvigione, o con altre forme di incentivo, per retribuzione si intende la media mensile dei guadagni globali percepiti nei dodici mesi precedenti la data di scadenza dell’ultima liquidazione periodica."
+        },
+        "transformation": "The tredicesima and quattordicesima of an operatore di vendita paid also by commission hold the monthly average of the commissions (artt. 220 c. 3 and 221: \"sulla base della media delle provvigioni\"), stated on the run; the engine pays its twelfths with those of the fixed part."
       }
     }
   },
