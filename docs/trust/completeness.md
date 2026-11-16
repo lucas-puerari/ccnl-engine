@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 21/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 251 open limitations (251 with a monetary impact), 34 declared residuals.
+**Complete: 22/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 251 open limitations (251 with a monetary impact), 34 declared residuals.
 
 ## Declared window
 
@@ -120,7 +120,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [edilizia-artigianato-cna](../contracts/edilizia-artigianato-cna.md) | `edilizia` | exploratory | — | 6 rows | 6 open requirements; 1 weak rule; 4 monetary limitations; 1 outside_input limitation; 7 non-native capabilities; 2 declared residuals |
 | [edilizia-cooperative-ancpl](../contracts/edilizia-cooperative-ancpl.md) | `edilizia` | exploratory | — | 4 rows | 4 open requirements; 1 weak rule; 1 monetary limitation; 2 outside_input limitations; 8 non-native capabilities; 1 declared residual |
 | [edilizia-pmi-confapi-aniem](../contracts/edilizia-pmi-confapi-aniem.md) | `edilizia` | exploratory | — | 12 rows | 12 open requirements; 1 weak rule; 8 monetary limitations; 3 outside_input limitations; 8 non-native capabilities; 1 declared residual |
-| [elettrico-elettricita-futura](../contracts/elettrico-elettricita-futura.md) | `energia-utilities` | exploratory | — | 1 rows | 1 open requirement; 1 monetary limitation; 4 non-native capabilities |
+| [elettrico-elettricita-futura](../contracts/elettrico-elettricita-futura.md) | `energia-utilities` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [energia-petrolio-confindustria](../contracts/energia-petrolio-confindustria.md) | `energia-utilities` | exploratory | — | 2 rows | 2 open requirements; 2 monetary limitations; 3 non-native capabilities |
 | [enti-ricerca-aran](../contracts/enti-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [esercizi-cinematografici-anec](../contracts/esercizi-cinematografici-anec.md) | `spettacolo-media` | exploratory | — | 5 rows | 5 open requirements; 4 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |

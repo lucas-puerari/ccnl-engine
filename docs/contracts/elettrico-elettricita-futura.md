@@ -46,7 +46,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 58 verified / 22 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 64 verified / 22 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -73,6 +73,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-16 | claude-opus-5-5 (ai) | Apprentice pay (Art. 15, Inquadramento e trattamento retributivo, PDF p. 50): the elements the percentage applies to, read in the cited file by sha256. | corrected | apprenticeship_pct_relevant EDR = false: EDR corrisposto in aggiunta alla retribuzione mensile contrattuale e non compreso nel minimo contrattuale integrato percentualmente ridotto: dovuto intero.<br>Clause: 5. L’apprendista viene inquadrato nella categoria corrispondente alla qualifica-
     zione da conseguire al termine dell’apprendistato con una retribuzione in mi-
     sura percentuale e proporzionata all’anzianità di servizio. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base.<br>Left out: bands[0:night]: quote skipped; bands[1:holiday]: quote skipped; bands[2:rest_day]: quote skipped; bands[3:night_holiday_compensatory_rest]: quote skipped; bands[4:sunday]: quote skipped; bands[5:sunday]: quote skipped; bands[6:night_shift]: quote skipped; bands[7:day_shift]: quote skipped; bands[8:day_shift]: quote skipped; bands[9:day_shift]: quote skipped.<br>The hourly divisor is 168.60 (art. 38 c. 2), not the unsourced 173.33; the holidays on a Sunday follow art. 27 c. 36. |
 
 ## Salary table
 
@@ -281,13 +282,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `contract_renewal_arrears` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: art. 21 c. 4 TUIR (Normattiva, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art21!vig=, sha256 aafc3e5d5cd7254c7eb52e74051e86f1243b3a7b3cbadcd951daf7bc5e113fc6): 'Gli aventi diritto agli arretrati devono dichiarare al soggetto che li corrisponde l'ammontare delle detrazioni fruite per ciascuno degli anni cui si riferiscono'. The deductions are a fact the worker declares: ArrearsEvent.unused_deductions, and PriorYearTaxFacts.arrears_unused_deductions for the una tantum the engine pays as arrears; unstated, the run carries the missing-fact issue arrears_unused_deductions_unknown. Read on 2026-11-14.
-
-!!! warning "sunday_holiday_ccnl_clause · sunday_holiday · impact yes · open"
-    L. 260/1949 art. 5 pays the workers with a fixed salary a further daily quota only for the civil holidays (25 April, 1 May, 2 June) falling on a Sunday; the other holidays of art. 2 (1 January, 6 January, Easter Monday, 15 August, 4 October, 1 November, 8 December, 25 and 26 December) give it only by CCNL clause, and the payment of 4 November is a CCNL institute. A run of a month with such a holiday on a Sunday, in a CCNL whose clause is not sourced (work_rules.sunday_holidays), pays the statutory holidays only; a public employment is paid as a private one (art. 5 names the "Stato, enti pubblici e datori privati").
-
-    **Applies when:** `sunday_holiday` applies; the run takes the engine code path.
-
-    **Remediation:** Source the CCNL clause on the holidays falling on a Sunday and record it as work_rules.sunday_holidays.
 
 !!! note "pension_extra_deduction_first_employed · pension_fund_contribution · impact unknown · resolved"
     A worker first employed after D.Lgs. 252/2005 came into force may deduct, in the twenty years after the fifth year of membership, the contributions above the annual cap within the room the first five years left, up to half the annual cap (art. 8 c. 6). The withholding agent applies it (AdE circ. 70/E/2007: the employer excludes the deductible contributions from the income of the ritenute): the worker states the deduction of the year as PensionFundEnrolment.extra_deduction, and contributions above the cap left with none stated carry the missing fact extra_deduction.
