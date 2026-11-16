@@ -31,6 +31,7 @@ if TYPE_CHECKING:
 __all__ = [
     "BEYOND_COMPORTO",
     "COVER_UNKNOWN",
+    "CUMULATION_EQUITY",
     "CUMULATION_LIMITATION",
     "PAID",
     "QUOTA_MISSING",
@@ -45,6 +46,8 @@ CAPABILITY = "sickness"
 BASE_UNKNOWN = "sickness_inps_base_unknown"
 #: Engine limitation of the CCNL tiers counted over one relapse chain.
 CUMULATION_LIMITATION = "sickness_cumulation_window"
+#: Declared residual of a comporto per sommatoria left to equity.
+CUMULATION_EQUITY = "sickness_cumulation_equity"
 #: Reason of an episode paid from the CCNL and INPS rules.
 PAID = "sickness_episode_paid"
 #: The CCNL defines no sickness rule: nothing is posted.
@@ -270,7 +273,8 @@ def episode_limitations(
     if not cumulated and any(
         e.episode_id not in chain for e in terms.history.earlier(event)
     ):
-        found.append(CUMULATION_LIMITATION)
+        equity = ccnl is not None and ccnl.comporto_by_equity
+        found.append(CUMULATION_EQUITY if equity else CUMULATION_LIMITATION)
     return tuple(found)
 
 

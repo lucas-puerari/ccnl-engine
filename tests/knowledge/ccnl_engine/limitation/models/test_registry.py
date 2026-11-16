@@ -52,6 +52,7 @@ from ccnl_engine.period.repositories import (
 )
 from ccnl_engine.seniority.rules import APPRENTICE_SENIORITY_VARIANT
 from ccnl_engine.sickness.handlers import CUMULATION_LIMITATION
+from ccnl_engine.sickness.issue.handlers import CUMULATION_EQUITY
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
@@ -150,7 +151,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         "parental_extra_month_share",
         "pension_extra_deduction_first_employed",
     }
-    assert by_status[LimitationStatus.UNSOURCED] == set()
+    assert by_status[LimitationStatus.UNSOURCED] == {CUMULATION_EQUITY}
 
 
 def _has_midpoint(ccnl: CCNL) -> bool:
@@ -283,9 +284,8 @@ def test_the_cumulation_window_covers_the_per_episode_ccnls(
     over windows, counts the sickness of several episodes and never takes
     its path.
     """
-    (window,) = (
-        lim for lim in load_engine_limitations() if lim.id == CUMULATION_LIMITATION
-    )
+    limitations = {lim.id: lim for lim in load_engine_limitations()}
+    window, equity = limitations[CUMULATION_LIMITATION], limitations[CUMULATION_EQUITY]
     per_episode = {
         ccnl.meta.ccnl_id
         for ccnl in ccnls
@@ -295,4 +295,12 @@ def test_the_cumulation_window_covers_the_per_episode_ccnls(
         and not rules.comporto_calendar_year
         and not rules.comporto_windows
     }
-    assert set(window.rulesets) == per_episode
+    by_equity = {
+        ccnl.meta.ccnl_id
+        for ccnl in ccnls
+        if ccnl.work_rules is not None
+        and (rules := ccnl.work_rules.sickness_rules) is not None
+        and rules.comporto_by_equity
+    }
+    assert set(window.rulesets) == per_episode - by_equity
+    assert set(equity.rulesets) == by_equity

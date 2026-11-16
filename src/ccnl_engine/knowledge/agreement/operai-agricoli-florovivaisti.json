@@ -1363,7 +1363,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "311b4f37dfc4f84b58081dc298a4efff985adbb09e976c2f1b04c928bd0c95b3",
+    "source_hash": "f186c9f975c8901cc9a1739f193e9c5c04eb908bc19ab30c42414a0b1c9c3ab0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2358,7 +2358,8 @@
               "verified_at": "2026-11-09T12:11:53Z",
               "review_id": "2026-11-09-ai-florovivaisti-sickness-fix"
             }
-          }
+          },
+          "comporto_by_equity": true
         },
         "sunday_holidays": {
           "holidays": [
@@ -2436,7 +2437,8 @@
           "review_id": "2026-10-15-ai-leave-sickness"
         },
         "transformation": "The operaio agricolo keeps the job for 180 days and has no employer integration in the CCNL: the integrations are paid by the provincial Casse extra legem (Art. 8 and 63), outside the payroll. The distinct permanent florovivaisti integration is selected through the employer sub-sector."
-      }
+      },
+      "comporto_by_equity": true
     },
     "notice": {
       "bands": [
