@@ -2057,7 +2057,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/telecomunicazioni-asstel",
       "ruleset_version": "2026.2",
-      "source_hash": "1dae4fe73af072649d1d7efc4b0a64badf766c282e189badb87c41f7cbd262b7",
+      "source_hash": "4ff60738b71f161de2ed304b471269e0863517113865a1735d8f468622c2bd8d",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/telecomunicazioni-asstel.json.gz"
@@ -4801,7 +4801,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "8013524d12b6e0ee8d8aff44c2e7284aaee0bf83df2833c547706cf14efea5c0",
+      "source_hash": "ab20d516f54ccce206a07e67c6c27e68464acb8f51c5249928f5e6260f617949",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/telecomunicazioni-asstel.json.gz",

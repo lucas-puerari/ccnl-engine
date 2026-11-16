@@ -243,7 +243,7 @@ never grow.
 | 101 | [CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)](multiservizi-anip.md) | ⚠️ | base_salary, overtime, pension_fund_contribution, seniority, sickness | 90 / 16 / 0 / 0 |
 | 102 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | ⚠️ | inps_employer | 23 / 5 / 2 / 0 |
 | 103 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | ⚠️ | base_salary, inps_employer, seniority | 16 / 5 / 2 / 0 |
-| 104 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | ⚠️ | inps_employer | 22 / 36 / 0 / 0 |
+| 104 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | ✅ | — | 22 / 36 / 0 / 0 |
 | 105 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | ⚠️ | sickness, una_tantum | 106 / 2 / 0 / 0 |
 | 106 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | ⚠️ | base_salary, sickness | 100 / 2 / 0 / 0 |
 | 107 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | ⚠️ | base_salary, seniority | 42 / 0 / 5 / 1 |
