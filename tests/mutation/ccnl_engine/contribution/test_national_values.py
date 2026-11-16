@@ -92,9 +92,13 @@ def test_hourly_minimum_follows_the_week_of_the_sector(year: str) -> None:
         if path.parent.name != year or inps is None:
             continue
         public = path.stem == "pubblica-amministrazione"
-        (hourly,) = inps["minimum_base"]["hourly"]
+        hourly, *own = inps["minimum_base"]["hourly"]
         assert hourly["full_time_weekly_hours"] == (
             _PUBLIC_WEEK if public else _PRIVATE_WEEK
+        ), path.name
+        # Circ. 43/2026 par. 5: the operai agricoli work a 39-hour week.
+        assert [h["full_time_weekly_hours"] for h in own] == (
+            ["39"] if path.stem == "agricoltura" else []
         ), path.name
 
 

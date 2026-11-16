@@ -15,9 +15,6 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.assurance.ruleset.services import provisional_paths
 from ccnl_engine.capability.results import CapabilityScope
-from ccnl_engine.contribution.minimum_base.services import (
-    minimum_base_paths,
-)
 from ccnl_engine.fund.contractual.rules import contractual_paths
 from ccnl_engine.limitation.scope.models import LimitationFacts
 from ccnl_engine.pension_fund.decision.services import paid_month_paths
@@ -85,7 +82,6 @@ def run_limitations(
         events.limitations
         | paid_month_paths(ctx, events.inps_base)
         | provisional_paths(ctx)
-        | minimum_base_paths(ctx)
     )
     facts = limitation_facts(ctx, report, traversed)
     candidates = (*ctx.repo.load_engine_limitations(), *ctx.contract.ccnl.limitations)

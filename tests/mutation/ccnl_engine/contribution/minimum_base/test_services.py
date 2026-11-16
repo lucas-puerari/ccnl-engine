@@ -1,10 +1,9 @@
 """Minimum INPS base of a run by qualifica, through the period calculation.
 
 INPS circ. 6/2026 allegato 1, Tabella A: the daily minimum of a qualifica
-when above the 58.13 of D.L. 463/1983 art. 7 c. 1 (Agricoltura: impiegato
-67.84, dirigente 128.65).  Art. 7 c. 5 keeps the operai agricoli out of the
-minimum, and Tabella A still lists 51.70 for them: their runs record the
-``inps_minimum_base_exempt_category`` limitation.
+other than the 58.13 of D.L. 463/1983 art. 7 c. 1 (Agricoltura: impiegato
+67.84, dirigente 128.65, operaio 51.70, kept by art. 7 c. 5 from the
+adjustment to 58.13).
 """
 
 from __future__ import annotations
@@ -14,12 +13,9 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.balance.models import PeriodState
-from ccnl_engine.contribution.minimum_base.services import (
-    EXEMPT_CATEGORY_FLOOR,
-)
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
-from ccnl_engine.employment.fact.inputs import ContributableHours, WeeklyHours
+from ccnl_engine.employment.fact.inputs import WeeklyHours
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import (
@@ -52,17 +48,36 @@ def _run(ccnl: str, level: str, **kwargs: object) -> PeriodResult:
     )
 
 
-def _limitations(result: PeriodResult) -> set[str]:
-    return {lim.id for lim in result.limitations}
+def _minimum(result: PeriodResult) -> tuple[object, object]:
+    (decision,) = (d for d in result.decisions if d.capability == "inps_employee")
+    return decision.inputs["base"], decision.inputs.get("minimum_base_reason")
 
 
-def test_operaio_agricolo_records_the_open_floor() -> None:
-    """Excluded from the minimum, with the 51.70 of Tabella A unsettled."""
+def test_operaio_agricolo_is_raised_to_51_70() -> None:
+    """Area3, March 2026: 991.85 is raised to 26 x 51.70 = 1,344.20."""
+    result = _run(_OPERAI, "Area3", category=WorkerCategory.OPERAIO)
+    assert _minimum(result) == (Decimal(1344), "raised_to_minimum")
+
+
+def test_operaio_agricolo_above_51_70_keeps_the_pay() -> None:
+    """Area1, March 2026: 1,458.61 is above 1,344.20 though below 1,511.38."""
     result = _run(_OPERAI, "Area1", category=WorkerCategory.OPERAIO)
-    assert EXEMPT_CATEGORY_FLOOR in _limitations(result)
+    assert _minimum(result) == (Decimal(1459), "above_minimum")
 
 
-def test_apprentice_operaio_has_no_open_floor() -> None:
+def test_part_time_operaio_takes_the_hourly_8_94() -> None:
+    """20 of 39 hours: 8.94 x 20 x 26 / 6 = 774.80, the 58.13 of par. 5."""
+    result = _run(
+        _OPERAI,
+        "Area3",
+        category=WorkerCategory.OPERAIO,
+        weekly_hours=WeeklyHours(Decimal(20)),
+        full_time_weekly_hours=WeeklyHours(Decimal(39)),
+    )
+    assert _minimum(result) == (Decimal(775), "raised_to_minimum")
+
+
+def test_apprentice_operaio_keeps_the_pay() -> None:
     """Art. 7 c. 5 excludes apprentices as such, whatever the category."""
     result = _run(
         _OPERAI,
@@ -70,21 +85,16 @@ def test_apprentice_operaio_has_no_open_floor() -> None:
         category=WorkerCategory.OPERAIO,
         contract_type=Apprentice(months_elapsed=6),
     )
-    assert EXEMPT_CATEGORY_FLOOR not in _limitations(result)
+    assert _minimum(result) == (Decimal(992), "apprentice_excluded")
 
 
-def test_impiegato_agricolo_keeps_the_minimum() -> None:
-    """An impiegato is not excluded: no open floor."""
+def test_unknown_category_of_the_operai_is_undetermined() -> None:
+    """51.70 or 58.13: without the category the minimum cannot be fixed."""
+    result = _run(_OPERAI, "Area3")
+    assert _minimum(result) == (Decimal(992), "category_unknown")
+
+
+def test_impiegato_agricolo_takes_67_84() -> None:
+    """1,686.76 is raised to 26 x 67.84 = 1,763.84."""
     result = _run("impiegati-tecnici-agricoli", "1", category=WorkerCategory.IMPIEGATO)
-    assert EXEMPT_CATEGORY_FLOOR not in _limitations(result)
-
-
-def test_sector_without_minimum_has_no_open_floor() -> None:
-    """Domestic work has no ordinary INPS rules and no minimum."""
-    result = _run(
-        "lavoro-domestico-convivente",
-        "A",
-        weekly_hours=WeeklyHours(Decimal(40)),
-        contributable_hours=ContributableHours(Decimal(173)),
-    )
-    assert EXEMPT_CATEGORY_FLOOR not in _limitations(result)
+    assert _minimum(result) == (Decimal(1764), "raised_to_minimum")

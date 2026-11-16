@@ -792,7 +792,7 @@
       "variant": "minimum_base_exempt_category",
       "summary": "D.L. 463/1983 art. 7 c. 5 keeps the operai agricoli out of the 9.50% minimum daily base, and the run applies no minimum to them. Tabella A of INPS circ. 6/2026 still lists 51.70 for the operai agricoli, 'non soggetto all'adeguamento' of art. 7 c. 1; no source found says whether it is a floor of their contribution base. A base below it may understate the contributions.",
       "monetary_impact": "unknown",
-      "status": "open",
+      "status": "resolved",
       "rulesets": [
         "consorzi-agrari-assocap",
         "consorzi-di-bonifica-snebi",
@@ -808,7 +808,7 @@
         "trigger": "path"
       },
       "source": "ccnl_engine.contribution.minimum_base.services.minimum_base_paths; D.L. 463/1983 art. 7 cc. 1 and 5; INPS circ. 6/2026 allegato 1, Tabella A, note (2)",
-      "remediation": "Source the role of the 51.70 of the operai agricoli (INPS circ. 43/2026 on the agricultural contributions, or the minimum daily wages of art. 1 L. 389/1989), then apply it as their minimum or record that none applies."
+      "remediation": "Resolved: Tabella A gives the operai agricoli the 51.70, kept by art. 7 c. 5 from the 9.50% adjustment; circ. INPS 43/2026 recalls the legal minimums for the OTI and OTD and gives their part time 58.13 x 6/39 = 8.94. contribution/2026/agricoltura.json holds both as daily_by_category and hourly_categories. Tests: tests/mutation/ccnl_engine/contribution/minimum_base/test_rules.py."
     },
     {
       "id": "maternity_daily_base",

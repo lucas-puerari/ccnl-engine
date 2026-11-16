@@ -1,20 +1,13 @@
 """Rule of the minimum INPS contribution base of one year (minimale).
 
-D.L. 463/1983 art. 7 c. 1, second period (as amended by D.L. 338/1989 art.
-1 c. 2): the daily pay contributions are computed on "non può essere
-inferiore al 9,50%" of the monthly minimum FPLD pension in force on 1
-January.  INPS publishes the amount each year (circ. 6/2026 par. 1: 58.13
-EUR for 2026).  Art. 7 c. 5 excludes apprentices, operai agricoli and
-domestic workers.  For part time, D.Lgs. 81/2015 art. 11 c. 1 turns it into
-an hourly minimum: the daily minimum times the days of the normal working
-week, over the full-time weekly hours of the CCNL (circ. 6/2026 par. 4:
-"58,13 euro x 6/40 = 8,72 euro" for a 40-hour week).  The minimum of a
-qualifica can be higher: Tabella A of the circular's allegato 1 lists it by
-sector and qualifica, raised to the 9.50% amount when below it.
-
-The run side: what a run pays of its month against the minimum, and the
-result the contribution step reads
-(:mod:`~ccnl_engine.contribution.minimum_base.rules`).
+D.L. 463/1983 art. 7 c. 1: the daily pay contributions are computed on is
+not below 9.50% of the monthly minimum FPLD pension (circ. 6/2026 par. 1:
+58.13 EUR for 2026); c. 5 excludes apprentices and keeps the operai
+agricoli at their own amount.  Part time takes the hourly minimum of
+D.Lgs. 81/2015 art. 11 c. 1 (par. 4: "58,13 euro x 6/40 = 8,72 euro").
+Tabella A of allegato 1 lists the minimum of each qualifica by sector.  The
+run side is what a run pays of its month and the result the contribution
+step reads (:mod:`~ccnl_engine.contribution.minimum_base.rules`).
 """
 
 from __future__ import annotations
@@ -64,25 +57,23 @@ class MinimumBaseRule(BaseModel):
 
     Attributes:
         daily: Minimum daily pay of art. 7 c. 1 D.L. 463/1983.
-        daily_by_category: Higher daily minimums of the qualifiche of the
-            sector, from Tabella A of the INPS circular (the dirigenti of
-            industria, for instance); the other categories take ``daily``.
+        daily_by_category: Tabella A minimums of the qualifiche other than
+            ``daily``: higher (dirigenti) or lower (operai agricoli, 51.70).
         week_days: Days of the normal working week the hourly minimum is
             published for (six in the private sector, circ. 6/2026 par. 4).
-        monthly_days: Days of a fully paid month of a monthly-paid worker
-            the daily minimum is counted on; ``None`` when the bundle has
-            no source for the sector, and a run below the minimum is then
-            undetermined.
+        monthly_days: Days of a fully paid month the daily minimum is
+            counted on; ``None`` when unsourced (a run below is undetermined).
         hourly: Published hourly minimums of part-time workers, by the
             full-time weekly hours of the CCNL.
-        exempt_categories: Worker categories of the sector art. 7 c. 5
-            excludes (the operai agricoli).
+        hourly_categories: Categories of ``daily_by_category`` whose part
+            time takes the published hourly minimums (circ. 43/2026 par. 5).
         provenance: Source of the amounts and the day counts.
 
     Raises:
         ValueError: When ``monthly_days`` is not between the days of four
             and of five normal weeks, two hourly minimums share their
-            full-time weekly hours, or an exempt category has a minimum.
+            full-time weekly hours, or an hourly category has no daily
+            minimum of its own.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -92,7 +83,7 @@ class MinimumBaseRule(BaseModel):
     week_days: int = Field(ge=1, le=6)
     monthly_days: int | None = Field(default=None, ge=1, le=31)
     hourly: tuple[HourlyMinimum, ...] = ()
-    exempt_categories: frozenset[WorkerCategory] = frozenset()
+    hourly_categories: frozenset[WorkerCategory] = frozenset()
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
@@ -108,9 +99,9 @@ class MinimumBaseRule(BaseModel):
         if len(set(hours)) != len(hours):
             msg = f"hourly minimums repeat full-time weekly hours: {hours}"
             raise ValueError(msg)
-        exempt = self.exempt_categories & self.daily_by_category.keys()
-        if exempt:
-            msg = f"exempt categories cannot have a minimum: {sorted(exempt)}"
+        stray = self.hourly_categories - self.daily_by_category.keys()
+        if stray:
+            msg = f"hourly categories need a daily minimum: {sorted(stray)}"
             raise ValueError(msg)
         return self
 
@@ -128,12 +119,26 @@ class MinimumBaseRule(BaseModel):
     def publishes_hourly_for(self, category: WorkerCategory | None) -> bool:
         """Return whether the published hourly minimums apply to ``category``.
 
-        INPS publishes them for the general daily minimum only.
+        INPS publishes them for the general daily minimum, and for the
+        categories of ``hourly_categories``.
 
         Returns:
-            False for a category with its own daily minimum.
+            False for any other category with its own daily minimum.
         """
-        return category is None or category not in self.daily_by_category
+        return (
+            category is None
+            or category not in self.daily_by_category
+            or category in self.hourly_categories
+        )
+
+    @property
+    def lowers_by_category(self) -> bool:
+        """Whether ``daily`` may overstate the minimum of an unknown category.
+
+        Returns:
+            True when a category of ``daily_by_category`` is below ``daily``.
+        """
+        return any(amount < self.daily for amount in self.daily_by_category.values())
 
     def hourly_for(self, full_time_weekly_hours: Decimal) -> Decimal | None:
         """Return the published hourly minimum of a full-time week.
@@ -159,9 +164,8 @@ class MinimumBaseReason(StrEnum):
         ABOVE_MINIMUM: The base reaches the minimum: it is kept.
         RAISED_TO_MINIMUM: The base was raised to the minimum.
         APPRENTICE: Art. 7 c. 5 excludes apprentices.
-        EXEMPT_CATEGORY: Art. 7 c. 5 excludes the category in the sector.
-        CATEGORY_UNKNOWN: The sector excludes a category and the worker's
-            is not known.
+        CATEGORY_UNKNOWN: A category of the sector has a lower daily
+            minimum and the worker's is not known.
         PARTIAL_MONTH: The run pays part of its month.
         ABSENCE_IN_MONTH: An absence or a sick leave reduced the pay.
         PAY_ADDED_TO_MONTH: The run adds pay to a month posted by another
@@ -182,7 +186,6 @@ class MinimumBaseReason(StrEnum):
     ABOVE_MINIMUM = "above_minimum"
     RAISED_TO_MINIMUM = "raised_to_minimum"
     APPRENTICE = "apprentice_excluded"
-    EXEMPT_CATEGORY = "category_excluded"
     CATEGORY_UNKNOWN = "category_unknown"
     PARTIAL_MONTH = "partial_month"
     ABSENCE_IN_MONTH = "absence_in_month"
