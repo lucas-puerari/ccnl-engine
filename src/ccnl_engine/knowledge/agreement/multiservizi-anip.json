@@ -220,7 +220,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (CNEL 139292 art. 51, pp. 22-24): category routing, the 100% net-global-pay operai band through day 180, the 50% band through day 270, the impiegati 100% first five months and 50% next seven months, and the rolling 36-month comporto are represented. Remaining: the operai 50% band is of gross global pay, while the model applies net_basis to the whole rule; impiegati pay is stipendio plus contingenza, while the engine uses global pay. The operai first working day and the impiegati non-probation and serious-fault conditions are not represented. The clause does not state a daily gross/net conversion or an amount for the excluded pay components.",
+        "text": "SICKNESS (CNEL 139292 art. 51, pp. 22-24): category routing, the 100% net-global-pay operai band through day 180, the 50% band through day 270, the impiegati 100% first five months and 50% next seven months, and the rolling 36-month comporto are represented. The operai 50% band of days 181-270 is of the gross global pay (gross_basis). Remaining: impiegati pay is stipendio plus contingenza, while the engine uses global pay. The operai first working day and the impiegati non-probation and serious-fault conditions are not represented. The clause does not state a daily gross/net conversion or an amount for the excluded pay components.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -5681,7 +5681,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "bee92253195437c5c506ae0c2abeaa05f4e368d5dabbd1e0863bb9f570c9f193",
+    "source_hash": "4c24bb9672808dc7d546a6b18cacab309401a9f945f0664a86abccece5ac746d",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6373,7 +6373,8 @@
         {
           "day_from": 181,
           "day_until": 271,
-          "integration_rate": "0.5"
+          "integration_rate": "0.5",
+          "gross_basis": true
         },
         {
           "day_from": 271,

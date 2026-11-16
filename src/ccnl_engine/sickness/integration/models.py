@@ -63,6 +63,8 @@ class SicknessDayBand(BaseModel):
         day_from: First episode day of the band (1-indexed).
         day_until: First episode day past the band; ``None`` is open-ended.
         integration_rate: Target fraction of the daily pay of the band.
+        gross_basis: On a ``net_basis`` rule, the band is of the gross pay
+            (Multiservizi art. 51 b: '50% della retribuzione globale').
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -70,6 +72,7 @@ class SicknessDayBand(BaseModel):
     day_from: int = Field(ge=1)
     day_until: int | None = Field(default=None, ge=2)
     integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
+    gross_basis: bool = False
 
     def holds(self, index: int) -> bool:
         """Return whether episode day ``index`` falls in the band.
