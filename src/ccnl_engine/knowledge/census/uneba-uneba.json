@@ -1,37 +1,5 @@
 {
   "schema_version": 1,
   "ccnl_id": "uneba-uneba",
-  "requirements": [
-    {
-      "id": "ermt_territorial",
-      "institute": "territorial_supplement",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "ERMT: Elemento Retributivo Mensile Territoriale is a territorial supplement, not part of the national CCNL salary table. Not modelled at national level.",
-      "calculation": "ccnl/uneba-uneba:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the ERMT outside the engine and record the limitation (as ert_veneto / provincial_third_elements).",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "uneba-uneba/ermt_territorial"
-        ]
-      }
-    },
-    {
-      "id": "rule_additional_months_2024_10_01",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/uneba-uneba.json#additional_months[2024-10-01]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/uneba-uneba.json#additional_months[2024-10-01]"
-        ]
-      }
-    }
-  ]
+  "requirements": []
 }

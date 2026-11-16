@@ -83,17 +83,9 @@
         "text": "TEP ABOLISHED: Art. 80 of the 2025 renewal abolishes the Trattamento Economico Progressivo (progressive 36-month phased salary for new hires). Not modelled as it is no longer in force from 01.02.2025."
       },
       {
-        "kind": "simplification",
-        "text": "ERMT: Elemento Retributivo Mensile Territoriale is a territorial supplement, not part of the national CCNL salary table. Not modelled at national level.",
+        "kind": "info",
         "capability": "territorial_supplement",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "ermt_territorial",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add the ERMT outside the engine and record the limitation (as ert_veneto / provincial_third_elements)."
-        }
+        "text": "ERMT (art. 43, PDF p. 54): 'È fatto salvo il trattamento già riconosciuto da ciascun ente o istituzione ai sensi delle disposizioni di cui all’art. 42 paragrafo 4 (elemento retributivo mensile territoriale ERMT) di cui al CCNL 2010-2012 nonché all’art. 43 del CCNL 2017-2019'. The amount is the one each ente already pays, not a national table: the caller states it as a territorial second-level element (EmployerProfile.second_level_elements, agreement 'territorial'), on the extra months and in the TFR by default."
       },
       {
         "kind": "info",
@@ -212,9 +204,27 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-uneba-2023-2025",
+                "title": "CCNL UNEBA 2023-2025, testo firmato (UNEBA)",
+                "kind": "associazione",
+                "url": "https://www.uneba.org/wp-content/uploads/2026/05/CCNL-UNEBA-2023-2025.pdf",
+                "sha256": "5d70e03494dc0a1cdacd1b9f68d0faaf89c87809c41fe9cfa446f76c41f13cbc"
+              },
+              "page": "55-56",
+              "section": "Art. 45 Tredicesima mensilità; Art. 46 Quattordicesima mensilità",
+              "quote": "Entro il 20 dicembre di ciascun anno l’Istituzione corrisponderà al personale dipendente un importo pari ad una mensilità della retribuzione di cui all’art. 42. [...] Al personale compreso nella sfera di applicazione del presente contratto sarà corrisposto, entro il mese di luglio di ogni anno, un importo pari ad una mensilità della retribuzione di cui all’art. 42 in atto al 30 giugno immediatamente precedente."
+            },
+            "transformation": "Fourteen monthly payments: the tredicesima in December and the quattordicesima in July.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2024-10-01",
+              "verification_status": "unverified"
+            }
           }
         }
       ]
@@ -1949,7 +1959,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "65c8c82260b78402da18683ba64376f10d25efe26a1ef1ddb4b67ec2f92109ad",
+    "source_hash": "f056a1eb118ebc3a9de44708913d74285b52d66a86932e761a0c6da1724b0c55",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2472,6 +2482,39 @@
           "quote": "Congedo parentale a ore\nAi fini di conciliare i tempi di lavoro e quelli famigliari, le parti - con il presente articolo - intendono\ndare attuazione alla disposizione di cui al D.lgs. 151/2001 per definire la modalità di fruizione del\ncongedo parentale disciplinato in modalità a ore, indistintamente per i lavoratori a tempo pieno o\nparziale.\nIn particolare:\n- la volontà di avvalersi del congedo in ossequio alla predetta articolazione dovrà essere comunicata\nal datore di lavoro con almeno 5 giorni di preavviso, indicando il numero di mesi di congedo parentale\n(spettante ai sensi del D.lgs. 151/2001) che intende usufruire, l'arco temporale entro il quale le ore di\ncongedo saranno fruite (inizio e fine), la programmazione mensile delle ore di congedo;\n- non sono comunque ammissibili richieste che prevedano l'effettuazione di prestazioni lavorative\ninferiori alla metà dell'orario giornaliero previsto dal contratto individuale;\n- il calcolo dell'indennità economica prevista dalla legge e da erogare per ogni ora di congedo viene\neffettuato secondo quanto previsto dal contratto;\n- la possibilità di convertire uno o più mesi di congedo parentale a ore è ammessa anche a più riprese,\nfino ad esaurimento del periodo massimo riconosciuto dalla legge;\n- il congedo a ore di cui al presente articolo è cumulabile, anche nell'ambito della stessa giornata, con\naltri riposi e permessi previsti dalla legge o dal CCNL, nei limiti ed alle condizioni di legge;\n- sono fatti salvi gli obblighi di legge a carico del lavoratore con riferimento all'apposita istanza di\ncongedo parentale che lo stesso deve presentare all'lnps.\nSono fatte salve eventuali intese stipulate a livello territoriale o con accordo aziendale.\nPer tutto quanto non previsto al presente titolo si fa riferimento alle norme di legge vigenti e s.m.i."
         },
         "transformation": "L'articolo disciplina la fruizione oraria e vieta prestazioni residue inferiori alla metà dell'orario giornaliero individuale, ma non equipara espressamente un numero di ore a una giornata di congedo: day_hours = null. La menzione del tempo parziale non stabilisce un riproporzionamento di ore equivalenti: part_time_scaled = false. Nessuna decorrenza specifica nella clausola: effective_from = null."
+      }
+    },
+    "travel_allowance": {
+      "habitual_discount": "0.10",
+      "long_mission_discount": "0.10",
+      "daily_share": {
+        "rate": "2",
+        "base": "pay",
+        "divisor": "26",
+        "no_overnight_discount": "0.3333333333"
+      },
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-uneba-2023-2025",
+            "title": "CCNL UNEBA 2023-2025, testo firmato (UNEBA)",
+            "kind": "associazione",
+            "url": "https://www.uneba.org/wp-content/uploads/2026/05/CCNL-UNEBA-2023-2025.pdf",
+            "sha256": "5d70e03494dc0a1cdacd1b9f68d0faaf89c87809c41fe9cfa446f76c41f13cbc"
+          },
+          "page": "52, 63",
+          "section": "Art. 42 Elementi della retribuzione; Art. 58 Trattamento di missione",
+          "quote": "L’importo giornaliero della retribuzione si ottiene dividendo per 26 l’importo mensile. [...] d) una diaria non inferiore al doppio della retribuzione giornaliera di cui all’art. 42; qualora non vi sia pernottamento fuori sede la diaria verrà ridotta di un terzo. Per le missioni di durata superiori al mese sarà corrisposta una diaria ridotta del 10%. Analogamente si procederà quando le attribuzioni del lavoratore comportino viaggi abituali."
+        },
+        "transformation": "The diaria is twice the daily pay of art. 42 (the global monthly pay over 26), less a third without an overnight stay, less 10% for missions over a month and for habitual travel; the employer may refund meals and lodging at cost instead, a caller choice stated on the event. Expenses refunded are not pay.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2024-10-01",
+          "verification_status": "unverified"
+        }
       }
     }
   }

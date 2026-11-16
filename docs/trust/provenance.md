@@ -180,8 +180,8 @@ when they drift.
 | Status | CCNL rules | Fiscal blocks | Total |
 |---|---:|---:|---:|
 | `verified` | 5 862 | 97 | 5 959 |
-| `derived` | 2 831 | 50 | 2 881 |
-| `assumed` | 221 | 116 | 337 |
+| `derived` | 2 832 | 50 | 2 882 |
+| `assumed` | 220 | 116 | 336 |
 | `missing` | 28 | 0 | 28 |
 
 <!-- /trust:provenance-table -->

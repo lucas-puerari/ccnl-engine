@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | territorial_supplement |
+| **Limits of this contract** | — |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 40 verified / 8 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 40 verified / 9 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -120,13 +120,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "uneba-uneba/ermt_territorial · territorial_supplement · impact yes · open"
-    ERMT: Elemento Retributivo Mensile Territoriale is a territorial supplement, not part of the national CCNL salary table. Not modelled at national level.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add the ERMT outside the engine and record the limitation (as ert_veneto / provincial_third_elements).
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -307,6 +300,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP (art. 22, text 2023-2025, PDF p. 32): two bands, 85% and 90% of the minimo conglobato of the destination level, split at half of the duration: 36 months for 2, 3S, 3 (18 + 18), 24 months for 4S and 4 (12 + 12), 18 months for 5S, 5, 6 and the OSS 4S (9 + 9). The earlier 90/95/100% in three bands was wrong.
     
     TEP ABOLISHED: Art. 80 of the 2025 renewal abolishes the Trattamento Economico Progressivo (progressive 36-month phased salary for new hires). Not modelled as it is no longer in force from 01.02.2025.
+    
+    ERMT (art. 43, PDF p. 54): 'È fatto salvo il trattamento già riconosciuto da ciascun ente o istituzione ai sensi delle disposizioni di cui all’art. 42 paragrafo 4 (elemento retributivo mensile territoriale ERMT) di cui al CCNL 2010-2012 nonché all’art. 43 del CCNL 2017-2019'. The amount is the one each ente already pays, not a national table: the caller states it as a territorial second-level element (EmployerProfile.second_level_elements, agreement 'territorial'), on the extra months and in the TFR by default.
     
     INPS: reuses 2026-terziario.json (TERZIARIO sector). No separate INPS circular rate published for UNEBA; rate is consistent with general terziario sector (same as Commercio and Cooperative Sociali).
     
