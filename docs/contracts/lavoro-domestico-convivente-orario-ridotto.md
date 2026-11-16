@@ -146,7 +146,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved for caller-classified hours: use kind=supplementare for extra hours within the written arrangement and weekday/night/holiday for hours outside it; split hours at the arrangement boundary.
 
-!!! warning "lavoro-domestico-convivente-orario-ridotto/annual_minimi_not_updated · base_salary · impact yes · open"
+!!! warning "lavoro-domestico-convivente-orario-ridotto/annual_minimi_not_updated · base_salary · impact yes · awaiting_publication"
     ANNUAL MINIMI: the minimi of the CCNL are updated every year from 1 January by the Commissione nazionale (Art. 38, ISTAT variation of the consumer prices); the bundle holds the table of 2026. From 1 January 2027 the amounts are those of 2026 until the 2027 table is published and added, so a 2027 run is not payable.
 
     **Applies when:** `base_salary` applies; from 2027-01-01.
@@ -160,14 +160,14 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the allowances of art. 34 are paid while the caller states the role (Employment.roles: baby_sitter_under_6 until the child is six, assistenza_piu_non_autosufficienti, certificazione_uni_11766 while valid and communicated in writing), facts of the employment the engine cannot see; the individual elements of the worker absorb them: the absorbable superminimi for cc. 3-4 ("assorbibile da eventuali superminimi individuali di miglior favore", c. 5 keeping whole the treatment "ad personam non assorbibile"), every better treatment for c. 7 ("assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti") (review of 2026-11-16).
 
-!!! warning "provisional_ruleset · irpef · impact unknown · open"
+!!! warning "provisional_ruleset · irpef · impact unknown · awaiting_publication"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
 
     **Applies when:** `irpef` applies; the run takes the engine code path.
 
     **Remediation:** Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation.
 
-!!! warning "provisional_inps_ruleset · inps_employer · impact unknown · open"
+!!! warning "provisional_inps_ruleset · inps_employer · impact unknown · awaiting_publication"
     The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path.
@@ -195,7 +195,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the base of an operaio and of a partial month is the sickness base of the month before.
 
-!!! warning "parental_income_condition · parental_leave · impact unknown · open"
+!!! warning "parental_income_condition · parental_leave · impact unknown · awaiting_publication"
     The days of parental leave beyond the indemnified months are paid 30% when the parent's individual income (ParentalLeaveEvent.individual_income) is below 2.5 times the yearly trattamento minimo di pensione (art. 34 c. 3 D.Lgs. 151/2001); a year whose minimum the INPS has not published yet (2027) pays them nothing.
 
     **Applies when:** `parental_leave` applies; the run takes the engine code path.

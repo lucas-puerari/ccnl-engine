@@ -128,14 +128,14 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
-!!! warning "provisional_ruleset · irpef · impact unknown · open"
+!!! warning "provisional_ruleset · irpef · impact unknown · awaiting_publication"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
 
     **Applies when:** `irpef` applies; the run takes the engine code path.
 
     **Remediation:** Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation.
 
-!!! warning "provisional_inps_ruleset · inps_employer · impact unknown · open"
+!!! warning "provisional_inps_ruleset · inps_employer · impact unknown · awaiting_publication"
     The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path.
@@ -170,7 +170,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the base of an operaio and of a partial month is the sickness base of the month before.
 
-!!! warning "parental_income_condition · parental_leave · impact unknown · open"
+!!! warning "parental_income_condition · parental_leave · impact unknown · awaiting_publication"
     The days of parental leave beyond the indemnified months are paid 30% when the parent's individual income (ParentalLeaveEvent.individual_income) is below 2.5 times the yearly trattamento minimo di pensione (art. 34 c. 3 D.Lgs. 151/2001); a year whose minimum the INPS has not published yet (2027) pays them nothing.
 
     **Applies when:** `parental_leave` applies; the run takes the engine code path.

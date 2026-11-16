@@ -3,22 +3,6 @@
   "ccnl_id": "lavoro-domestico-convivente-orario-ridotto",
   "requirements": [
     {
-      "id": "annual_minimi_not_updated",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "ANNUAL MINIMI: the minimi of the CCNL are updated every year from 1 January by the Commissione nazionale (Art. 38, ISTAT variation of the consumer prices); the bundle holds the table of 2026. From 1 January 2027 the amounts are those of 2026 until the 2027 table is published and added, so a 2027 run is not payable.",
-      "calculation": "ccnl/lavoro-domestico-convivente-orario-ridotto:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "lavoro-domestico-convivente-orario-ridotto/annual_minimi_not_updated"
-        ]
-      }
-    },
-    {
       "id": "students_other_levels",
       "institute": "base_salary",
       "variant": "all",

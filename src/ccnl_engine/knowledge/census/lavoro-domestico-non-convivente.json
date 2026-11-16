@@ -1,38 +1,5 @@
 {
   "schema_version": 1,
   "ccnl_id": "lavoro-domestico-non-convivente",
-  "requirements": [
-    {
-      "id": "annual_minimi_not_updated",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "ANNUAL MINIMI: the minimi of the CCNL are updated every year from 1 January by the Commissione nazionale (Art. 38, ISTAT variation of the consumer prices); the bundle holds the table of 2026. From 1 January 2027 the amounts are those of 2026 until the 2027 table is published and added, so a 2027 run is not payable.",
-      "calculation": "ccnl/lavoro-domestico-non-convivente:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "lavoro-domestico-non-convivente/annual_minimi_not_updated"
-        ]
-      }
-    },
-    {
-      "id": "tranches_from_2027",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SINGLE PERIOD 2026-01-01. Pre-2026 tranches out of scope. Post-2026 CCNL 2025-2028 tranches not yet modelled: +30 on BS from Jan 2027, +15 from Jan 2028, +15 from Sep 2028 (other levels proportional — exact amounts require official ASSINDATCOLF/DOMINA table for those periods).",
-      "calculation": "ccnl/lavoro-domestico-non-convivente:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the 2027 and 2028 tranches from the official ASSINDATCOLF/DOMINA tables.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "lavoro-domestico-non-convivente/tranches_from_2027"
-        ]
-      }
-    }
-  ]
+  "requirements": []
 }

@@ -126,6 +126,7 @@ class CoverageNote(BaseModel):
             source=source,
             remediation=spec.remediation,
             searched=spec.searched,
+            awaited=spec.awaited,
         )
 
 
