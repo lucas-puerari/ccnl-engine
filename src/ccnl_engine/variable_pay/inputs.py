@@ -196,6 +196,7 @@ class TravelAllowanceEvent:
             distinct from the fiscal status ``trasfertista``.
         mission_over_month: Whether the mission exceeds one calendar month;
             determined by the caller from the actual start and end dates.
+        mission_over_two_months: Whether it exceeds two calendar months.
         meals: Meals of each day the CCNL quota is due for (0 to 2), for a
             CCNL that pays by meals and lodging; ``None`` otherwise.
         overnight: Whether the overnight quota is due each day, with
@@ -225,6 +226,7 @@ class TravelAllowanceEvent:
     mission_hours: Decimal | None = None
     habitual_travel: bool = False
     mission_over_month: bool = False
+    mission_over_two_months: bool = False
     meals: int | None = None
     overnight: bool | None = None
     agreed_at_hiring: bool | None = None
@@ -273,6 +275,7 @@ class TravelAllowanceEvent:
             "trasfertista",
             "habitual_travel",
             "mission_over_month",
+            "mission_over_two_months",
         ):
             require_bool(getattr(self, flag), f"{name}.{flag}", feature=feature)
         require_choice(

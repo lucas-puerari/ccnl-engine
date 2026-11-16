@@ -150,7 +150,9 @@ class CcnlTravelAllowance(BaseModel):
             the hours away of a day.
         habitual_discount: Share the diaria drops by for travel habitual to
             the job; ``long_mission_discount`` for a mission over a calendar
-            month.  Both together lower it once (Studi art. 115: 10%).
+            month, ``two_month_mission_discount`` past its second month
+            (Unimatica art. 47: 50% falls to 35%, then 20%).  Together they
+            lower it once, by the largest (Studi art. 115: 10%).
         night_allowance: Amount for each day of at least
             :attr:`night_from_hours` away (Logistica art. 16: 0.93 per
             trasferta of 18 to 24 hours), pay of the period that enters the
@@ -170,6 +172,9 @@ class CcnlTravelAllowance(BaseModel):
     mission_duration: bool = False
     habitual_discount: Decimal = Field(default=Decimal(0), ge=Decimal(0), le=Decimal(1))
     long_mission_discount: Decimal = Field(
+        default=Decimal(0), ge=Decimal(0), le=Decimal(1)
+    )
+    two_month_mission_discount: Decimal = Field(
         default=Decimal(0), ge=Decimal(0), le=Decimal(1)
     )
     night_allowance: TimeSeries | None = None

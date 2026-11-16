@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 25/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 250 open limitations (250 with a monetary impact), 34 declared residuals.
+**Complete: 26/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 250 open limitations (250 with a monetary impact), 34 declared residuals.
 
 ## Declared window
 
@@ -141,7 +141,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [impianti-sportivi-sport](../contracts/impianti-sportivi-sport.md) | `sport` | exploratory | — | 4 rows | 4 open requirements; 1 weak rule; 2 monetary limitations; 1 outside_input limitation; 2 non-native capabilities; 1 declared residual |
 | [impiegati-tecnici-agricoli](../contracts/impiegati-tecnici-agricoli.md) | `agricoltura` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 2 non-native capabilities |
 | [industria-turistica-federturismo](../contracts/industria-turistica-federturismo.md) | `turismo` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 outside_input limitation; 5 non-native capabilities |
-| [informatica-pmi-unimatica](../contracts/informatica-pmi-unimatica.md) | `ict-telecomunicazioni` | exploratory | — | 0 rows | 5 non-native capabilities |
+| [informatica-pmi-unimatica](../contracts/informatica-pmi-unimatica.md) | `ict-telecomunicazioni` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [istituzioni-servizi-socio-assistenziali-anaste](../contracts/istituzioni-servizi-socio-assistenziali-anaste.md) | `socio-sanitario` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [istruzione-ricerca-aran](../contracts/istruzione-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [lapidei-industria](../contracts/lapidei-industria.md) | `materiali-estrattive` | exploratory | — | 6 rows | 6 open requirements; 2 weak rules; 3 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |

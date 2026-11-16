@@ -214,6 +214,36 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-unimatica-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Arts. 36, 47 and 105: the renewal of 9 March 2021 (CNEL 133946, pp. 11-12) and the agreement of 9 July 2018 (CNEL 90438, pp. 73, 85), read from the OCR of the scanned PDFs by sha256; the renewal of 8 April 2025 (CNEL 216350) leaves them unchanged.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/133946",
+            "sha256": "62a5d6b70f731132ba9340f058e0f23c52dd027103b30702b815eadeb825b85b"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/90438",
+            "sha256": "10335cae1af07ac048cc8bdf5c1db86f84b5053364031b6b5f64b0fe3ac7e0c5"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216350",
+            "sha256": "e32edc8edbce7451657dddb85b01ff15b35e5569961a16acc85c98486ea2d83d"
+          }
+        ],
+        "findings": [
+          "Replaced the unsourced overtime rates with the 2022 table; applied night, shift, holiday and travel."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.travel_allowance"
+        ]
       }
     ]
   },
@@ -1631,25 +1661,24 @@
     "effective_until": null,
     "source": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "4f01aad96b36df89f2e4f8c01e5e50278922054f732e3ee352859ec571267fc9",
+    "source_hash": "62d19ab241c1eb505cacc0866ebfd7b20c219f2d029aa120c9e2bc57c301c623",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
-          "description": "Straordinario feriale diurno",
+          "description": "Straordinario feriale",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
-                "valid_from": "2018-07-01",
-                "value": 0.25,
-                "provenance": null,
-                "valid_until": null
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.31"
               }
             ]
           },
@@ -1657,35 +1686,43 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-unigec-unimatica-2018",
-                "title": "CCNL UNIGEC/UNIMATICA — PMI Comunicazione e Informatica 2018",
-                "kind": "tabella_retributiva",
-                "url": "https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf"
+                "document_id": "unimatica-rinnovo-2021-cnel-133946",
+                "title": "CCNL UNIGEC/UNIMATICA Confapi, ipotesi di rinnovo 9 marzo 2021 (CNEL 133946)",
+                "kind": "associazione",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/133946",
+                "sha256": "62a5d6b70f731132ba9340f058e0f23c52dd027103b30702b815eadeb825b85b"
               },
-              "section": "Art. straordinario — maggiorazione 25%"
+              "page": "11",
+              "section": "Art. 36 - Tabella maggiorazioni, settori grafico-editoriale e informatico-servizi innovativi",
+              "quote": "Maggiorazioni straordinario feriale 30% 30,45% 31%"
             },
+            "transformation": "0.31 from 1 January 2022, the last column of the table.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page; the CNEL endpoint returns the PDF base64-encoded in model.fileContent, and the sha256 is of the decoded PDF.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2018-07-01"
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-unimatica-supplements"
             }
           }
         },
         {
           "code": "OT_NOTTURNO",
-          "description": "Straordinario feriale notturno",
+          "description": "Straordinario notturno",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
-                "valid_from": "2018-07-01",
-                "value": 0.4,
-                "provenance": null,
-                "valid_until": null
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.55"
               }
             ]
           },
@@ -1693,21 +1730,30 @@
             "night"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-unigec-unimatica-2018",
-                "title": "CCNL UNIGEC/UNIMATICA — PMI Comunicazione e Informatica 2018",
-                "kind": "tabella_retributiva",
-                "url": "https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf"
+                "document_id": "unimatica-rinnovo-2021-cnel-133946",
+                "title": "CCNL UNIGEC/UNIMATICA Confapi, ipotesi di rinnovo 9 marzo 2021 (CNEL 133946)",
+                "kind": "associazione",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/133946",
+                "sha256": "62a5d6b70f731132ba9340f058e0f23c52dd027103b30702b815eadeb825b85b"
               },
-              "section": "Art. straordinario — maggiorazione notturno 40%"
+              "page": "12",
+              "section": "Art. 36 - Tabella maggiorazioni, settori grafico-editoriale e informatico-servizi innovativi",
+              "quote": "Maggiorazione straordinario notturno e festivo 54% 54,81% 55%"
             },
+            "transformation": "0.55 from 1 January 2022, the last column of the table.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page; the CNEL endpoint returns the PDF base64-encoded in model.fileContent, and the sha256 is of the decoded PDF.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2018-07-01"
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-unimatica-supplements"
             }
           }
         },
@@ -1718,10 +1764,9 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2018-07-01",
-                "value": 0.35,
-                "provenance": null,
-                "valid_until": null
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.55"
               }
             ]
           },
@@ -1729,21 +1774,30 @@
             "holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-unigec-unimatica-2018",
-                "title": "CCNL UNIGEC/UNIMATICA — PMI Comunicazione e Informatica 2018",
-                "kind": "tabella_retributiva",
-                "url": "https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf"
+                "document_id": "unimatica-rinnovo-2021-cnel-133946",
+                "title": "CCNL UNIGEC/UNIMATICA Confapi, ipotesi di rinnovo 9 marzo 2021 (CNEL 133946)",
+                "kind": "associazione",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/133946",
+                "sha256": "62a5d6b70f731132ba9340f058e0f23c52dd027103b30702b815eadeb825b85b"
               },
-              "section": "Art. straordinario — maggiorazione festivo 35%"
+              "page": "12",
+              "section": "Art. 36 - Tabella maggiorazioni, settori grafico-editoriale e informatico-servizi innovativi",
+              "quote": "Maggiorazione straordinario notturno e festivo 54% 54,81% 55%"
             },
+            "transformation": "0.55 from 1 January 2022, the last column of the table.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page; the CNEL endpoint returns the PDF base64-encoded in model.fileContent, and the sha256 is of the decoded PDF.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2018-07-01"
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-unimatica-supplements"
             }
           }
         },
@@ -1754,10 +1808,9 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2018-07-01",
-                "value": 0.5,
-                "provenance": null,
-                "valid_until": null
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.55"
               }
             ]
           },
@@ -1765,21 +1818,311 @@
             "night_holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ccnl-unigec-unimatica-2018",
-                "title": "CCNL UNIGEC/UNIMATICA — PMI Comunicazione e Informatica 2018",
-                "kind": "tabella_retributiva",
-                "url": "https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf"
+                "document_id": "unimatica-rinnovo-2021-cnel-133946",
+                "title": "CCNL UNIGEC/UNIMATICA Confapi, ipotesi di rinnovo 9 marzo 2021 (CNEL 133946)",
+                "kind": "associazione",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/133946",
+                "sha256": "62a5d6b70f731132ba9340f058e0f23c52dd027103b30702b815eadeb825b85b"
               },
-              "section": "Art. straordinario — notturno festivo 50%"
+              "page": "12",
+              "section": "Art. 36 - Tabella maggiorazioni, settori grafico-editoriale e informatico-servizi innovativi",
+              "quote": "Maggiorazione straordinario notturno e festivo 54% 54,81% 55%"
             },
+            "transformation": "0.55 from 1 January 2022, the last column of the table.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page; the CNEL endpoint returns the PDF base64-encoded in model.fileContent, and the sha256 is of the decoded PDF.",
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2018-07-01"
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-unimatica-supplements"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "unimatica-ccnl-2018-cnel-90438",
+            "title": "CCNL UNIGEC/UNIMATICA Confapi, accordo 9 luglio 2018 (CNEL 90438)",
+            "kind": "associazione",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/90438",
+            "sha256": "10335cae1af07ac048cc8bdf5c1db86f84b5053364031b6b5f64b0fe3ac7e0c5"
+          },
+          "page": "85",
+          "section": "Art. 105",
+          "quote": "Per il computo della retribuzione normale oraria, si dividerà la retribuzione mensile per 166,5 fino alla data del 31 dicembre 2018; dal 1° gennaio 2019 si dividerà per 169."
+        },
+        "transformation": "The monthly pay over 169; the renewals of 2021 and 2025 leave art. 105 unchanged.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page; the CNEL endpoint returns the PDF base64-encoded in model.fileContent, and the sha256 is of the decoded PDF.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2022-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-unimatica-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT",
+          "description": "Lavoro notturno",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.55"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unimatica-rinnovo-2021-cnel-133946",
+                "title": "CCNL UNIGEC/UNIMATICA Confapi, ipotesi di rinnovo 9 marzo 2021 (CNEL 133946)",
+                "kind": "associazione",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/133946",
+                "sha256": "62a5d6b70f731132ba9340f058e0f23c52dd027103b30702b815eadeb825b85b"
+              },
+              "page": "11",
+              "section": "Art. 36 - Tabella maggiorazioni, settori grafico-editoriale e informatico-servizi innovativi",
+              "quote": "A far data dal 1° gennaio 2022 le tabelle vengono modificate come segue: Settori grafico-editoriale, informatico-servizi innovativi ... Lavoro notturno 54% 54,81% 55%"
+            },
+            "transformation": "Ordinary night work: the hours sit in the monthly pay, the band adds the 55%.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page; the CNEL endpoint returns the PDF base64-encoded in model.fileContent, and the sha256 is of the decoded PDF.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-unimatica-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_DAY_SHIFT",
+          "description": "Turni diurni",
+          "work": "day_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.06"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unimatica-rinnovo-2021-cnel-133946",
+                "title": "CCNL UNIGEC/UNIMATICA Confapi, ipotesi di rinnovo 9 marzo 2021 (CNEL 133946)",
+                "kind": "associazione",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/133946",
+                "sha256": "62a5d6b70f731132ba9340f058e0f23c52dd027103b30702b815eadeb825b85b"
+              },
+              "page": "11",
+              "section": "Art. 36 - Tabella maggiorazioni, settori grafico-editoriale e informatico-servizi innovativi",
+              "quote": "A far data dal 1° gennaio 2022 le tabelle vengono modificate come segue: Settori grafico-editoriale, informatico-servizi innovativi ... Turni diurni 6% 5,92% 6%"
+            },
+            "transformation": "Day shifts: 6% on the hours in the monthly pay.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page; the CNEL endpoint returns the PDF base64-encoded in model.fileContent, and the sha256 is of the decoded PDF.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-unimatica-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_SHIFT",
+          "description": "Turni notturni",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.24"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unimatica-rinnovo-2021-cnel-133946",
+                "title": "CCNL UNIGEC/UNIMATICA Confapi, ipotesi di rinnovo 9 marzo 2021 (CNEL 133946)",
+                "kind": "associazione",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/133946",
+                "sha256": "62a5d6b70f731132ba9340f058e0f23c52dd027103b30702b815eadeb825b85b"
+              },
+              "page": "11",
+              "section": "Art. 36 - Tabella maggiorazioni, settori grafico-editoriale e informatico-servizi innovativi",
+              "quote": "A far data dal 1° gennaio 2022 le tabelle vengono modificate come segue: Settori grafico-editoriale, informatico-servizi innovativi ... Turni notturni 24% 23,69% 24%"
+            },
+            "transformation": "Night shifts: 24% on the hours in the monthly pay.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page; the CNEL endpoint returns the PDF base64-encoded in model.fileContent, and the sha256 is of the decoded PDF.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-unimatica-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY",
+          "description": "Lavoro festivo",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.55"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unimatica-rinnovo-2021-cnel-133946",
+                "title": "CCNL UNIGEC/UNIMATICA Confapi, ipotesi di rinnovo 9 marzo 2021 (CNEL 133946)",
+                "kind": "associazione",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/133946",
+                "sha256": "62a5d6b70f731132ba9340f058e0f23c52dd027103b30702b815eadeb825b85b"
+              },
+              "page": "11",
+              "section": "Art. 36 - Tabella maggiorazioni, settori grafico-editoriale e informatico-servizi innovativi",
+              "quote": "A far data dal 1° gennaio 2022 le tabelle vengono modificate come segue: Settori grafico-editoriale, informatico-servizi innovativi ... Lavoro domenicale e/o festivo 54% 54,81% 55%"
+            },
+            "transformation": "Holiday work: the hours paid on top of the month, which already holds the holiday, with 55%.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page; the CNEL endpoint returns the PDF base64-encoded in model.fileContent, and the sha256 is of the decoded PDF.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-unimatica-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY",
+          "description": "Lavoro domenicale",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.55"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unimatica-rinnovo-2021-cnel-133946",
+                "title": "CCNL UNIGEC/UNIMATICA Confapi, ipotesi di rinnovo 9 marzo 2021 (CNEL 133946)",
+                "kind": "associazione",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/133946",
+                "sha256": "62a5d6b70f731132ba9340f058e0f23c52dd027103b30702b815eadeb825b85b"
+              },
+              "page": "11",
+              "section": "Art. 36 - Tabella maggiorazioni, settori grafico-editoriale e informatico-servizi innovativi",
+              "quote": "A far data dal 1° gennaio 2022 le tabelle vengono modificate come segue: Settori grafico-editoriale, informatico-servizi innovativi ... Lavoro domenicale e/o festivo 54% 54,81% 55%"
+            },
+            "transformation": "Sunday hours of a worker resting another day: 55% on hours in the monthly pay.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page; the CNEL endpoint returns the PDF base64-encoded in model.fileContent, and the sha256 is of the decoded PDF.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-unimatica-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_REST",
+          "description": "Lavoro domenicale o festivo con riposo compensativo (area tecnica informatica)",
+          "work": "holiday_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.31"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unimatica-rinnovo-2021-cnel-133946",
+                "title": "CCNL UNIGEC/UNIMATICA Confapi, ipotesi di rinnovo 9 marzo 2021 (CNEL 133946)",
+                "kind": "associazione",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/133946",
+                "sha256": "62a5d6b70f731132ba9340f058e0f23c52dd027103b30702b815eadeb825b85b"
+              },
+              "page": "11",
+              "section": "Art. 36 - Tabella maggiorazioni, settori grafico-editoriale e informatico-servizi innovativi",
+              "quote": "A far data dal 1° gennaio 2022 le tabelle vengono modificate come segue: Settori grafico-editoriale, informatico-servizi innovativi ... Lavoro domenicale e/o festivo con riposo compensativo per il settore informatico e servizi innovativi (area tecnica) 30% 30,45% 31%"
+            },
+            "transformation": "With a compensatory rest day, for the technical area of the informatica sector: 31%.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page; the CNEL endpoint returns the PDF base64-encoded in model.fileContent, and the sha256 is of the decoded PDF.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-unimatica-supplements"
             }
           }
         }
@@ -1938,6 +2281,44 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 19545d57e08de55f9db0e2232acb9c86a0f910a4a375a321c808f621970cec41)."
+      }
+    },
+    "travel_allowance": {
+      "habitual_discount": "0.6",
+      "long_mission_discount": "0.3",
+      "two_month_mission_discount": "0.6",
+      "tfr_base": "none",
+      "daily_share": {
+        "rate": "0.5",
+        "base": "pay",
+        "divisor": "26"
+      },
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "unimatica-ccnl-2018-cnel-90438",
+            "title": "CCNL UNIGEC/UNIMATICA Confapi, accordo 9 luglio 2018 (CNEL 90438)",
+            "kind": "associazione",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/90438",
+            "sha256": "10335cae1af07ac048cc8bdf5c1db86f84b5053364031b6b5f64b0fe3ac7e0c5"
+          },
+          "page": "73",
+          "section": "Art. 47 - Missioni/Trasferte",
+          "quote": "Se la trasferta ha una durata superiore alle 24 ore, l'indennità di cui sopra verrà calcolata moltiplicando il 50% della retribuzione giornaliera per il numero dei giorni di prestazione lavorativa"
+        },
+        "transformation": "50% of the daily pay for each day, from 50 km for a day trip; after the first month 35% (0.3 off), after the second 20% (0.6 off), habitual travel 20% (0.6 off); outside the pay to every effect: no TFR. The daily pay is the monthly over 26, the fraction the CCNL uses for a day (art. on festività). The scan is a redline: the struck 30/20/10% and the 12-hour and 150 km conditions are not in force.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page; the CNEL endpoint returns the PDF base64-encoded in model.fileContent, and the sha256 is of the decoded PDF.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2022-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-unimatica-supplements"
+        }
       }
     }
   }
