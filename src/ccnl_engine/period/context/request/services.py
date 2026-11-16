@@ -240,7 +240,11 @@ def build_context(
     )
     if proration.hourly is not None:
         upcoming_gross += upcoming_percentages(
-            contract.ccnl, chain, competence, withholding.upcoming
+            contract.ccnl,
+            chain,
+            competence,
+            withholding.upcoming,
+            request.contract_type,
         )
     chain = proration.apply(
         _apply_extra_month_policy(chain, payment.run_id.kind, run_fraction(accrual))

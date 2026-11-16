@@ -27,7 +27,7 @@ from ccnl_engine.seniority.repricing.rules import (
     earned_seniority,
     promoted_seniority,
 )
-from ccnl_engine.seniority.rules import _resolve_seniority_count
+from ccnl_engine.seniority.rules import _resolve_seniority_count, term_excluded
 
 if TYPE_CHECKING:
     from datetime import date
@@ -56,9 +56,8 @@ def _seniority_count(
     Returns:
         Zero when the seniority is not declared.
     """
-    if seniority_months is None or (
-        ccnl.parameters.seniority_increments.permanent_only
-        and isinstance(contract_type, FixedTerm)
+    if seniority_months is None or term_excluded(
+        ccnl.parameters.seniority_increments, contract_type
     ):
         return 0
     return _resolve_seniority_count(
@@ -177,10 +176,9 @@ def _resolve_chain(
         level = transitioned_level(
             ccnl, level, contract_type, as_of, level_started_on, hired_on=hired_on
         )
-        eligible_for_seniority = not isinstance(contract_type, Apprentice) and not (
-            ccnl.parameters.seniority_increments.permanent_only
-            and isinstance(contract_type, FixedTerm)
-        )
+        eligible_for_seniority = not isinstance(
+            contract_type, Apprentice
+        ) and not term_excluded(ccnl.parameters.seniority_increments, contract_type)
         if (
             seniority is not None
             and seniority.earned is not None

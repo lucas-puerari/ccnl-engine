@@ -83,24 +83,32 @@ class FixedTerm:
             :attr:`NaspiExclusion.NONE` when none.  ``None`` means not
             known: a run whose sector charges the surcharge has a
             ``missing_fact`` blocker.
+        qualifying_years: Consecutive calendar years, up to the year
+            before the run, the worker worked for the employer at least the
+            days a CCNL element asks (operai agricoli art. 54-bis: 150 days).
+            ``None`` means not known: a run that pays such an element raises
+            ``MissingRequiredFactError``.
 
     Raises:
-        InvalidInputError: When ``renewals`` is not a non-negative int or
+        InvalidInputError: When ``renewals`` or ``qualifying_years`` is not
+            a non-negative int or
             ``naspi_exclusion`` names no exclusion.
     """
 
     renewals: int | None = None
     naspi_exclusion: NaspiExclusion | None = None
+    qualifying_years: int | None = None
     type: Literal["fixed_term"] = field(default="fixed_term", init=False)
 
     def __post_init__(self) -> None:  # noqa: D105
-        require_int(
-            self.renewals,
-            "FixedTerm.renewals",
-            feature=_FEATURE,
-            minimum=0,
-            optional=True,
-        )
+        for name in ("renewals", "qualifying_years"):
+            require_int(
+                getattr(self, name),
+                f"FixedTerm.{name}",
+                feature=_FEATURE,
+                minimum=0,
+                optional=True,
+            )
         if self.naspi_exclusion is not None:
             exclusion = parse_enum(
                 self.naspi_exclusion,

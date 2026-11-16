@@ -5,6 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.employment.inputs import Apprentice, FixedTerm
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.seniority.ladder.rules import (
@@ -16,6 +17,7 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.employment.category.models import WorkerCategory
+    from ccnl_engine.employment.inputs import Permanent
     from ccnl_engine.seniority.models import SeniorityIncrements
 
 _ZERO = Decimal(0)
@@ -237,3 +239,20 @@ def _seniority_amount(
     if series is not None:
         return money(series.value_at(as_of) * count)
     return _ZERO
+
+
+def term_excluded(
+    rules: SeniorityIncrements, contract_type: Permanent | FixedTerm | Apprentice
+) -> bool:
+    """Return whether the increments are kept from a worker with a term.
+
+    Returns:
+        True when the CCNL pays the increments to permanent workers only and
+        the contract is a fixed term or a fixed-term (seasonal)
+        apprenticeship.
+    """
+    if not rules.permanent_only:
+        return False
+    return isinstance(contract_type, FixedTerm) or (
+        isinstance(contract_type, Apprentice) and contract_type.fixed_term
+    )

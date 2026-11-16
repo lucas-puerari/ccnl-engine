@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 23 verified / 6 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 23 verified / 11 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -130,11 +130,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the INAIL agricultural premium.
 
 !!! warning "operai-agricoli-florovivaisti/eban_fisa_agrifondo · bilateral_funds · impact yes · open"
-    BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and FISA (Fondo Integrativo di Settore Agricolo) bilateral fund contributions are set at provincial level and not modelled. Agrifondo (supplementary pension) contributions also omitted.
+    BILATERAL FUNDS. Art. 7 (printed pp. 9-10) charges the employer for EBAN, which funds the FISA health fund of art. 66, 0.30% (OTI) and 0.60% (OTD) of the retribuzione imponibile ai fini previdenziali from 1 January 2014; a separate agreement splits it among the activities, so the FISA share the INPS solidarity contribution of 10% falls on is not known, and the OTD base includes the terzo elemento a fund rate does not read. Not computed; pass them as BilateralFundEvent. The casse extra legem / EBAT of art. 8 are provincial. Agrifondo is modelled as the employer fund AGRIFONDO.
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Pass the provincial EBAN, FISA and Agrifondo contributions as bilateral fund events.
+    **Remediation:** Source the FISA share of the EBAN contribution and compute 0.30% / 0.60% of the INPS base, or pass them as bilateral fund events.
 
 !!! note "operai-agricoli-florovivaisti/apprentice_seniority · seniority · impact unknown · resolved"
     APPRENTICE SENIORITY: art. 54 (PDF p. 55, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) grants a biennial increment to 'gli operai a tempo indeterminato', and the apprenticeship is a contract 'a tempo indeterminato' (art. 41 c. 1 D.Lgs. 81/2015, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-06-15;81~art41): the apprentice accrues the increments of the level of their classification (Allegato 10, p. 123), with no amount of their own.
@@ -143,15 +143,15 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: art. 54 and art. 41 D.Lgs. 81/2015 read on 2026-11-14.
 
-!!! warning "operai-agricoli-florovivaisti/seasonal_apprentice_seniority · seniority · impact unknown · open"
-    SEASONAL APPRENTICES: Allegato 10 (PDF p. 124, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) lets employers working in seasonal cycles hire apprentices 'anche a tempo determinato', and art. 54 grants the increments only to 'gli operai a tempo indeterminato'. The apprentice input states no term, so the engine pays a fixed-term seasonal apprentice the increments of the level once the biennium with the same employer is complete.
+!!! note "operai-agricoli-florovivaisti/seasonal_apprentice_seniority · seniority · impact unknown · resolved"
+    SEASONAL APPRENTICES: Allegato 10 (PDF p. 124, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) lets employers working in seasonal cycles hire apprentices 'anche a tempo determinato', and art. 54 grants the increments only to 'gli operai a tempo indeterminato'. Apprentice.fixed_term states the term of a seasonal apprenticeship: the engine pays it no increment, as art. 54 keeps them to the permanent workers.
 
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** State on the apprentice input whether the apprenticeship is fixed-term and pay no increment to a fixed-term apprentice where the CCNL keeps them to permanent workers, then remove this note.
 
-!!! warning "operai-agricoli-florovivaisti/fixed_term_seniority_element · base_salary · impact yes · open"
-    ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (Art. 54-bis, new, verbale of 28 May 2026): from 1 January 2027 a fixed-term operaio who worked at least 150 days a year for the same employer for three consecutive years receives, from the fourth year, 0.4% of the salario contrattuale. The request carries no history of days per employer, so it is not paid.
+!!! note "operai-agricoli-florovivaisti/fixed_term_seniority_element · base_salary · impact yes · resolved"
+    ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (Art. 54-bis, new, verbale of 28 May 2026): from 1 January 2027 a fixed-term operaio who worked at least 150 days a year for the same employer for three consecutive years receives, from the fourth year, 0.4% of the salario contrattuale. FixedTerm.qualifying_years states the consecutive years: the element is the hourly percentage ELEMENTO_AGGIUNTIVO of the fixed-term pay.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
@@ -165,11 +165,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** State the existing employer sub-sector and the February 1 contractual daily wage by year for permanent workers; source or supply continuous days with the employer and encode the 45-day fixed-term supplement after day 30.
 
 !!! warning "operai-agricoli-florovivaisti/regular_night_shift_and_local_tariffs · overtime · impact yes · open"
-    Agricultural and floriculture premiums are selected by EmployerProfile.subsector. Remaining: the 10% regular-shift rule for night AND holiday work (Art. 43 p. 48, Art. 44 p. 49), provincial special tariffs, the third element on overtime/holiday/night hours, and the bank of hours are not fully routed; provincial contractual wages require local inputs.
+    Agricultural and floriculture premiums are selected by EmployerProfile.subsector; the 10% of night work in regular shifts (Art. 43 p. 48, Art. 44 p. 49) is paid on a ShiftWorkEvent of kind night. Remaining: the 10% of holiday work in regular shifts without night work (Art. 43), the provincial special tariffs of agriturismo, acquacoltura and the other special works, the terzo elemento on the overtime, holiday and night hours of an OTD, and the bank of hours; provincial contractual wages require local inputs.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Supply the contractual hourly wage and provincial special tariffs; route the 10% regular-shift night and holiday exceptions, the third element on these hours and bank-of-hours elections separately.
+    **Remediation:** Supply the contractual hourly wage and provincial special tariffs; route the 10% of holiday work in regular shifts, the third element on these hours and bank-of-hours elections separately.
 
 !!! warning "operai-agricoli-florovivaisti/agricoli_apprentice_provincial_levels · base_salary · impact unknown · open"
     APPRENTICESHIP (Allegato n. 10, CCNL 23 May 2022, pp. 122-123): two levels below the destination in the first 12 months, one level below in the next 12, the destination in the last 12 (Area 1 and 2: 36 months; Area 3: 24 months, from one level below, only for the highest provincial level of the area). The levels are the provincial professional levels inside each area, not the three national areas the file holds: the file places an Area1 apprentice at the Area3 and then the Area2 minimum, a reading the text does not support. A fixed-term apprentice operaio is never paid below the lowest level of the destination area (p. 125).

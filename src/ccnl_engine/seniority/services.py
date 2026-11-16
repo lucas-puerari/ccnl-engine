@@ -24,11 +24,12 @@ from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.employment.inputs import Apprentice, FixedTerm
+from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.seniority.credit import credited_increment_months
 from ccnl_engine.seniority.rules import (
     NOT_APPLICABLE_BY_CONTRACT,
     increments_apply,
+    term_excluded,
 )
 
 if TYPE_CHECKING:
@@ -181,7 +182,7 @@ def run_seniority(ctx: RunContext) -> RunSeniority:
         fact=request.seniority,
         months=credited,
         increments=(
-            not (rules.permanent_only and isinstance(request.contract_type, FixedTerm))
+            not term_excluded(rules, request.contract_type)
             and increments_apply(
                 rules,
                 level.code,
@@ -203,9 +204,7 @@ def run_seniority(ctx: RunContext) -> RunSeniority:
                 request.seniority is None
                 or request.seniority.apprenticeship_months is None
             )
-            and not (
-                rules.permanent_only and isinstance(request.contract_type, FixedTerm)
-            )
+            and not term_excluded(rules, request.contract_type)
             and increments_apply(
                 rules,
                 level.code,
