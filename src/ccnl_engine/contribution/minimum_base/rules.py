@@ -17,7 +17,9 @@ circ. 6/2026 par. 1):
 Art. 7 c. 5 excludes apprentices; it keeps the operai agricoli from the
 adjustment to 9.50%, so their minimum is the 51.70 of Tabella A (INPS circ.
 6/2026, allegato 1, note 2), while their part time takes the hourly minimum
-of 58.13 x 6/39 (circ. 43/2026 par. 5).  Domestic work has its own hourly
+of 58.13 x 6/39 (circ. 43/2026 par. 5).  Declared by the days worked, an
+operaio agricolo paid by the hour has the daily minimum times the days of
+presence.  Domestic work has its own hourly
 contributions and no ordinary INPS rules.  A month a vertical
 part time does not work pays no hour, so it has no minimum; nor does a
 month whose employed days are all a maternity leave or a work-injury
@@ -41,11 +43,8 @@ from dataclasses import replace
 from datetime import timedelta
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contribution.minimum_base.models import (
-    MinimumBase,
-    MinimumBaseReason,
-    MonthPosition,
-)
+from ccnl_engine.contribution.minimum_base.models import MonthPosition
+from ccnl_engine.contribution.minimum_base.results import MinimumBase, MinimumBaseReason
 from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
@@ -152,7 +151,7 @@ def _undetermined_reason(
         ),
         (position.adds_to_month, MinimumBaseReason.PAY_ADDED_TO_MONTH),
         (position.span is not None, MinimumBaseReason.PARTIAL_MONTH),
-        (position.absence, MinimumBaseReason.ABSENCE_IN_MONTH),
+        (position.absence or position.hourly, MinimumBaseReason.ABSENCE_IN_MONTH),
         (rule.monthly_days is None, MinimumBaseReason.MONTHLY_DAYS_UNSOURCED),
     )
     return next((reason for applies, reason in reasons if applies), None)
@@ -183,6 +182,40 @@ def _month_minimum(
     return money(hourly * hours * days / rule.week_days)
 
 
+def _daily_paid(
+    rule: MinimumBaseRule, actual: Decimal, position: MonthPosition
+) -> MinimumBase | None:
+    """Return the minimum of a full-time worker paid by the day, if one.
+
+    The operai agricoli are declared by the days worked or paid (UniEmens
+    PosAgri ``<NumeroGiornate>``, code O): the minimum is the daily one
+    times the days of presence, whatever the span of the month.
+
+    Returns:
+        The daily minimum times the days of presence; the bound of the
+        month and :attr:`MinimumBaseReason.PRESENCE_DAYS_UNKNOWN` below it
+        when the days are not stated; ``None`` for any other worker, an
+        absence or pay added to the month.
+    """
+    if not position.hourly or position.category not in rule.daily_paid_categories:
+        return None
+    if position.absence or position.adds_to_month or position.part_time is not None:
+        return None
+    days = position.presence_days
+    if days is None:
+        bound = _bound(rule, position)
+        if actual >= bound:
+            return MinimumBase(actual, bound, MinimumBaseReason.ABOVE_MINIMUM)
+        return MinimumBase(actual, bound, MinimumBaseReason.PRESENCE_DAYS_UNKNOWN)
+    minimum = money(rule.daily_for(position.category) * days)
+    reason = (
+        MinimumBaseReason.RAISED_TO_MINIMUM
+        if actual < minimum
+        else MinimumBaseReason.ABOVE_MINIMUM
+    )
+    return MinimumBase(actual, minimum, reason, minimum)
+
+
 def _resolve(
     rule: MinimumBaseRule, actual: Decimal, position: MonthPosition
 ) -> MinimumBase:
@@ -194,6 +227,9 @@ def _resolve(
     excluded = _exclusion(position)
     if excluded is not None:
         return MinimumBase(actual, actual, excluded)
+    daily_paid = _daily_paid(rule, actual, position)
+    if daily_paid is not None:
+        return daily_paid
     bound = _bound(rule, position)
     compared = position.month_pay if position.adds_to_month else actual
     if compared >= bound:

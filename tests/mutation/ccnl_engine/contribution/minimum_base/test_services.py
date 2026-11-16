@@ -13,9 +13,11 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.balance.models import PeriodState
+from ccnl_engine.contribution.minimum_base.services import ISSUE_CODE
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
-from ccnl_engine.employment.fact.inputs import WeeklyHours
+from ccnl_engine.employment.fact.inputs import ContributableHours, WeeklyHours
+from ccnl_engine.employment.fixed_term.inputs import FixedTerm, NaspiExclusion
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import (
@@ -98,3 +100,29 @@ def test_impiegato_agricolo_takes_67_84() -> None:
     """1,686.76 is raised to 26 x 67.84 = 1,763.84."""
     result = _run("impiegati-tecnici-agricoli", "1", category=WorkerCategory.IMPIEGATO)
     assert _minimum(result) == (Decimal(1764), "raised_to_minimum")
+
+
+def _otd(presence_days: int | None) -> PeriodResult:
+    return _run(
+        _OPERAI,
+        "Area2",
+        category=WorkerCategory.OPERAIO,
+        contract_type=FixedTerm(renewals=0, naspi_exclusion=NaspiExclusion.NONE),
+        weekly_hours=WeeklyHours(Decimal(39)),
+        full_time_weekly_hours=WeeklyHours(Decimal(39)),
+        ordinary_hours_worked=ContributableHours(Decimal(100)),
+        presence_days=presence_days,
+    )
+
+
+def test_otd_minimum_counts_the_days_of_presence() -> None:
+    """100 hours over 25 days: 1,026.73 is raised to 25 x 51.70 = 1,292.50."""
+    assert _minimum(_otd(25)) == (Decimal(1293), "raised_to_minimum")
+
+
+def test_otd_without_days_names_the_fact() -> None:
+    """Below 1,344.20 without the days the minimum misses presence_days."""
+    result = _otd(None)
+    (issue,) = (i for i in result.issues if i.code == ISSUE_CODE)
+    assert _minimum(result) == (Decimal(1027), "presence_days_unknown")
+    assert issue.fact == "presence_days"

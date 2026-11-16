@@ -79,7 +79,7 @@ _NO_QUOTA = Decimal(0)
 
 if TYPE_CHECKING:
     from ccnl_engine.amount.types import _PeriodAmounts
-    from ccnl_engine.contribution.minimum_base.models import MinimumBase
+    from ccnl_engine.contribution.minimum_base.results import MinimumBase
     from ccnl_engine.contribution.results import ContributionBreakdown
     from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.event.total.handlers import _EventTotals
