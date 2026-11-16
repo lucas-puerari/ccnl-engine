@@ -1224,7 +1224,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/istituzioni-servizi-socio-assistenziali-anaste",
       "ruleset_version": "2026.2",
-      "source_hash": "1e6b54fb77a7c76f760bdf70e8958326055521a033e76e9eab748e6ce0bd3459",
+      "source_hash": "a6a8f1b606d200d04e18dcbd11523b89500bf871654cd3291defe05dd046d67d",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/istituzioni-servizi-socio-assistenziali-anaste.json.gz"
@@ -3821,7 +3821,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "5e59f62b2d4d5d999edf495e8ee7e8a456d50d52670f9a8f6163f645930378c8",
+      "source_hash": "dc51905996b46ad07d311f38961782682ca8ccd2e4268f8c246966117937e490",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/istituzioni-servizi-socio-assistenziali-anaste.json.gz",

@@ -27,6 +27,11 @@ from ccnl_engine.decision.models import (
     IssueCause,
 )
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.extra_month.leave_share import (
+    leave_share,
+    maternity_share,
+    with_leave_share,
+)
 from ccnl_engine.extra_month.qualification.services import (
     month_accrual_rule,
     non_accruing_days,
@@ -81,15 +86,20 @@ def run_settlements(
     if ended_on is None or ended_on.year != run_id.year:
         return ()
     calendar = effective_calendar(ccnl, run_id.year, None)
+    non_accruing = non_accruing_days(request.events)
     settled = termination_settlements(
         calendar,
         period,
-        non_accruing_days(request.events),
+        non_accruing,
         month_accrual_rule(ccnl),
         pattern=request.work_pattern,
     )
     regular = PayrollRun.regular(run_id.year, ended_on.month).identifier
-    accruals = settled[str(regular)]
+    share = leave_share(maternity_share(ccnl), request.events)
+    accruals = tuple(
+        with_leave_share(a, non_accruing, share, request.work_pattern)
+        for a in settled[str(regular)]
+    )
     if run_id.kind in _EXTRA_MONTHS:
         _check_not_settled(run_id, accruals, ended_on.month)
     if run_id.month != ended_on.month or not _pays_month(request, run_id, regular):

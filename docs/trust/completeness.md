@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 18/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 253 open limitations (253 with a monetary impact), 34 declared residuals.
+**Complete: 19/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 252 open limitations (252 with a monetary impact), 34 declared residuals.
 
 ## Declared window
 
@@ -142,7 +142,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [impiegati-tecnici-agricoli](../contracts/impiegati-tecnici-agricoli.md) | `agricoltura` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 2 non-native capabilities |
 | [industria-turistica-federturismo](../contracts/industria-turistica-federturismo.md) | `turismo` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 outside_input limitation; 5 non-native capabilities |
 | [informatica-pmi-unimatica](../contracts/informatica-pmi-unimatica.md) | `ict-telecomunicazioni` | exploratory | — | 0 rows | 5 non-native capabilities |
-| [istituzioni-servizi-socio-assistenziali-anaste](../contracts/istituzioni-servizi-socio-assistenziali-anaste.md) | `socio-sanitario` | exploratory | — | 1 rows | 1 open requirement; 1 outside_input limitation; 1 non-native capability |
+| [istituzioni-servizi-socio-assistenziali-anaste](../contracts/istituzioni-servizi-socio-assistenziali-anaste.md) | `socio-sanitario` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [istruzione-ricerca-aran](../contracts/istruzione-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [lapidei-industria](../contracts/lapidei-industria.md) | `materiali-estrattive` | exploratory | — | 6 rows | 6 open requirements; 2 weak rules; 3 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |
 | [laterizi-industria-f021](../contracts/laterizi-industria-f021.md) | `materiali-estrattive` | exploratory | — | 2 rows | 2 open requirements; 2 monetary limitations; 6 non-native capabilities |

@@ -32,6 +32,11 @@ class MaternityRules(BaseModel):
             100%"), net of the INPS share and of the top-up of the day.
         paternity_holiday: The same target in a compulsory paternity leave.
         parental_holiday: The holiday target during optional (parental) leave.
+        extra_month_share: Share of the 13th and the other extra months the
+            employer pays for the months of the compulsory leave, when the
+            CCNL limits it (ANASTE art. 45 c. 23: "la 13° mensilità
+            limitatamente all'aliquota corrispondente al 20%"); ``None`` for
+            the whole rateo.
         provenance: Source of the clause.
     """
 
@@ -46,6 +51,7 @@ class MaternityRules(BaseModel):
     holiday: MaternityHoliday | None = None
     paternity_holiday: MaternityHoliday | None = None
     parental_holiday: MaternityHoliday | None = None
+    extra_month_share: Share | None = None
     provenance: RuleProvenance
 
     @model_validator(mode="after")

@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | maternity_leave |
+| **Limits of this contract** | — |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-16 | claude-opus-5-5 (ai) | Apprentice pay (Art. 27, comma 14, PDF p. 25): the elements the percentage applies to, read in the cited file by sha256. | corrected | apprenticeship_pct_relevant INDENNITA_FUNZIONE = false: La percentuale riguarda solo il minimo conglobato; indennità quadri esterna e non spettante ai livelli apprendibili.<br>apprenticeship_pct_relevant INDENNITA_PROFESSIONALE_INFERMIERI = false: Il profilo infermiere è espressamente escluso dall’apprendistato (art. 27 c. 4): indennità non dovuta.<br>Clause: 14. Il trattamento economico dell’apprendista è determinato in percentuale rispetto al minimo contrattuale mensile
 conglobato previsto dall’art. 68 del presente CCNL, con riferimento al livello di inquadramento della qualifica da
 conseguire, secondo le seguenti progressioni: |
+| 2026-11-16 | claude-opus-5-5 (ai) | Art. 45 c. 23 and art. 55 cc. 1 and 5, read in the 2025 text by sha256 and checked against the text signed on 9 October 2026 (sha256 e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381, PDF pp. 51, 55). | corrected | Applied: the 13th of the compulsory maternity leave at 20% (decision of the maintainer of 2026-11-16: a share only where the CCNL states it).<br>The Sunday holiday is paid by art. 55 c. 5 and 4 October is not a holiday of the CCNL: the existing model holds. |
 
 ## Salary table
 
@@ -123,13 +124,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "istituzioni-servizi-socio-assistenziali-anaste/maternity_holiday_scope · maternity_leave · impact yes · open"
-    Art. 45 c. 23 (p. 43) also owes, for the compulsory absence for pregnancy and puerperium, 'la 13° mensilità limitatamente all'aliquota corrispondente al 20% della retribuzione': not paid by the engine. The holiday target includes a stated weekday patron day. A Sunday holiday is paid by its own quota rather than this top-up; 4 October, introduced after the text was signed, remains excluded.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Resolve the Sunday holiday's separate quota, 4 October and the 20% thirteenth-month share.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -312,6 +306,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICE SENIORITY (Apprendistato c. 12, p. 19 of the CCNL ANASTE, https://snalv.it/docs/anaste25/pdf6.pdf, sha256 0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98): 'Il periodo di apprendistato è considerato utile ai fini della maturazione degli scatti di anzianità previsti dall’art. 73 del CCNL.' Reading: the scatti matured during the apprenticeship are those of art. 73 at the amounts of the level (seniority_increments.apprentice_level_amount).
     
     Art. 70 c. 2 (p. 55): the indennità professionale of the infermieri, 155 EUR a month on 12 payments, is a fixed allowance of levels 6 and 7 with the role 'infermiere'. The allowance is offset up to its full amount against paid Employment.individual_elements above the minimum. The TFR counts it: art. 99 does not exclude it.
+    
+    Art. 45 c. 23 (PDF p. 43): the holidays of the compulsory leave are topped up to 100% of the daily pay, a stated weekday patron day included; the 13th of the compulsory leave is paid 'limitatamente all'aliquota corrispondente al 20%' (extra_month_share 0.20, the months only the leave makes accrue counted at that share). A holiday falling on a Sunday is paid by its own amount of art. 55 c. 5, not by this top-up. 4 October is not among the holidays of art. 55 c. 1, nor in the text signed on 9 October 2026, so the CCNL top-up does not cover it.
     
 
 ## Raw data
