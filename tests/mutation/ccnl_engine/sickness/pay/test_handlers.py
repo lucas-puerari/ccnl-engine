@@ -86,7 +86,7 @@ def _rules(*, net_basis: bool) -> SickPayRules:
     return cast(
         "SickPayRules",
         SimpleNamespace(
-            ccnl=SimpleNamespace(net_basis=net_basis, holiday=None),
+            ccnl=SimpleNamespace(net_basis=net_basis, holiday=None, day_bands=()),
             holidays=frozenset(),
         ),
     )

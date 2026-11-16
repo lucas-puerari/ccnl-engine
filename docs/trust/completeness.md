@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 8/136 CCNLs**; complete except declared residuals: 1. Bundle: 250 weak rules, 263 open limitations (263 with a monetary impact), 31 declared residuals.
+**Complete: 9/136 CCNLs**; complete except declared residuals: 1. Bundle: 250 weak rules, 261 open limitations (261 with a monetary impact), 32 declared residuals.
 
 ## Declared window
 
@@ -60,6 +60,7 @@ Limitations awaiting a publication due by a known date (`awaiting_publication`):
 - `parental_income_condition`: The INPS circular on the trattamento minimo di pensione of 2027 (published every year in January), by 2027-02-28
 - `provisional_inps_ruleset`: The INPS circulars on the 2027 contribution rates, massimale, minimale and domestic hourly contributions (published every year between January and February), by 2027-02-28
 - `provisional_ruleset`: The Legge di bilancio 2027 (Gazzetta Ufficiale, by 31 December 2026) and the regional and municipal IRPEF surtax resolutions of 2027 (MEF, Dipartimento delle Finanze, by the end of March 2027), by 2027-03-31
+- `sanita-aran/renewal_2025_2027_not_modelled`: The definitive CCNL Comparto Sanità 2025-2027, signed after the certification of the ipotesi of 29 July 2026 (art. 47 D.Lgs. 165/2001: comitato di settore, Governo, Corte dei conti), by 2027-01-31
 
 Capabilities a caller value may replace are not counted as gaps when the engine computes them from a rule the CCNL holds (`absence`, `holiday_work`, `night_work`, `overtime`, `shift_work`, `travel_allowance`), nor when their amount is a fact only the employer knows:
 
@@ -160,7 +161,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [metalmeccanico-confapi](../contracts/metalmeccanico-confapi.md) | `metalmeccanica` | reviewed | — | 12 rows | 12 open requirements; 1 monetary limitation; 11 outside_input limitations; 4 non-native capabilities |
 | [metalmeccanico-confimi-pmi](../contracts/metalmeccanico-confimi-pmi.md) | `metalmeccanica` | exploratory | — | 2 rows | tables from 2026-06-01; 2 open requirements; 2 outside_input limitations; 3 non-native capabilities |
 | [metalmeccanico-federmeccanica](../contracts/metalmeccanico-federmeccanica.md) | `metalmeccanica` | production | — | 0 rows | complete; 3 limitations awaiting publication |
-| [multiservizi-anip](../contracts/multiservizi-anip.md) | `pulizia-multiservizi` | exploratory | — | 9 rows | 9 open requirements; 6 monetary limitations; 3 outside_input limitations; 4 non-native capabilities; 2 declared residuals |
+| [multiservizi-anip](../contracts/multiservizi-anip.md) | `pulizia-multiservizi` | exploratory | — | 7 rows | 7 open requirements; 4 monetary limitations; 3 outside_input limitations; 4 non-native capabilities; 3 declared residuals |
 | [noleggio-autobus-conducente-anav](../contracts/noleggio-autobus-conducente-anav.md) | `trasporti-logistica` | exploratory | — | 9 rows | 9 open requirements; 3 weak rules; 4 monetary limitations; 2 outside_input limitations; 8 non-native capabilities |
 | [occhiali-occhialeria-industria](../contracts/occhiali-occhialeria-industria.md) | `tessile-moda` | exploratory | — | 3 rows | 3 open requirements; 2 weak rules; 1 monetary limitation; 5 non-native capabilities |
 | [ooss-unsic-confsal](../contracts/ooss-unsic-confsal.md) | `organizzazioni-associative` | exploratory | — | 5 rows | 5 open requirements; 1 weak rule; 4 monetary limitations; 7 non-native capabilities |
@@ -180,7 +181,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [radiotelevisive-televisivo](../contracts/radiotelevisive-televisivo.md) | `spettacolo-media` | exploratory | — | 15 rows | 15 open requirements; 11 weak rules; 4 monetary limitations; 8 non-native capabilities |
 | [recapito-corrispondenza-fise](../contracts/recapito-corrispondenza-fise.md) | `servizi-postali` | exploratory | — | 2 rows | 2 open requirements; 2 weak rules; 5 non-native capabilities |
 | [rsa-aiop](../contracts/rsa-aiop.md) | `socio-sanitario` | exploratory | — | 5 rows | 5 open requirements; 1 weak rule; 3 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |
-| [sanita-aran](../contracts/sanita-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 1 rows | 1 open requirement; 1 monetary limitation; 1 non-native capability |
+| [sanita-aran](../contracts/sanita-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 0 rows | complete; 4 limitations awaiting publication |
 | [sanita-privata-aiop-aris](../contracts/sanita-privata-aiop-aris.md) | `socio-sanitario` | exploratory | 2018-12-31 | 6 rows | 6 open requirements; 2 monetary limitations; 4 outside_input limitations; 6 non-native capabilities |
 | [scuole-materne-fism](../contracts/scuole-materne-fism.md) | `istruzione-formazione` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 6 non-native capabilities; 1 declared residual |
 | [scuole-private-agidae](../contracts/scuole-private-agidae.md) | `istruzione-formazione` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 3 non-native capabilities |

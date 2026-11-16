@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 90 verified / 14 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 90 verified / 16 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -137,7 +137,7 @@ Destination levels: `7`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "multiservizi-anip/anip_unsigned_renewal · base_salary · impact yes · open"
+!!! warning "multiservizi-anip/anip_unsigned_renewal · base_salary · impact yes · unsourced"
     LATER UNSIGNED TRANCHES: the May 2026 and later minima of the renewal of 13 June 2025 (CNEL K511, deposits 234754 and 234752) were not signed by ANIP and are excluded. The signed July 2025 fifth tranche of the 2021 renewal (CNEL 139292 p. 34) is applied; no subsequent ANIP minimum or actual IPCA adjustment has been verified.
 
     **Applies when:** `base_salary` applies; from 2026-05-01.
@@ -145,11 +145,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source an ANIP-signed later minimum or verified IPCA adjustment before adding subsequent tranches.
 
 !!! warning "multiservizi-anip/multiservizi_variable_time_premiums · overtime · impact yes · open"
-    OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The four overtime bands, the ordinary holiday band and the two night bands use the printed rates, with a separate tabellare-plus-contingenza premium base. The engine cannot automatically enforce the non-cumulation of simultaneous holiday and night premiums or the incidence of continuous night supplements on deferred pay.
+    OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The four overtime bands, the ordinary holiday band and the two night bands use the printed rates, with a separate tabellare-plus-contingenza premium base. Night work on a holiday takes the 50% alone (night_holiday bands: the higher absorbs the lower). The engine does not compute the incidence of continuous night supplements on deferred pay (ferie, festività, 13a and 14a, TFR).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Do not stack simultaneous holiday and night premiums; account for continuous night premiums in deferred pay where applicable.
+    **Remediation:** Account for continuous night premiums in deferred pay where applicable.
 
 !!! warning "multiservizi-anip/multiservizi_part_time_supplements · overtime · impact yes · open"
     PART-TIME SUPPLEMENTS (CNEL 139292 art. 33): supplementary hours and elastic clauses have distinct rates and eligibility. OT_SUPPLEMENTARE covers additional hours at ordinary global hourly pay plus 28% of tabellare and contingenza. The engine does not defer the 28% to the following month or include its incidence in indirect and deferred pay including TFR; it does not route the distinct elastic-clause hours, enforce part-time eligibility or the full-time ceiling.
@@ -180,7 +180,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Supply earned amounts and recognised sector service from worker records, and implement automatic maturation-date pricing and the 50% ceiling; confirm the provisional July 2025 column.
 
 !!! warning "multiservizi-anip/multiservizi_sickness_by_category_and_basis · sickness · impact yes · open"
-    SICKNESS (CNEL 139292 art. 51, pp. 22-24): category routing, the 100% net-global-pay operai band through day 180, the 50% band through day 270, the impiegati 100% first five months and 50% next seven months, and the rolling 36-month comporto are represented. Remaining: the operai 50% band is of gross global pay, while the model applies net_basis to the whole rule; impiegati pay is stipendio plus contingenza, while the engine uses global pay. The operai first working day and the impiegati non-probation and serious-fault conditions are not represented. The clause does not state a daily gross/net conversion or an amount for the excluded pay components.
+    SICKNESS (CNEL 139292 art. 51, pp. 22-24): category routing, the 100% net-global-pay operai band through day 180, the 50% band through day 270, the impiegati 100% first five months and 50% next seven months, and the rolling 36-month comporto are represented. The operai 50% band of days 181-270 is of the gross global pay (gross_basis). Remaining: impiegati pay is stipendio plus contingenza, while the engine uses global pay. The operai first working day and the impiegati non-probation and serious-fault conditions are not represented. The clause does not state a daily gross/net conversion or an amount for the excluded pay components.
 
     **Applies when:** `sickness` applies.
 
@@ -353,13 +353,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `contract_renewal_arrears` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: art. 21 c. 4 TUIR (Normattiva, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art21!vig=, sha256 aafc3e5d5cd7254c7eb52e74051e86f1243b3a7b3cbadcd951daf7bc5e113fc6): 'Gli aventi diritto agli arretrati devono dichiarare al soggetto che li corrisponde l'ammontare delle detrazioni fruite per ciascuno degli anni cui si riferiscono'. The deductions are a fact the worker declares: ArrearsEvent.unused_deductions, and PriorYearTaxFacts.arrears_unused_deductions for the una tantum the engine pays as arrears; unstated, the run carries the missing-fact issue arrears_unused_deductions_unknown. Read on 2026-11-14.
-
-!!! warning "sunday_holiday_ccnl_clause · sunday_holiday · impact yes · open"
-    L. 260/1949 art. 5 pays the workers with a fixed salary a further daily quota only for the civil holidays (25 April, 1 May, 2 June) falling on a Sunday; the other holidays of art. 2 (1 January, 6 January, Easter Monday, 15 August, 4 October, 1 November, 8 December, 25 and 26 December) give it only by CCNL clause, and the payment of 4 November is a CCNL institute. A run of a month with such a holiday on a Sunday, in a CCNL whose clause is not sourced (work_rules.sunday_holidays), pays the statutory holidays only; a public employment is paid as a private one (art. 5 names the "Stato, enti pubblici e datori privati").
-
-    **Applies when:** `sunday_holiday` applies; the run takes the engine code path.
-
-    **Remediation:** Source the CCNL clause on the holidays falling on a Sunday and record it as work_rules.sunday_holidays.
 
 !!! note "pension_extra_deduction_first_employed · pension_fund_contribution · impact unknown · resolved"
     A worker first employed after D.Lgs. 252/2005 came into force may deduct, in the twenty years after the fifth year of membership, the contributions above the annual cap within the room the first five years left, up to half the annual cap (art. 8 c. 6). The withholding agent applies it (AdE circ. 70/E/2007: the employer excludes the deductible contributions from the income of the ritenute): the worker states the deduction of the year as PensionFundEnrolment.extra_deduction, and contributions above the cap left with none stated carry the missing fact extra_deduction.
