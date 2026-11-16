@@ -213,7 +213,7 @@
       },
       {
         "kind": "simplification",
-        "text": "FLOROVIVAISTI SICKNESS (remaining limits): State EmployerProfile.subsector=florovivaisti for the permanent-worker supplement; without a sub-sector the agricultural rule applies. The provincial contractual daily wage on February 1 is not printed in the national clause and must be supplied for each year of sickness, already prorated for a part-time worker under Art. 17(c) p. 10; an unknown wage or INPS recognition leaves the employer supplement unpaid and flagged. Previously posted months must be rerun if a later relapse extends a short illness beyond three days. Art. 62 also grants fixed-term workers the supplement after 30 continuous days with the same employer, from day 31 for up to 45 days per year; this entitlement is not modeled.",
+        "text": "FLOROVIVAISTI SICKNESS (remaining limits): State EmployerProfile.subsector=florovivaisti for the permanent-worker supplement; without a sub-sector the agricultural rule applies. The provincial contractual daily wage on February 1 is not printed in the national clause and must be supplied for each year of sickness, already prorated for a part-time worker under Art. 17(c) p. 10; an unknown wage or INPS recognition leaves the employer supplement unpaid and flagged. Previously posted months must be rerun if a later relapse extends a short illness beyond three days. Art. 62 also grants fixed-term workers the supplement from day 31 of the employment for up to 45 days a year (fixed_term_daily_share), when the hiring day is stated.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -225,7 +225,8 @@
               "permanent"
             ]
           },
-          "remediation": "State the existing employer sub-sector and the February 1 contractual daily wage by year for permanent workers; source or supply continuous days with the employer and encode the 45-day fixed-term supplement after day 30."
+          "remediation": "State the existing employer sub-sector and the February 1 contractual daily wage by year for permanent workers; source or supply continuous days with the employer and encode the 45-day fixed-term supplement after day 30.",
+          "status": "resolved"
         }
       },
       {
@@ -1320,7 +1321,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "366d034124abd1408e9682ceea5b17e778879f9d3096fe4b7de28d25e3b13a9f",
+    "source_hash": "6585bab0a08f54b45ff779423d617660504e2f6b8f4c08ef431d1e5dde905f7a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2179,7 +2180,7 @@
               "section": "Art. 62 (Malattia ed infortunio operai florovivaisti)",
               "quote": "In caso di malattia, l'operaio, in aggiunta al trattamento di legge, avrà diritto, per un periodo massimo di 90 giornate in un anno, all' erogazione, da parte del datore di lavoro, di una indennità giornaliera, nella misura del 25 per cento del salario giornaliero contrattuale relativo al profilo professionale di appartenenza, in vigore al 1 ° febbraio dell'anno in corso. L'indennità sarà corrisposta dal giorno in cui si è verificata la malattia, se questa si protrae oltre il terzo giorno, e subordinatamente al riconoscimento della malattia stessa da parte dell'INPS."
             },
-            "transformation": "Permanent workers of the florovivaisti sub-sector receive an additional 25% of the stated contractual daily wage as of February 1 of each year, on all employed days of recognized illness lasting more than three days across a relapse chain, up to 90 paid days per calendar year. The wage is an episode fact because provincial contractual daily wages are not printed here; the caller supplies the wage prorated for part-time work per Art. 17(c) p. 10. Unknown recognition or wage leaves the supplement unpaid with an issue. Previously posted months need rerunning after a qualifying relapse; fixed-term entitlement remains a limitation.",
+            "transformation": "Permanent workers of the florovivaisti sub-sector receive an additional 25% of the stated contractual daily wage as of February 1 of each year, on all employed days of recognized illness lasting more than three days across a relapse chain, up to 90 paid days per calendar year. The wage is an episode fact because provincial contractual daily wages are not printed here; the caller supplies the wage prorated for part-time work per Art. 17(c) p. 10. Unknown recognition or wage leaves the supplement unpaid with an issue. Previously posted months need rerunning after a qualifying relapse; fixed-term entitlement remains a limitation. fixed_term_daily_share: art. 62 (CCNL 2022-2025, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c, PDF p. 61; unchanged by the 2026 verbale): 'Qualora, invece, l'operaio a tempo determinato abbia effettuato presso la stessa azienda il periodo lavorativo sopra indicato, avrà diritto, nel caso di malattia od infortunio, rispettivamente riconosciuti dall'INPS e dall'INAIL, a partire dal trentunesimo giorno dalla data di assunzione e per la durata di quarantacinque giornate in un anno, alla medesima indennità giornaliera'. Reading: the thirty continuous days of work are the days since hiring of a continuous employment, so the share starts on day 31 of the employment; the 45 days are counted per calendar year as the 90 of the permanent workers.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -2189,6 +2190,10 @@
               "verified_at": "2026-11-09T12:11:53Z",
               "review_id": "2026-11-09-ai-florovivaisti-sickness-fix"
             }
+          },
+          "fixed_term_daily_share": {
+            "from_day": 31,
+            "annual_max_days": 45
           }
         },
         "sunday_holidays": {
