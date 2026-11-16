@@ -102,9 +102,9 @@ class NightHolidayShiftEarning(_PayItemBase):
 
 
 class BonusEarning(_PayItemBase):
-    """One-time bonus payment (una tantum, gratifica, ecc.)."""
+    """One-time bonus payment (una tantum, gratifica), or a sales commission."""
 
-    kind: Literal["bonus_earning"] = "bonus_earning"
+    kind: Literal["bonus_earning", "commission_earning"] = "bonus_earning"
 
 
 class ProductivityBonusEarning(_PayItemBase):

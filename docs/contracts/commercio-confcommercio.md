@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, sickness |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -136,16 +136,19 @@ Destination levels: `2`, `3`
 **tabella_b_42_mesi** (type: `under_classification`)  
 Destination levels: `4`
 
+**farmacista_parafarmacia** (type: `under_classification`)  
+Destination levels: `2`
+
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "commercio-confcommercio/profile_specific_apprenticeship · base_salary · impact yes · open"
-    Apprenticeship (Art. 53 TU 2019, unchanged in 2024): sottoinquadramento, two levels below the destination for the first half and one level below for the second half; eligible destinations II-VI (Art. 62); durations II-V 36 months, VI 24 months (Art. 64). Track 'livelli_2_5' (18+18 months), track 'livello_6' (VII for the first 12 months; the second half stays at VII by the general one-level-below rule, lexplain.it reads it as VI: adopted the literal text). The Art. 68 Tabella B profiles (PDF pp. 82-83) are tracks 'tabella_b_48_mesi' (levels 2 and 3, 24+24 months) and 'tabella_b_42_mesi' (level 4, 21+21 months); an apprentice of levels 2, 3 and 4 states Apprentice.track ('livelli_2_5' for the 36 months). The farmacista di parafarmacia derogation (Accordo 31/10/2024) is not modelled: its text was not found.
+!!! note "commercio-confcommercio/profile_specific_apprenticeship · base_salary · impact yes · resolved"
+    Apprenticeship (Art. 53 TU 2019, unchanged in 2024): sottoinquadramento, two levels below the destination for the first half and one level below for the second half; eligible destinations II-VI (Art. 62); durations II-V 36 months, VI 24 months (Art. 64). Track 'livelli_2_5' (18+18 months), track 'livello_6' (VII for the first 12 months; the second half stays at VII by the general one-level-below rule, lexplain.it reads it as VI: adopted the literal text). The Art. 68 Tabella B profiles (PDF pp. 82-83) are tracks 'tabella_b_48_mesi' (levels 2 and 3, 24+24 months) and 'tabella_b_42_mesi' (level 4, 21+21 months); an apprentice of levels 2, 3 and 4 states Apprentice.track ('livelli_2_5' for the 36 months). The farmacista di parafarmacia hired from 1 November 2024 (accordo 31/10/2024) states the track 'farmacista_parafarmacia': second level for the whole 36 months.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the farmacista di parafarmacia apprenticeship of the Accordo 31/10/2024 once its text is found.
+    **Remediation:** Resolved: track 'farmacista_parafarmacia' (second level for the 36 months, accordo 31 October 2024, edizione Confcommercio 2026 p. 368) (review of 2026-11-16).
 
 !!! warning "commercio-confcommercio/sickness_net_basis · sickness · impact unknown · unsourced"
     SICKNESS (Art. 187): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.
@@ -168,12 +171,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation.
 
-!!! warning "commercio-confcommercio/sales_operators_commissions · base_salary · impact yes · open"
-    Operatori di vendita paid also by commission: the levels OV1 and OV2 hold the fixed table only. Not modelled: the monthly guarantee of the commission-paid staff (art. 217: a monthly average at least 5% above the paga base nazionale conglobata over at most a year), the 13th and 14th on the average of the fixed and variable elements of the twelve months before (artt. 220-221, protocol art. 15), and the company premium of 10% of the guaranteed minimums for firms with more than seven operatori (protocol art. 27).
+!!! note "commercio-confcommercio/sales_operators_commissions · base_salary · impact yes · resolved"
+    Operatori di vendita paid also by commission (protocollo aggiuntivo, artt. 15-16): the commissions of the month are BonusEvent of kind 'commission', pay of the period in the TFR base; the tredicesima and quattordicesima hold the monthly average of the commissions stated as PeriodFacts.commission_average (artt. 220-221, protocol art. 15). The guarantee of art. 217 (a monthly average at least 5% above the paga base nazionale conglobata) is met by construction: the fixed part of an operatore is the table of art. 15, and with the contingenza it exceeds 105% of the paga base on every date.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the commission earnings of the operatori di vendita as an input, then the art. 217 guarantee, the commission average of the extra months and the art. 27 premium.
+    **Remediation:** Resolved: commissions as BonusEvent kind 'commission'; the commission average in the extra months; the art. 217 guarantee met by the art. 15 table (review of 2026-11-16).
 
 !!! note "commercio-confcommercio/notice_daily_quota · termination_notice · impact yes · resolved"
     NOTICE INDEMNITY BY THE DAY: a notice in calendar days is paid at the monthly pay over 30 for each day, the default of the engine (decision of 2026-11-15). Art. 209 of the Testo Unico 30 July 2019 refers the monthly pay to all the days of the calendar month, but art. 210 sets the daily quota at 1/26 'in tutti i casi': which of them measures a day of notice is not settled, so the indemnity of a notice not worked in full may be understated.
@@ -181,6 +184,20 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `termination_notice` applies.
 
     **Remediation:** Resolved by the maintainer decision of 2026-11-15: a day of notice is a calendar day of the month, paid at the monthly pay over 30, as art. 209 refers the monthly pay to all the days of the calendar month; the 1/26 daily quota of art. 210 measures the working days of the absences and deductions, not the calendar days of a notice.
+
+!!! warning "commercio-confcommercio/ov_company_premium · base_salary · impact yes · unsourced"
+    Protocollo operatori di vendita art. 27: in firms with more than seven operatori di vendita a company premium of 10% of the "minimi garantiti previsti dall’art. 38 CCNL 5 marzo 1975" is due. Those minimi are not in the Testo Unico 2019 nor in the accordo integrativo of 28 March 2024, so the premium is not paid.
+
+    **Applies when:** `base_salary` applies; level in OV1, OV2.
+
+    **Remediation:** Source the minimi garantiti of art. 38 of the CCNL of 5 March 1975 and pay 10% of them to the operatori of a firm with more than seven.
+
+!!! warning "commercio-confcommercio/commission_fixed_part · base_salary · impact yes · open"
+    Art. 217 c. 1: the fixed part of the staff paid by commission is set by the employer case by case, with a monthly average at least 5% above the paga base nazionale conglobata. The engine pays the table of the level as the fixed part, so a fixed part agreed below the table, outside the operatori di vendita of the protocol, is not modelled.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the fixed part agreed under art. 217 as an input, settle whether the contingenza stays owed on it, and pay the monthly guarantee with its year-end conguaglio.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

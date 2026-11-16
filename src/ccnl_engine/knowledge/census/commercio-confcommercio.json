@@ -3,6 +3,22 @@
   "ccnl_id": "commercio-confcommercio",
   "requirements": [
     {
+      "id": "commission_fixed_part",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 217 c. 1: the fixed part of the staff paid by commission is set by the employer case by case, with a monthly average at least 5% above the paga base nazionale conglobata. The engine pays the table of the level as the fixed part, so a fixed part agreed below the table, outside the operatori di vendita of the protocol, is not modelled.",
+      "calculation": "ccnl/commercio-confcommercio:coverage.notes",
+      "state": "absent",
+      "remediation": "Add the fixed part agreed under art. 217 as an input, settle whether the contingenza stays owed on it, and pay the monthly guarantee with its year-end conguaglio.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "commercio-confcommercio/commission_fixed_part"
+        ]
+      }
+    },
+    {
       "id": "dual_final_settlement_hours",
       "institute": "base_salary",
       "variant": "apprentice",
@@ -15,38 +31,6 @@
       "links": {
         "limitations": [
           "dual_final_settlement_hours"
-        ]
-      }
-    },
-    {
-      "id": "profile_specific_apprenticeship",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Apprenticeship (Art. 53 TU 2019, unchanged in 2024): sottoinquadramento, two levels below the destination for the first half and one level below for the second half; eligible destinations II-VI (Art. 62); durations II-V 36 months, VI 24 months (Art. 64). Track 'livelli_2_5' (18+18 months), track 'livello_6' (VII for the first 12 months; the second half stays at VII by the general one-level-below rule, lexplain.it reads it as VI: adopted the literal text). The Art. 68 Tabella B profiles (PDF pp. 82-83) are tracks 'tabella_b_48_mesi' (levels 2 and 3, 24+24 months) and 'tabella_b_42_mesi' (level 4, 21+21 months); an apprentice of levels 2, 3 and 4 states Apprentice.track ('livelli_2_5' for the 36 months). The farmacista di parafarmacia derogation (Accordo 31/10/2024) is not modelled: its text was not found.",
-      "calculation": "ccnl/commercio-confcommercio:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the farmacista di parafarmacia apprenticeship of the Accordo 31/10/2024 once its text is found.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "commercio-confcommercio/profile_specific_apprenticeship"
-        ]
-      }
-    },
-    {
-      "id": "sales_operators_commissions",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Operatori di vendita paid also by commission: the levels OV1 and OV2 hold the fixed table only. Not modelled: the monthly guarantee of the commission-paid staff (art. 217: a monthly average at least 5% above the paga base nazionale conglobata over at most a year), the 13th and 14th on the average of the fixed and variable elements of the twelve months before (artt. 220-221, protocol art. 15), and the company premium of 10% of the guaranteed minimums for firms with more than seven operatori (protocol art. 27).",
-      "calculation": "ccnl/commercio-confcommercio:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the commission earnings of the operatori di vendita as an input, then the art. 217 guarantee, the commission average of the extra months and the art. 27 premium.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "commercio-confcommercio/sales_operators_commissions"
         ]
       }
     }

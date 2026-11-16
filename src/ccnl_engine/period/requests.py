@@ -127,6 +127,8 @@ class PeriodCalculationRequest:
         individual_elements: Pay agreed above the CCNL minimum, fixed allowances.
         hourly_pay_elements: Additional hourly remuneration elements, excluding
             monthly elements already counted in monthly pay; ``None`` is unknown.
+        commission_average: Monthly average of the commissions an extra
+            month of a commission level pays; ``None`` is unknown.
         category: Worker category declared on the employment.  ``None``
             takes the category fixed by the level, if any.  Must match the
             level's category when the level fixes one, and is required when
@@ -193,6 +195,7 @@ class PeriodCalculationRequest:
     ordinary_hours_worked: ContributableHours | None = None
     paid_holiday_days: PaidHolidayDays | None = None
     hourly_pay_elements: Decimal | None = None
+    commission_average: Decimal | None = None
     full_time_weekly_hours: WeeklyHours | None = None
     full_time_week_days: int | None = None
     rota: Rota | None = None

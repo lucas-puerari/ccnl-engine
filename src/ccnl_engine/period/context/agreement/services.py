@@ -31,6 +31,7 @@ from ccnl_engine.fund.solidarity.models import (
 from ccnl_engine.period.context.agreement.sector import with_employer_sector
 from ccnl_engine.sickness.counting.rules import with_window_counting
 from ccnl_engine.sickness.variant.rules import with_sickness_variant
+from ccnl_engine.variable_pay.commission.rules import with_commission_average
 from ccnl_engine.working_time.flat_pay.rules import flat_pay_divisor
 from ccnl_engine.working_time.rota.rules import with_rota
 from ccnl_engine.working_time.subsector.rules import with_subsector
@@ -182,6 +183,12 @@ def load_contract(
         request.level_code,
         request.employer.second_level_elements,
         tctx.competence,
+    )
+    ccnl = with_commission_average(
+        ccnl,
+        request.level_code,
+        "regular" if request.run is None else str(request.run.run_kind),
+        request.commission_average,
     )
     ccnl = with_second_level_rates(
         ccnl, request.level_code, request.employer.second_level_rates, tctx.competence

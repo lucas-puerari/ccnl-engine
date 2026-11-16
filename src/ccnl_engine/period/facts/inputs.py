@@ -39,6 +39,12 @@ class PeriodFacts:
             an operaio then has a ``missing_fact`` blocker.  An
             ``AbsenceEvent`` of a worker paid by the hour is rejected: its
             hours are already left out of them.
+        commission_average: On a tredicesima or quattordicesima run of a
+            level paid by commission, the monthly average of the
+            commissions of the twelve months before (Commercio protocollo
+            operatori di vendita art. 15); the engine pays its twelfths
+            with those of the fixed part.  ``None`` is unknown, zero
+            confirms a fixed-only worker.
         hourly_pay_elements: Sum of additional hourly remuneration elements
             applicable to contractual hourly pay, excluding monthly elements
             already in monthly pay. ``None`` means unknown, zero confirms none.
@@ -86,6 +92,7 @@ class PeriodFacts:
     ordinary_hours_worked: ContributableHours | None = None
     paid_holiday_days: PaidHolidayDays | None = None
     hourly_pay_elements: Decimal | None = None
+    commission_average: Decimal | None = None
     presence_days: int | None = None
     site_presence_days: int | None = None
     events: tuple[WorkEvent, ...] = ()
@@ -126,6 +133,13 @@ class PeriodFacts:
             self.comune_belfiore,
             "PeriodFacts.comune_belfiore",
             feature=feature,
+            optional=True,
+        )
+        require_decimal(
+            self.commission_average,
+            "PeriodFacts.commission_average",
+            feature=feature,
+            minimum=Decimal(0),
             optional=True,
         )
         require_decimal(

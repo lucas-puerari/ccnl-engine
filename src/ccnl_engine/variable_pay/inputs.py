@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 
 _ZERO = Decimal(0)
 _ONE = Decimal(1)
-_BONUS_KINDS = ("bonus", "productivity_bonus", "contract_renewal")
+_BONUS_KINDS = ("bonus", "productivity_bonus", "contract_renewal", "commission")
 _MEALS_LODGING = ("none", "one", "both")
 _TFR_BASES = ("none", "whole", "above_exempt")
 
@@ -52,7 +52,9 @@ class BonusEvent:
             substitute-tax regime (L. 208/2015 art. 1 cc. 182-190).
             ``"contract_renewal"`` marks a salary increment paid under a CCNL
             renewal, for the renewal substitute-tax regime (L. 199/2025
-            art. 1 c. 7).  ``"bonus"`` (the default) applies ordinary IRPEF.
+            art. 1 c. 7).  ``"commission"`` is a sales commission
+            (provvigione) of the month: pay of the period, in the TFR base
+            (art. 2120 c.c.).  ``"bonus"`` (the default) applies ordinary IRPEF.
         agreement_signed_on: Signing date of the CCNL renewal a
             ``"contract_renewal"`` increment is paid under.  The renewal
             substitute tax applies only to renewals signed within the window
@@ -67,7 +69,9 @@ class BonusEvent:
 
     event_date: date
     amount: Decimal
-    kind: Literal["bonus", "productivity_bonus", "contract_renewal"] = "bonus"
+    kind: Literal["bonus", "productivity_bonus", "contract_renewal", "commission"] = (
+        "bonus"
+    )
     agreement_signed_on: date | None = None
 
     def __post_init__(self) -> None:  # noqa: D105

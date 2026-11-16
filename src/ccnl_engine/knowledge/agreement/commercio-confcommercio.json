@@ -81,7 +81,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Apprenticeship (Art. 53 TU 2019, unchanged in 2024): sottoinquadramento, two levels below the destination for the first half and one level below for the second half; eligible destinations II-VI (Art. 62); durations II-V 36 months, VI 24 months (Art. 64). Track 'livelli_2_5' (18+18 months), track 'livello_6' (VII for the first 12 months; the second half stays at VII by the general one-level-below rule, lexplain.it reads it as VI: adopted the literal text). The Art. 68 Tabella B profiles (PDF pp. 82-83) are tracks 'tabella_b_48_mesi' (levels 2 and 3, 24+24 months) and 'tabella_b_42_mesi' (level 4, 21+21 months); an apprentice of levels 2, 3 and 4 states Apprentice.track ('livelli_2_5' for the 36 months). The farmacista di parafarmacia derogation (Accordo 31/10/2024) is not modelled: its text was not found.",
+        "text": "Apprenticeship (Art. 53 TU 2019, unchanged in 2024): sottoinquadramento, two levels below the destination for the first half and one level below for the second half; eligible destinations II-VI (Art. 62); durations II-V 36 months, VI 24 months (Art. 64). Track 'livelli_2_5' (18+18 months), track 'livello_6' (VII for the first 12 months; the second half stays at VII by the general one-level-below rule, lexplain.it reads it as VI: adopted the literal text). The Art. 68 Tabella B profiles (PDF pp. 82-83) are tracks 'tabella_b_48_mesi' (levels 2 and 3, 24+24 months) and 'tabella_b_42_mesi' (level 4, 21+21 months); an apprentice of levels 2, 3 and 4 states Apprentice.track ('livelli_2_5' for the 36 months). The farmacista di parafarmacia hired from 1 November 2024 (accordo 31/10/2024) states the track 'farmacista_parafarmacia': second level for the whole 36 months.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -89,7 +89,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the farmacista di parafarmacia apprenticeship of the Accordo 31/10/2024 once its text is found."
+          "remediation": "Resolved: track 'farmacista_parafarmacia' (second level for the 36 months, accordo 31 October 2024, edizione Confcommercio 2026 p. 368) (review of 2026-11-16).",
+          "status": "resolved"
         }
       },
       {
@@ -188,7 +189,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Operatori di vendita paid also by commission: the levels OV1 and OV2 hold the fixed table only. Not modelled: the monthly guarantee of the commission-paid staff (art. 217: a monthly average at least 5% above the paga base nazionale conglobata over at most a year), the 13th and 14th on the average of the fixed and variable elements of the twelve months before (artt. 220-221, protocol art. 15), and the company premium of 10% of the guaranteed minimums for firms with more than seven operatori (protocol art. 27).",
+        "text": "Operatori di vendita paid also by commission (protocollo aggiuntivo, artt. 15-16): the commissions of the month are BonusEvent of kind 'commission', pay of the period in the TFR base; the tredicesima and quattordicesima hold the monthly average of the commissions stated as PeriodFacts.commission_average (artt. 220-221, protocol art. 15). The guarantee of art. 217 (a monthly average at least 5% above the paga base nazionale conglobata) is met by construction: the fixed part of an operatore is the table of art. 15, and with the contingenza it exceeds 105% of the paga base on every date.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -200,7 +201,8 @@
               "OV2"
             ]
           },
-          "remediation": "Model the commission earnings of the operatori di vendita as an input, then the art. 217 guarantee, the commission average of the extra months and the art. 27 premium."
+          "remediation": "Resolved: commissions as BonusEvent kind 'commission'; the commission average in the extra months; the art. 217 guarantee met by the art. 15 table (review of 2026-11-16).",
+          "status": "resolved"
         }
       },
       {
@@ -215,6 +217,49 @@
           },
           "remediation": "Resolved by the maintainer decision of 2026-11-15: a day of notice is a calendar day of the month, paid at the monthly pay over 30, as art. 209 refers the monthly pay to all the days of the calendar month; the 1/26 daily quota of art. 210 measures the working days of the absences and deductions, not the calendar days of a notice.",
           "status": "resolved"
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Protocollo operatori di vendita art. 27: in firms with more than seven operatori di vendita a company premium of 10% of the \"minimi garantiti previsti dall’art. 38 CCNL 5 marzo 1975\" is due. Those minimi are not in the Testo Unico 2019 nor in the accordo integrativo of 28 March 2024, so the premium is not paid.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "ov_company_premium",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "OV1",
+              "OV2"
+            ]
+          },
+          "status": "unsourced",
+          "remediation": "Source the minimi garantiti of art. 38 of the CCNL of 5 March 1975 and pay 10% of them to the operatori of a firm with more than seven.",
+          "searched": [
+            {
+              "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+              "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016",
+              "title": "CCNL Terziario Distribuzione e Servizi, Testo Unico 30 luglio 2019 (protocollo operatori di vendita, art. 27, p. 464)"
+            },
+            {
+              "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+              "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001",
+              "title": "Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (tabelle operatori di vendita)"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 217 c. 1: the fixed part of the staff paid by commission is set by the employer case by case, with a monthly average at least 5% above the paga base nazionale conglobata. The engine pays the table of the level as the fixed part, so a fixed part agreed below the table, outside the operatori di vendita of the protocol, is not modelled.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "commission_fixed_part",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the fixed part agreed under art. 217 as an input, settle whether the contingenza stays owed on it, and pay the monthly guarantee with its year-end conguaglio."
         }
       }
     ]
@@ -4343,6 +4388,41 @@
           "effective_from": "2019-07-30"
         }
       }
+    },
+    {
+      "type": "under_classification",
+      "name": "farmacista_parafarmacia",
+      "destination_levels": [
+        "2"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 36,
+          "levels_below": 0
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "confcommercio-ccnl-tds-2026",
+            "title": "CCNL Terziario Distribuzione e Servizi, edizione Confcommercio 2026 (Allegato apprendistato n. 1, accordo 31 ottobre 2024)",
+            "kind": "associazione",
+            "url": "https://www.confcommercio.it/documents/20126/64376/CCNL_dipendenti-terziario-distribuzione-servizi_2026.pdf/f0e7f8ce-b355-e3bf-fe51-6200636391a8?version=1.0&t=1",
+            "sha256": "5701a97dd70639aa718f949c7899aff33d313cb04e18b073649399a46dc6eb51"
+          },
+          "page": "368",
+          "section": "Accordo 31 ottobre 2024 (Allegato apprendistato n. 1)",
+          "quote": "Le Parti, con riferimento alla specifica figura del farmacista di parafarmacia, in deroga a quanto previsto dall’art. 54 del vigente CCNL TDS, convengono che il livello di inquadramento professionale e il conseguente trattamento economico saranno, per tutta la durata dei 36 mesi, quelli del secondo livello."
+        },
+        "transformation": "The farmacista di parafarmacia (art. 115, second level, n. 27) hired as apprentice from 1 November 2024 is classified and paid at the second level for the whole 36 months, without the under-classification of art. 54; selected by Apprentice.track."
+      }
     }
   ],
   "ruleset": {
@@ -4352,7 +4432,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "deacc19b25aed041b594d8b59353cd07a7cce8394e48f3b037bfe58efa6e5369",
+    "source_hash": "e4353bd6e15f5896fa53b76d5c6cabf1c7ad41a91bf3aecb2c33d34ff83d81de",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5968,6 +6048,28 @@
             "review_id": "2026-11-16-ai-commercio-confcommercio-shift"
           }
         }
+      }
+    },
+    "commission_levels": {
+      "levels": [
+        "OV1",
+        "OV2"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-tds-confcommercio-testo-unico-2019",
+            "title": "CCNL Terziario Distribuzione e Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          },
+          "page": "456",
+          "section": "Protocollo aggiuntivo operatori di vendita, art. 15",
+          "quote": "Per l’Operatore di Vendita retribuito anche con provvigione, o con altre forme di incentivo, per retribuzione si intende la media mensile dei guadagni globali percepiti nei dodici mesi precedenti la data di scadenza dell’ultima liquidazione periodica."
+        },
+        "transformation": "The tredicesima and quattordicesima of an operatore di vendita paid also by commission hold the monthly average of the commissions (artt. 220 c. 3 and 221: \"sulla base della media delle provvigioni\"), stated on the run; the engine pays its twelfths with those of the fixed part."
       }
     }
   },

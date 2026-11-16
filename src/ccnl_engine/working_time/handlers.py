@@ -110,12 +110,16 @@ def _premium(event: object) -> bool:
     stessa natura" of the mensilità aggiuntive, among which AdE circ.
     15/E/2007 par. 2.4 lists "le gratifiche annuali di bilancio, i cosiddetti
     premi trimestrali, semestrali e annuali".  A bonus or a productivity
-    bonus is one; a contract renewal increment is pay of the period.
+    bonus is one; a contract renewal increment and a sales commission are
+    pay of the period.
 
     Returns:
         ``True`` for a :class:`BonusEvent` that is not a contract renewal.
     """
-    return isinstance(event, BonusEvent) and event.kind != "contract_renewal"
+    return isinstance(event, BonusEvent) and event.kind not in {
+        "contract_renewal",
+        "commission",
+    }
 
 
 def _handle_standard(

@@ -155,6 +155,12 @@ _NOT_EXERCISED: dict[str, str] = {
         "read by the agricoltura rates only, and the cases run the Concia D2 "
         "of industria; test_services_contract_agricultural_zone shows its blocker"
     ),
+    "PeriodFacts.commission_average": (
+        "an extra month of a commission level raises MissingRequiredFactError "
+        "without it: no result to compare; "
+        "tests/knowledge/ccnl_engine/compensation/test_sales_commissions.py "
+        "shows it"
+    ),
     "PeriodFacts.contributable_hours": (
         "a domestic CCNL raises MissingRequiredFactError without it: the "
         "default yields no result to compare; other CCNLs do not read it"
