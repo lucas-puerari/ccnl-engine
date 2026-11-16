@@ -59,6 +59,7 @@ class ExtraMonthAccrualRule(BaseModel):
         valid_from: First day the clause applies, when a renewal changed
             it; the months starting before it follow :attr:`previous`.
         previous: The clause of the months before :attr:`valid_from`.
+        fourteenth: The clause of the quattordicesima, when it differs.
 
     Raises:
         ValueError: When a full 28-day month would not count, when the
@@ -74,6 +75,7 @@ class ExtraMonthAccrualRule(BaseModel):
     provenance: RuleProvenance
     valid_from: date | None = None
     previous: "ExtraMonthAccrualRule | None" = None
+    fourteenth: "ExtraMonthAccrualRule | None" = None
 
     @model_validator(mode="after")
     def _check_threshold(self) -> Self:

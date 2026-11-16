@@ -19,11 +19,11 @@ from datetime import timedelta
 from typing import TYPE_CHECKING
 
 from ccnl_engine.event.facade import AbsenceEvent, ExtraordinaryLeaveEvent
+from ccnl_engine.extra_month.days import absence_days
 from ccnl_engine.extra_month.models import (
     DEFAULT_MONTH_ACCRUAL_RULE,
     ExtraMonthAccrual,
     MonthAccrualRule,
-    absence_days,
 )
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 from ccnl_engine.run.models import PayrollRun
@@ -186,7 +186,7 @@ def _month_rule(ccnl: CCNL, stored: ExtraMonthAccrualRule) -> MonthAccrualRule:
     """
     location = stored.provenance.location
     section = None if location is None else location.section
-    previous = stored.previous
+    previous, fourteenth = stored.previous, stored.fourteenth
     return MonthAccrualRule(
         min_days=stored.min_days,
         source=f"CCNL {ccnl.meta.name}: {section or 'accrual clause'}",
@@ -196,4 +196,5 @@ def _month_rule(ccnl: CCNL, stored: ExtraMonthAccrualRule) -> MonthAccrualRule:
         provenance=stored.provenance,
         valid_from=stored.valid_from,
         previous=None if previous is None else _month_rule(ccnl, previous),
+        fourteenth=None if fourteenth is None else _month_rule(ccnl, fourteenth),
     )

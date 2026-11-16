@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 27/136 CCNLs**; complete except declared residuals: 4. Bundle: 168 weak rules, 250 open limitations (250 with a monetary impact), 34 declared residuals.
+**Complete: 28/136 CCNLs**; complete except declared residuals: 4. Bundle: 167 weak rules, 250 open limitations (250 with a monetary impact), 34 declared residuals.
 
 ## Declared window
 
@@ -179,7 +179,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [pulizia-artigianato-confartigianato](../contracts/pulizia-artigianato-confartigianato.md) | `pulizia-multiservizi` | exploratory | — | 31 rows | 31 open requirements; 28 weak rules; 2 monetary limitations; 1 outside_input limitation; 6 non-native capabilities |
 | [radiotelevisive-radiofonico](../contracts/radiotelevisive-radiofonico.md) | `spettacolo-media` | exploratory | — | 11 rows | 11 open requirements; 8 weak rules; 3 monetary limitations; 7 non-native capabilities |
 | [radiotelevisive-televisivo](../contracts/radiotelevisive-televisivo.md) | `spettacolo-media` | exploratory | — | 12 rows | 12 open requirements; 10 weak rules; 2 monetary limitations; 7 non-native capabilities |
-| [recapito-corrispondenza-fise](../contracts/recapito-corrispondenza-fise.md) | `servizi-postali` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule |
+| [recapito-corrispondenza-fise](../contracts/recapito-corrispondenza-fise.md) | `servizi-postali` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [rsa-aiop](../contracts/rsa-aiop.md) | `socio-sanitario` | exploratory | — | 3 rows | 3 open requirements; 2 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |
 | [sanita-aran](../contracts/sanita-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 0 rows | complete; 4 limitations awaiting publication |
 | [sanita-privata-aiop-aris](../contracts/sanita-privata-aiop-aris.md) | `socio-sanitario` | exploratory | 2018-12-31 | 5 rows | 5 open requirements; 1 monetary limitation; 4 outside_input limitations; 6 non-native capabilities |

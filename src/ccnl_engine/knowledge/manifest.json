@@ -1853,7 +1853,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/recapito-corrispondenza-fise",
       "ruleset_version": "2026.2",
-      "source_hash": "1d4f93a06969759e590245531940236f9c39db61c4fce325196ba61bfb8806f4",
+      "source_hash": "e0b48a60d3d0c214728ba7913c10014a42304c495664664249927c61367c3af3",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/recapito-corrispondenza-fise.json.gz"
@@ -4561,7 +4561,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "59d991aa3a7f32cac2b27002c837cc1568a761081041dae0078153f584f4087c",
+      "source_hash": "e9134f4999138c1ed8178c7d3dc28fe51bdc261bc7af4e4c446f1de1c1332a3e",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/recapito-corrispondenza-fise.json.gz",
