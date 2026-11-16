@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 17/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 253 open limitations (253 with a monetary impact), 34 declared residuals.
+**Complete: 18/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 253 open limitations (253 with a monetary impact), 34 declared residuals.
 
 ## Declared window
 
@@ -77,7 +77,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [afam-aran](../contracts/afam-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [agenti-immobiliari-fiaip](../contracts/agenti-immobiliari-fiaip.md) | `servizi-immobiliari` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 monetary limitation; 4 non-native capabilities |
 | [agenzie-marittime-i481](../contracts/agenzie-marittime-i481.md) | `trasporti-logistica` | exploratory | — | 1 rows | 1 open requirement; 1 monetary limitation; 6 non-native capabilities |
-| [agenzie-viaggio-fiavet](../contracts/agenzie-viaggio-fiavet.md) | `turismo` | exploratory | — | 0 rows | 5 non-native capabilities |
+| [agenzie-viaggio-fiavet](../contracts/agenzie-viaggio-fiavet.md) | `turismo` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [alimentari-federalimentare](../contracts/alimentari-federalimentare.md) | `alimentare` | reviewed | — | 0 rows | complete; 3 limitations awaiting publication |
 | [alimentari-pmi-unionalimentari](../contracts/alimentari-pmi-unionalimentari.md) | `alimentare` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [alimentaristi-cooperative-e016](../contracts/alimentaristi-cooperative-e016.md) | `alimentare` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 outside_input limitation; 5 non-native capabilities |
@@ -86,7 +86,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [attivita-minerarie-assorisorse](../contracts/attivita-minerarie-assorisorse.md) | `materiali-estrattive` | exploratory | — | 2 rows | 2 open requirements; 2 weak rules; 6 non-native capabilities |
 | [autoferrotranvieri-internavigatori](../contracts/autoferrotranvieri-internavigatori.md) | `trasporti-logistica` | exploratory | — | 3 rows | 3 open requirements; 2 monetary limitations; 1 outside_input limitation; 6 non-native capabilities |
 | [autorimesse-ic35](../contracts/autorimesse-ic35.md) | `servizi-automobilistici` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 5 non-native capabilities |
-| [autoscuole-unasca](../contracts/autoscuole-unasca.md) | `servizi-automobilistici` | exploratory | — | 1 rows | 1 open requirement; 1 monetary limitation; 5 non-native capabilities |
+| [autoscuole-unasca](../contracts/autoscuole-unasca.md) | `servizi-automobilistici` | exploratory | — | 1 rows | 1 open requirement; 1 monetary limitation; 4 non-native capabilities |
 | [autostrade-trafori](../contracts/autostrade-trafori.md) | `trasporti-logistica` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 6 non-native capabilities |
 | [aziende-termali-federterme](../contracts/aziende-termali-federterme.md) | `turismo` | exploratory | — | 4 rows | 4 open requirements; 4 monetary limitations; 7 non-native capabilities |
 | [bancari-abi](../contracts/bancari-abi.md) | `credito` | exploratory | 2026-03-31 | 6 rows | 6 open requirements; 3 monetary limitations; 3 outside_input limitations; 9 non-native capabilities |

@@ -120,29 +120,6 @@
         ]
       },
       {
-        "id": "2026-11-16-ai-autoscuole-unasca-time-supplements",
-        "date": "2026-11-16",
-        "reviewer": "claude-opus-5-5",
-        "reviewer_kind": "ai",
-        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
-        "outcome": "corrected",
-        "sources": [
-          {
-            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
-            "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
-          }
-        ],
-        "findings": [
-          "Applied: travel.",
-          "Left out: bands[0:night]: quote skipped; bands[1:night]: quote skipped; bands[2:sunday]: quote skipped; bands[3:night_holiday_compensatory_rest]: quote skipped; bands[4:holiday]: quote skipped; none.shift_work: skipped."
-        ],
-        "independence": "separate_model",
-        "checked": [
-          "work_rules.time_supplements",
-          "work_rules.capability_basis"
-        ]
-      },
-      {
         "id": "2026-11-16-ai-additional-months",
         "date": "2026-11-16",
         "reviewer": "claude-opus-5-5",
@@ -161,6 +138,29 @@
         "independence": "separate_model",
         "checked": [
           "parameters.additional_months"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-autoscuole-unasca-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+            "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[2:sunday], bands[3:night_holiday_compensatory_rest], bands[4:holiday].",
+          "Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[1:night]: work/role/rate not applicable (istruttore di guida); none.shift_work: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]
@@ -1546,7 +1546,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "9d8677931fa1e44b4757a816cdde95ee777e564c245a56ba7b18b46951637765",
+    "source_hash": "a095b28fa84fb79f0604f74e66358f81badbada4498e8467cfa77d75138ff08b",
     "published_at": "2026-09-12",
     "source_type": "contracting_party"
   },
@@ -1571,7 +1571,158 @@
       }
     },
     "time_supplements": {
-      "supplement_bands": []
+      "supplement_bands": [
+        {
+          "code": "U_SUNDAY_2",
+          "description": "Lavoro domenicale diurno con riposo compensativo in altro giorno.",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "le-scuole-nautiche-studi-di-consulenza-automobilistica-firmato-il-28-02-2023-pdf",
+                "title": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+              },
+              "page": "17",
+              "section": "Art. 15, comma 5, lett. a)",
+              "quote": "elavoro domenicale con riposo compensativo: a) diurno: maggiorazione 20%"
+            },
+            "transformation": "Lavoro domenicale diurno con riposo compensativo in altro giorno.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2021-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-autoscuole-unasca-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_COMPENSATORY_REST_3",
+          "description": "Lavoro domenicale notturno con riposo compensativo in altro giorno (non cumulabile con la maggiorazione notturna ordinaria).",
+          "work": "night_holiday_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "le-scuole-nautiche-studi-di-consulenza-automobilistica-firmato-il-28-02-2023-pdf",
+                "title": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+              },
+              "page": "17",
+              "section": "Art. 15, comma 5, lett. b)",
+              "quote": "elavoro domenicale con riposo compensativo: a) diurno: maggiorazione 20% b) notturno: maggiorazione 50%"
+            },
+            "transformation": "Lavoro domenicale notturno con riposo compensativo in altro giorno (non cumulabile con la maggiorazione notturna ordinaria).",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2021-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-autoscuole-unasca-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_4",
+          "description": "Lavoro nelle festività nazionali e infrasettimanali entro l'orario normale.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "le-scuole-nautiche-studi-di-consulenza-automobilistica-firmato-il-28-02-2023-pdf",
+                "title": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+              },
+              "page": "17",
+              "section": "Art. 15, comma 5",
+              "quote": "elavoro nelle festività nazionali e infrasettimanali (prestato. nell'ambito dell'orario normale): maggiorazione 50%."
+            },
+            "transformation": "Lavoro nelle festività nazionali e infrasettimanali entro l'orario normale.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2021-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-autoscuole-unasca-time-supplements"
+            }
+          }
+        }
+      ],
+      "hourly_base_method": "gross_incl_allowances",
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "le-scuole-nautiche-studi-di-consulenza-automobilistica-firmato-il-28-02-2023-pdf",
+            "title": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+            "kind": "associazione",
+            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+            "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+          },
+          "page": "16",
+          "section": "Art. 13, comma 3",
+          "quote": "La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per 22, per i lavoratori il cui orario normale è ripartito su 5 giorni, o per 26, in caso di lavoratori il cui orario normale di lavoro è ripartito su 6 giorni. La retribuzione oraria si ottiene dividendo la retribuzione mensile per 170."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-autoscuole-unasca-time-supplements"
+        }
+      }
     },
     "capability_basis": {
       "travel_allowance": {
