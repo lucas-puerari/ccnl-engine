@@ -114,7 +114,7 @@
       },
       {
         "kind": "simplification",
-        "text": "OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The four overtime bands, the ordinary holiday band and the two night bands use the printed rates, with a separate tabellare-plus-contingenza premium base. The engine cannot automatically enforce the non-cumulation of simultaneous holiday and night premiums or the incidence of continuous night supplements on deferred pay.",
+        "text": "OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The four overtime bands, the ordinary holiday band and the two night bands use the printed rates, with a separate tabellare-plus-contingenza premium base. Night work on a holiday takes the 50% alone (night_holiday bands: the higher absorbs the lower). The engine does not compute the incidence of continuous night supplements on deferred pay (ferie, festività, 13a and 14a, TFR).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -122,7 +122,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Do not stack simultaneous holiday and night premiums; account for continuous night premiums in deferred pay where applicable."
+          "remediation": "Account for continuous night premiums in deferred pay where applicable."
         }
       },
       {
@@ -5681,7 +5681,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "bee92253195437c5c506ae0c2abeaa05f4e368d5dabbd1e0863bb9f570c9f193",
+    "source_hash": "f7073571d693cb41b3b930d17d126a8b784da9168cb1cb5b177dcd0457210e73",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6043,6 +6043,88 @@
               "review_id": "2026-11-10-ai-time-supplements"
             },
             "transformation": "The printed percentage is applied to the hourly tabellare plus contingenza; the monthly divisor is 173."
+          }
+        },
+        {
+          "code": "MS_NOTTURNO_FESTIVO",
+          "description": "Ordinary night hours on a holiday",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "base": "minimo_e_contingenza",
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "57",
+              "section": "Art. 38 Lavoro straordinario, notturno e festivo",
+              "quote": "5) lavoro compiuto nei giorni considerati festivi 50% [...] Le suddette percentuali di maggiorazione non sono cumulabili, nel senso che la maggiore assorbe la minore."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2021-06-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Night work on a holiday takes the holiday 50% alone, since the higher percentage absorbs the lower one (20% or 30% of night work); on the hourly tabellare plus contingenza, monthly divisor 173."
+          }
+        },
+        {
+          "code": "MS_NOTTURNO_FESTIVO_TURNO",
+          "description": "Night hours of a rotating shift on a holiday",
+          "work": "night_holiday_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "base": "minimo_e_contingenza",
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "57",
+              "section": "Art. 38 Lavoro straordinario, notturno e festivo",
+              "quote": "5) lavoro compiuto nei giorni considerati festivi 50% [...] Le suddette percentuali di maggiorazione non sono cumulabili, nel senso che la maggiore assorbe la minore."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2021-06-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Night work on a holiday takes the holiday 50% alone, since the higher percentage absorbs the lower one (20% or 30% of night work); on the hourly tabellare plus contingenza, monthly divisor 173."
           }
         }
       ],

@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 90 verified / 14 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 90 verified / 16 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -145,11 +145,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source an ANIP-signed later minimum or verified IPCA adjustment before adding subsequent tranches.
 
 !!! warning "multiservizi-anip/multiservizi_variable_time_premiums · overtime · impact yes · open"
-    OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The four overtime bands, the ordinary holiday band and the two night bands use the printed rates, with a separate tabellare-plus-contingenza premium base. The engine cannot automatically enforce the non-cumulation of simultaneous holiday and night premiums or the incidence of continuous night supplements on deferred pay.
+    OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The four overtime bands, the ordinary holiday band and the two night bands use the printed rates, with a separate tabellare-plus-contingenza premium base. Night work on a holiday takes the 50% alone (night_holiday bands: the higher absorbs the lower). The engine does not compute the incidence of continuous night supplements on deferred pay (ferie, festività, 13a and 14a, TFR).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Do not stack simultaneous holiday and night premiums; account for continuous night premiums in deferred pay where applicable.
+    **Remediation:** Account for continuous night premiums in deferred pay where applicable.
 
 !!! warning "multiservizi-anip/multiservizi_part_time_supplements · overtime · impact yes · open"
     PART-TIME SUPPLEMENTS (CNEL 139292 art. 33): supplementary hours and elastic clauses have distinct rates and eligibility. OT_SUPPLEMENTARE covers additional hours at ordinary global hourly pay plus 28% of tabellare and contingenza. The engine does not defer the 28% to the following month or include its incidence in indirect and deferred pay including TFR; it does not route the distinct elastic-clause hours, enforce part-time eligibility or the full-time ceiling.
