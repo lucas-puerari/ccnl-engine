@@ -1,21 +1,5 @@
 {
   "schema_version": 1,
   "ccnl_id": "grafica-editoria-aieg",
-  "requirements": [
-    {
-      "id": "rule_additional_months_2024_03_01",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/grafica-editoria-aieg.json#additional_months[2024-03-01]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/grafica-editoria-aieg.json#additional_months[2024-03-01]"
-        ]
-      }
-    }
-  ]
+  "requirements": []
 }

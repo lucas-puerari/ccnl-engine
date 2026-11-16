@@ -142,7 +142,7 @@
       },
       {
         "kind": "simplification",
-        "text": "OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The four overtime bands, the ordinary holiday band and the two night bands use the printed rates, with a separate tabellare-plus-contingenza premium base. The engine cannot automatically enforce the non-cumulation of simultaneous holiday and night premiums or the incidence of continuous night supplements on deferred pay.",
+        "text": "OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The four overtime bands, the ordinary holiday band and the two night bands use the printed rates, with a separate tabellare-plus-contingenza premium base. Night work on a holiday takes the 50% alone (night_holiday bands: the higher absorbs the lower). The engine does not compute the incidence of continuous night supplements on deferred pay (ferie, festività, 13a and 14a, TFR).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -150,7 +150,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Do not stack simultaneous holiday and night premiums; account for continuous night premiums in deferred pay where applicable."
+          "remediation": "Account for continuous night premiums in deferred pay where applicable."
         }
       },
       {
@@ -248,7 +248,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (CNEL 139292 art. 51, pp. 22-24): category routing, the 100% net-global-pay operai band through day 180, the 50% band through day 270, the impiegati 100% first five months and 50% next seven months, and the rolling 36-month comporto are represented. Remaining: the operai 50% band is of gross global pay, while the model applies net_basis to the whole rule; impiegati pay is stipendio plus contingenza, while the engine uses global pay. The operai first working day and the impiegati non-probation and serious-fault conditions are not represented. The clause does not state a daily gross/net conversion or an amount for the excluded pay components.",
+        "text": "SICKNESS (CNEL 139292 art. 51, pp. 22-24): category routing, the 100% net-global-pay operai band through day 180, the 50% band through day 270, the impiegati 100% first five months and 50% next seven months, and the rolling 36-month comporto are represented. The operai 50% band of days 181-270 is of the gross global pay (gross_basis). Remaining: impiegati pay is stipendio plus contingenza, while the engine uses global pay. The operai first working day and the impiegati non-probation and serious-fault conditions are not represented. The clause does not state a daily gross/net conversion or an amount for the excluded pay components.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -5709,7 +5709,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "fb6cef87f6bccb37a815dd8bd5ecc00607f78df6b27a52f7f9ce103daf882a29",
+    "source_hash": "172198d627393af53c205d998d30544c6f5354cade17aca5e4eacef28302221b",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6072,6 +6072,88 @@
             },
             "transformation": "The printed percentage is applied to the hourly tabellare plus contingenza; the monthly divisor is 173."
           }
+        },
+        {
+          "code": "MS_NOTTURNO_FESTIVO",
+          "description": "Ordinary night hours on a holiday",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "base": "minimo_e_contingenza",
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "57",
+              "section": "Art. 38 Lavoro straordinario, notturno e festivo",
+              "quote": "5) lavoro compiuto nei giorni considerati festivi 50% [...] Le suddette percentuali di maggiorazione non sono cumulabili, nel senso che la maggiore assorbe la minore."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2021-06-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Night work on a holiday takes the holiday 50% alone, since the higher percentage absorbs the lower one (20% or 30% of night work); on the hourly tabellare plus contingenza, monthly divisor 173."
+          }
+        },
+        {
+          "code": "MS_NOTTURNO_FESTIVO_TURNO",
+          "description": "Night hours of a rotating shift on a holiday",
+          "work": "night_holiday_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "base": "minimo_e_contingenza",
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "57",
+              "section": "Art. 38 Lavoro straordinario, notturno e festivo",
+              "quote": "5) lavoro compiuto nei giorni considerati festivi 50% [...] Le suddette percentuali di maggiorazione non sono cumulabili, nel senso che la maggiore assorbe la minore."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2021-06-01",
+              "verification_status": "unverified"
+            },
+            "transformation": "Night work on a holiday takes the holiday 50% alone, since the higher percentage absorbs the lower one (20% or 30% of night work); on the hourly tabellare plus contingenza, monthly divisor 173."
+          }
         }
       ],
       "hourly_base_provenance": {
@@ -6401,7 +6483,8 @@
         {
           "day_from": 181,
           "day_until": 271,
-          "integration_rate": "0.5"
+          "integration_rate": "0.5",
+          "gross_basis": true
         },
         {
           "day_from": 271,
