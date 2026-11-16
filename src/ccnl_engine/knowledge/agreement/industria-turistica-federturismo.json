@@ -225,6 +225,27 @@
           "work_rules.time_supplements",
           "work_rules.capability_basis"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/H05B/154401.pdf",
+            "sha256": "2c01fa555644de38b31a327c517edd8f2888545a41a9b28f20eeccdecf0758fc"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
+        ]
       }
     ]
   },
@@ -1955,7 +1976,7 @@
     "effective_until": null,
     "source": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
     "verification_status": "unverified",
-    "source_hash": "9b81cab9f74d04afd323a83162274e108dd98f25f14a907ea408c7d988c908f7",
+    "source_hash": "172f2e8b7930e1d4bae1a8bd1f6df46415c995e27ff21ff2ace272a0e95d803b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2251,6 +2272,24 @@
           "verification_status": "unverified",
           "effective_from": "2016-11-14"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "turismo.pdf",
+            "title": "CCNL industria turistica",
+            "kind": "cnel",
+            "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/H05B/154401.pdf",
+            "sha256": "2c01fa555644de38b31a327c517edd8f2888545a41a9b28f20eeccdecf0758fc"
+          },
+          "page": "133",
+          "section": "Articolo 132 - CONGEDO PARENTALE",
+          "quote": "Il diritto di assentarsi dal lavoro, trascorso il periodo di astensione obbligatoria della lavoratrice madre, per un periodo di sei mesi entro il primo anno di età del bambino ed il relativo trattamento economico, previsti rispettivamente dagli articoli 34 e 35 del decreto legislativo 26 marzo 2001,n. 151 e successive modifiche ed integrazioni., nonché il diritto"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies."
       }
     }
   }

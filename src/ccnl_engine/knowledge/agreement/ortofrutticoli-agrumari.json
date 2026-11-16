@@ -456,6 +456,27 @@
           "parameters.health_funds",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/H341/210360.pdf",
+            "sha256": "e5a14fb1b5b9d43d953ac445cdce1af5982f1b21c262b71fbc55f7d4f5f01776"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
+        ]
       }
     ]
   },
@@ -2817,7 +2838,7 @@
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "c7e88301661238164577a5b5035e0c54688638c2297328fcb0d9c4c244716a83",
+    "source_hash": "8ab0883c6eea5f363f9bcb972bfac698cb0ac7ee6103f5a92a309ef29ec5fbd2",
     "source_type": "contracting_party"
   },
   "work_rules": {
@@ -3641,6 +3662,24 @@
         }
       },
       "divisor": "26"
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "orto.pdf",
+            "title": "CCNL aziende ortofrutticole ed agrumarie, Fruitimprese",
+            "kind": "cnel",
+            "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/H341/210360.pdf",
+            "sha256": "e5a14fb1b5b9d43d953ac445cdce1af5982f1b21c262b71fbc55f7d4f5f01776"
+          },
+          "page": "24",
+          "section": "Clausola sul congedo parentale",
+          "quote": "Ciascun genitore ha diritto di assentarsi dal lavoro, nei primi dodici anni di età del bambino ed i relativi congedi parentali non possono complessivamente superare i dieci mesi, elevabili a undici nel caso il padre lavoratore eserciti il diritto di astenersi dal lavoro per un periodo continuativo o frazionato non inferiore a tre mesi."
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies."
+      }
     }
   }
 }

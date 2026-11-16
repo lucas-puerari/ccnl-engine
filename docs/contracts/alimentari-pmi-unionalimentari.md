@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-28 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 47 table of the consolidated text signed on 18 March 2026 (PDF p. 144), read on the page image, against the file and the verbale of 28 May 2025 (p. 26). | corrected | 21 minimi of 2026-2028 differed by one or two cents from the later signed text and were corrected.<br>Both signed documents set four tranches of EUR 70: the 2027 and 2028 tranches are confirmed. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Panificazione industriale pay of the text signed on 18 March 2026 (PDF p. 145, 147-148, 153-154, 160), read on the page images, against the research of a separate model session on the CCNL 2021. | corrected | Added the seven panificazione industriale levels with paga base, contingenza, premio di produzione, premio per obiettivi and scatti.<br>The contingenza of the sector (art. 47 bis) is new in the 2026 text; the CCNL 2021 had none for these levels. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 29 tables of the text signed on 18 March 2026 (PDF p. 109-119), read on the page images, against the Federalimentare art. 31 bands. | corrected | The file had unverified overtime rates of 40%, 45% and 50% for everyone; the signed tables pay 45% for weekday overtime in every sub-sector and differ by sub-sector and category.<br>The sub-sector tables equal those of Federalimentare art. 31; the first also covers the prodotti da forno; the panificazione has its own table. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256. | corrected | Applied: work_rules.parental_hourly. |
 
 ## Salary table
 
@@ -185,13 +186,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
 
     **Remediation:** Resolved by the decision of 2026-11-15: the employer pays the whole rateo of the extra months.
-
-!!! warning "parental_hourly_ccnl_rule · parental_leave · impact unknown · open"
-    A parental leave by the hour follows the national CCNL rule on the hours of a day of leave (art. 32 c. 1-bis D.Lgs. 151/2001, work_rules.parental_hourly), or without one the general criterion of art. 32 c. 1-ter: half the average daily hours a day, two such days a day of leave, no cumulation with the nursing rests on the same day (INPS circ. 152/2015 par. 2.1-2.2). The run records this limitation while the bundle does not record the rule of the CCNL; a company or territorial agreement is the fact local_hourly_agreement of the event.
-
-    **Applies when:** `parental_leave` applies; the run takes the engine code path.
-
-    **Remediation:** Source the collective rules on the leave by the hour of the CCNL (hours of a day of leave, cumulation) and apply them, then resolve this limitation.
 
 !!! note "disability_permit_tfr · disability_permits · impact unknown · resolved"
     The days of permit under L. 104/1992 art. 33 c. 3 keep the TFR base. Art. 33 c. 4 refers to art. 43 D.Lgs. 151/2001, which applies art. 34 c. 5: the days are paid and counted in the seniority; no primary source states their TFR base, and by the maintainer's decision of 2026-11-15 they stay in it, as payroll practice holds.

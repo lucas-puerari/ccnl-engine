@@ -277,6 +277,27 @@
         "checked": [
           "work_rules.time_supplements"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2019/02/CONFAPI-CONTRATTO-DEFINITIVO-2016-2020.pdf",
+            "sha256": "c3a2f50016c2d659cbeaf4dddfecf7c2e352922b606a393cabea9b21c2dc7021"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
+        ]
       }
     ]
   },
@@ -6079,7 +6100,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "94a6aa20b6aa53955e3624f68055e98427e9675d98f027d397f473987a860b11",
+    "source_hash": "fb07c65f171c18e068a61ab2280327421d2923307683a95b1a76d1d1ddbd780b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -15872,6 +15893,25 @@
           "effective_from": "2013-01-01",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "regulated": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "alimentari-2016.pdf",
+            "title": "CCNL Unionalimentari–Confapi 2016–2020",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2019/02/CONFAPI-CONTRATTO-DEFINITIVO-2016-2020.pdf",
+            "sha256": "c3a2f50016c2d659cbeaf4dddfecf7c2e352922b606a393cabea9b21c2dc7021"
+          },
+          "page": "47",
+          "section": "Art. 13, 2 - Congedi parentali, A BIS)",
+          "quote": "In detto caso la fruizione su base oraria potrà essere ammessa per periodi pari a un minimo\ndi 4 ore giornaliere, previa comunicazione da parte del lavoratore al datore di lavoro di 15\ngiorni e previo accordo fra le parti in relazione alla fungibilità del lavoratore e\nall’organizzazione aziendale, ovvero dei turni di lavoro."
+        },
+        "transformation": "The clause adds a four-hour daily minimum and requires notice and agreement; this is a distinct contractual arrangement. The minimum is not a fixed number of hours equivalent to one full-time day of leave. Part-time scaling and the date of first introduction are not established."
       }
     }
   }

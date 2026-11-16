@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-19 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-08-01 |
 
 ## Review history
@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 6, 16, 23 and 31 of the CCNL 2024-2027. | corrected | The file had no fund: added Fondo EST and Fon.Te.; the EBO contribution is suspended; the QuAS amount of the quadri is not in the CCNL (limitation). |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 39-42 and Allegato 8 of the CCNL 2024-2027. | corrected | The file modelled no apprenticeship, saying the text was not accessible; the ruleset source is that text. Added the under-classification tracks of Art. 42 and the apprentice seniority at the level's amounts; durations other than 24 and 36 months recorded as a limitation. |
 | 2026-11-15 | claude-opus-5-5 (ai) | QuAS contribution of the H341 quadri in the QuAS rules 2025 and 2026, against the research of a separate model session. | corrected | Added the QuAS fund of the quadri: 370 + 56 in 2025, 390 + 56 from 2026; 2024 derived from the H011 amount. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256. | corrected | Applied: work_rules.parental_hourly. |
 
 ## Salary table
 
@@ -216,13 +217,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
 
     **Remediation:** Resolved by the decision of 2026-11-15: the employer pays the whole rateo of the extra months.
-
-!!! warning "parental_hourly_ccnl_rule · parental_leave · impact unknown · open"
-    A parental leave by the hour follows the national CCNL rule on the hours of a day of leave (art. 32 c. 1-bis D.Lgs. 151/2001, work_rules.parental_hourly), or without one the general criterion of art. 32 c. 1-ter: half the average daily hours a day, two such days a day of leave, no cumulation with the nursing rests on the same day (INPS circ. 152/2015 par. 2.1-2.2). The run records this limitation while the bundle does not record the rule of the CCNL; a company or territorial agreement is the fact local_hourly_agreement of the event.
-
-    **Applies when:** `parental_leave` applies; the run takes the engine code path.
-
-    **Remediation:** Source the collective rules on the leave by the hour of the CCNL (hours of a day of leave, cumulation) and apply them, then resolve this limitation.
 
 !!! note "disability_permit_tfr · disability_permits · impact unknown · resolved"
     The days of permit under L. 104/1992 art. 33 c. 3 keep the TFR base. Art. 33 c. 4 refers to art. 43 D.Lgs. 151/2001, which applies art. 34 c. 5: the days are paid and counted in the seniority; no primary source states their TFR base, and by the maintainer's decision of 2026-11-15 they stay in it, as payroll practice holds.
