@@ -8,7 +8,10 @@ signed 18 March 2026, PDF p. 109-119):
 - vini-liquori, impiegato level 3, 8 hours on a holiday at 65%:
   (1987.81 + 529.58) / 173 x 8 x 0.65 -> 75.67;
 - panificazione, level 3B, 8 Sunday hours: 90% for the bread staff,
-  (1476.40 + 522.81) / 173 x 8 x 0.90 -> 83.20, else 65% -> 60.09.
+  (1476.40 + 522.81) / 173 x 8 x 0.90 -> 83.20, else 65% -> 60.09;
+- panificazione, 10 night overtime hours: the premiums marked * add at
+  most 55 points each (PDF p. 119), 45% + 55% = 100%,
+  1999.21 / 173 x 10 x 2.00 -> 231.12; on a holiday night 155%, -> 294.68.
 """
 
 from __future__ import annotations
@@ -27,6 +30,7 @@ from ccnl_engine.event.facade import (
     OvertimeEvent,
     WorkEvent,
 )
+from ccnl_engine.events import OvertimeKind
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.services import (
     bundled_policies,
@@ -38,6 +42,12 @@ from ccnl_engine.run.types import PeriodId
 _OVERTIME = OvertimeEvent(date(2026, 3, 10), hours=Decimal(10))
 _HOLIDAY = HolidayWorkEvent(
     date(2026, 3, 19), hours=Decimal(8), kind=HolidayWorkKind.HOLIDAY
+)
+_NIGHT_OVERTIME = OvertimeEvent(
+    date(2026, 3, 10), hours=Decimal(10), kind=OvertimeKind.NIGHT
+)
+_NIGHT_HOLIDAY_OVERTIME = OvertimeEvent(
+    date(2026, 3, 19), hours=Decimal(10), kind=OvertimeKind.NIGHT_HOLIDAY
 )
 _SUNDAY = HolidayWorkEvent(
     date(2026, 3, 15), hours=Decimal(8), kind=HolidayWorkKind.SUNDAY
@@ -102,8 +112,31 @@ def _event_pay(
             frozenset(),
             "60.09",
         ),
+        (
+            "P3B",
+            "panificazione_industriale",
+            WorkerCategory.OPERAIO,
+            _NIGHT_OVERTIME,
+            frozenset(),
+            "231.12",
+        ),
+        (
+            "P3B",
+            "panificazione_industriale",
+            WorkerCategory.OPERAIO,
+            _NIGHT_HOLIDAY_OVERTIME,
+            frozenset(),
+            "294.68",
+        ),
     ],
-    ids=["carni-overtime", "vini-holiday", "bread-sunday", "bakery-sunday"],
+    ids=[
+        "carni-overtime",
+        "vini-holiday",
+        "bread-sunday",
+        "bakery-sunday",
+        "bakery-night-overtime",
+        "bakery-night-holiday-overtime",
+    ],
 )
 def test_the_sub_sector_table_pays_the_premium(
     level: str,

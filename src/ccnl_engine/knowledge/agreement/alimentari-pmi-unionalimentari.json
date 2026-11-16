@@ -106,17 +106,8 @@
         "text": "OVERTIME AND PREMIUMS (art. 29, text signed 18 March 2026, PDF p. 109-119): the tables by EmployerProfile.subsector (carni, dolciari, alimenti_zootecnici, lattiero_caseari, prodotti_da_forno, vini_liquori, bevande_gassate, acque_minerali, distillatori, birra_malto, conserve_vegetali, alimentari_varie, risiera, molitoria_pastificazione, conserve_ittiche, avicoli, panificazione_industriale), by category (the operai column; the impiegati column for impiegati and quadri), equal to the Federalimentare art. 31 tables. The intermedi column and the rows of overtime of shift workers and festive night overtime beyond 8 hours are not modelled: the caller states those rates. The 90% Sunday of the bread staff takes the role 'addetto_pane'."
       },
       {
-        "kind": "simplification",
-        "text": "BAKERY PREMIUM CUMULATION (art. 29, PANIFICAZIONE, PDF p. 119): the premiums marked * are 'Cumulabile con le altre maggiorazioni in misura non superiore al 55%'; the engine applies the higher premium alone, as for the other tables, so overtime at night or on holidays of the panificazione is underpaid.",
-        "capability": "overtime",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "bakery_premium_cumulation",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Cumulate the panificazione premiums marked * up to 55% above the highest one."
-        }
+        "kind": "info",
+        "text": "BAKERY PREMIUM CUMULATION (art. 29, PANIFICAZIONE, PDF p. 119): the premiums marked * are 'Cumulabile con le altre maggiorazioni in misura non superiore al 55%'. Read as each further premium adding at most 55 points (maintainer, 2026-11-16): night or holiday overtime 45% + 55% = 100%, night holiday overtime 155%, ordinary night holiday work 65% + 55% = 120%. The ** bread Sunday 90% cumulates with nothing. Night is 21.00-4.00 in this table: the caller states the night hours by it."
       }
     ]
   },
@@ -320,6 +311,29 @@
           "work_rules.time_supplements",
           "work_rules.capability_basis"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-unionalimentari-close",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Arts. 48-49 (PDF p. 146) and the note of the panificazione table of art. 29 (PDF p. 119), read from the OCR of the pages of the cited file.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+            "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays.",
+          "Applied: the cumulation of the panificazione premiums marked *, each further one up to 55 points."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months",
+          "work_rules.time_supplements"
+        ]
       }
     ]
   },
@@ -340,9 +354,22 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "146",
+              "section": "Art. 48 - Tredicesima mensilità; Art. 49 - Quattordicesima mensilità",
+              "quote": "Con la retribuzione del mese di giugno di ogni anno l'azienda corrisponderà ai lavoratori considerati in servizio una quattordicesima mensilità pari alla retribuzione normale mensile di fatto."
+            },
+            "transformation": "Twelve monthly pays, the tredicesima of art. 48 ('in occasione della ricorrenza natalizia, una tredicesima mensilità pari alla retribuzione normale mensile di fatto') and the quattordicesima of art. 49 paid in June: 14.",
+            "note": "Scanned PDF without a text layer: the articles read from the OCR of the page."
           }
         }
       ]
@@ -6122,7 +6149,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "2e08a2530d58fb446ef3c1da95aa1c7ca7ba41fe7f4c27f1b57224a7017abf9a",
+    "source_hash": "23b08af0c5861b4f9df4eb2defabbe46223cf1bf0e65078f6bf8a38087094555",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -9547,6 +9574,141 @@
               "verified_at": "2026-11-14T16:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-art-29"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_PANIFICAZIONE",
+          "description": "Straordinario notturno, panificazione: 45% + night 65% capped at 55%",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "1.00"
+              }
+            ]
+          },
+          "subsectors": [
+            "panificazione_industriale"
+          ],
+          "kind": "percentage",
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "119",
+              "section": "Art. 29 - Tabelle delle maggiorazioni, PANIFICAZIONE, nota (printed p. 117)",
+              "quote": "* Cumulabile con le altre maggiorazioni in misura non superiore al 55%. ** Non cumulabile con le altre maggiorazioni."
+            },
+            "transformation": "Overtime 45% (row 1) and night work 65% (row 5), both marked *: 45% + min(65%, 55%) = 100%. Reading of the maintainer (2026-11-16): a premium marked * adds to the others at most 55 points.",
+            "note": "Scanned PDF without a text layer: the note read from the OCR of the page.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2025-06-01",
+              "verification_status": "unverified"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO_PANIFICAZIONE",
+          "description": "Straordinario festivo, panificazione: 45% + holiday 65% capped at 55%",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "1.00"
+              }
+            ]
+          },
+          "subsectors": [
+            "panificazione_industriale"
+          ],
+          "kind": "percentage",
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "119",
+              "section": "Art. 29 - Tabelle delle maggiorazioni, PANIFICAZIONE, nota (printed p. 117)",
+              "quote": "* Cumulabile con le altre maggiorazioni in misura non superiore al 55%. ** Non cumulabile con le altre maggiorazioni."
+            },
+            "transformation": "Overtime 45% (row 1) and holiday or Sunday work 65% (row 2), both marked *: 45% + min(65%, 55%) = 100%. Reading of the maintainer (2026-11-16): a premium marked * adds to the others at most 55 points.",
+            "note": "Scanned PDF without a text layer: the note read from the OCR of the page.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2025-06-01",
+              "verification_status": "unverified"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO_PANIFICAZIONE",
+          "description": "Straordinario notturno festivo, panificazione: 45% + 55% + 55%",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "1.55"
+              }
+            ]
+          },
+          "subsectors": [
+            "panificazione_industriale"
+          ],
+          "kind": "percentage",
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "119",
+              "section": "Art. 29 - Tabelle delle maggiorazioni, PANIFICAZIONE, nota (printed p. 117)",
+              "quote": "* Cumulabile con le altre maggiorazioni in misura non superiore al 55%. ** Non cumulabile con le altre maggiorazioni."
+            },
+            "transformation": "Overtime 45% (row 1), night 65% (row 5) and holiday 65% (row 2), all marked *: 45% + 55% + 55% = 155%. Reading of the maintainer (2026-11-16): a premium marked * adds to the others at most 55 points.",
+            "note": "Scanned PDF without a text layer: the note read from the OCR of the page.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2025-06-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -15741,6 +15903,49 @@
               "verified_at": "2026-11-14T16:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-art-29"
+            }
+          }
+        },
+        {
+          "code": "PANIF_NOTTURNO_FESTIVO",
+          "description": "Lavoro notturno festivo ordinario, panificazione: 65% + 55%",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "1.20"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "panificazione_industriale"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "119",
+              "section": "Art. 29 - Tabelle delle maggiorazioni, PANIFICAZIONE, nota (printed p. 117)",
+              "quote": "* Cumulabile con le altre maggiorazioni in misura non superiore al 55%. ** Non cumulabile con le altre maggiorazioni."
+            },
+            "transformation": "Night 65% (row 5) on a holiday or Sunday 65% (row 2), both marked *: 65% + min(65%, 55%) = 120%. Hours paid apart as the night band of the table. Reading of the maintainer (2026-11-16): a premium marked * adds to the others at most 55 points.",
+            "note": "Scanned PDF without a text layer: the note read from the OCR of the page.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2025-06-01",
+              "verification_status": "unverified"
             }
           }
         }

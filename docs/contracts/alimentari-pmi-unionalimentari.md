@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | overtime |
+| **Limits of this contract** | — |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 273 verified / 38 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 273 verified / 43 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 29 tables of the text signed on 18 March 2026 (PDF p. 109-119), read on the page images, against the Federalimentare art. 31 bands. | corrected | The file had unverified overtime rates of 40%, 45% and 50% for everyone; the signed tables pay 45% for weekday overtime in every sub-sector and differ by sub-sector and category.<br>The sub-sector tables equal those of Federalimentare art. 31; the first also covers the prodotti da forno; the panificazione has its own table. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256. | corrected | Applied: work_rules.parental_hourly. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Arts. 48-49 (PDF p. 146) and the note of the panificazione table of art. 29 (PDF p. 119), read from the OCR of the pages of the cited file. | corrected | Sourced: 14 monthly pays.<br>Applied: the cumulation of the panificazione premiums marked *, each further one up to 55 points. |
 
 ## Salary table
 
@@ -110,13 +111,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "alimentari-pmi-unionalimentari/bakery_premium_cumulation · overtime · impact yes · open"
-    BAKERY PREMIUM CUMULATION (art. 29, PANIFICAZIONE, PDF p. 119): the premiums marked * are 'Cumulabile con le altre maggiorazioni in misura non superiore al 55%'; the engine applies the higher premium alone, as for the other tables, so overtime at night or on holidays of the panificazione is underpaid.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Cumulate the panificazione premiums marked * up to 55% above the highest one.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -294,6 +288,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     TRANCHES 2027-2028 (art. 47): 70.00 EUR at parametro 137 from 1 April 2027 and again from 1 January 2028, as in the verbale signed 28 May 2025 (p. 26) and the consolidated text signed 18 March 2026 (PDF p. 144). The association circular's prose giving 32 EUR for the third tranche is wrong. Where the two signed tables differ by a cent the later text is used: it adds each increment to the previous minimo exactly (e.g. 3rd level 1,987.81 from 1 January 2026, 1,987.80 in the verbale).
     
     OVERTIME AND PREMIUMS (art. 29, text signed 18 March 2026, PDF p. 109-119): the tables by EmployerProfile.subsector (carni, dolciari, alimenti_zootecnici, lattiero_caseari, prodotti_da_forno, vini_liquori, bevande_gassate, acque_minerali, distillatori, birra_malto, conserve_vegetali, alimentari_varie, risiera, molitoria_pastificazione, conserve_ittiche, avicoli, panificazione_industriale), by category (the operai column; the impiegati column for impiegati and quadri), equal to the Federalimentare art. 31 tables. The intermedi column and the rows of overtime of shift workers and festive night overtime beyond 8 hours are not modelled: the caller states those rates. The 90% Sunday of the bread staff takes the role 'addetto_pane'.
+    
+    BAKERY PREMIUM CUMULATION (art. 29, PANIFICAZIONE, PDF p. 119): the premiums marked * are 'Cumulabile con le altre maggiorazioni in misura non superiore al 55%'. Read as each further premium adding at most 55 points (maintainer, 2026-11-16): night or holiday overtime 45% + 55% = 100%, night holiday overtime 155%, ordinary night holiday work 65% + 55% = 120%. The ** bread Sunday 90% cumulates with nothing. Night is 21.00-4.00 in this table: the caller states the night hours by it.
     
 
 ## Raw data

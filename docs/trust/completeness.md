@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 16/136 CCNLs**; complete except declared residuals: 4. Bundle: 246 weak rules, 254 open limitations (254 with a monetary impact), 34 declared residuals.
+**Complete: 17/136 CCNLs**; complete except declared residuals: 4. Bundle: 245 weak rules, 253 open limitations (253 with a monetary impact), 34 declared residuals.
 
 ## Declared window
 
@@ -79,7 +79,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [agenzie-marittime-i481](../contracts/agenzie-marittime-i481.md) | `trasporti-logistica` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 monetary limitation; 6 non-native capabilities |
 | [agenzie-viaggio-fiavet](../contracts/agenzie-viaggio-fiavet.md) | `turismo` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 5 non-native capabilities |
 | [alimentari-federalimentare](../contracts/alimentari-federalimentare.md) | `alimentare` | reviewed | — | 0 rows | complete; 3 limitations awaiting publication |
-| [alimentari-pmi-unionalimentari](../contracts/alimentari-pmi-unionalimentari.md) | `alimentare` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 outside_input limitation |
+| [alimentari-pmi-unionalimentari](../contracts/alimentari-pmi-unionalimentari.md) | `alimentare` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [alimentaristi-cooperative-e016](../contracts/alimentaristi-cooperative-e016.md) | `alimentare` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 outside_input limitation; 5 non-native capabilities |
 | [anas](../contracts/anas.md) | `trasporti-logistica` | exploratory | — | 4 rows | tables from 2026-03-01; 4 open requirements; 1 weak rule; 3 monetary limitations; 5 non-native capabilities |
 | [assicurazioni-ania](../contracts/assicurazioni-ania.md) | `assicurazioni` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 1 monetary limitation; 2 outside_input limitations; 7 non-native capabilities |

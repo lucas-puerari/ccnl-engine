@@ -10,7 +10,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 5 | 288 | 244 | 0 | `funzioni-centrali-aran` |
 | terziario | 46 | 5 257 055 | 43 | 956 | 2024 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 49 | 4 969 900 | 149 | 1215 | 2657 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 49 | 4 969 900 | 148 | 1220 | 2657 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 76 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 373 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 11 | 97 | 262 | 5 | `operai-agricoli-florovivaisti` |
@@ -113,8 +113,8 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`tessile-pmi-uniontessile`](../contracts/tessile-pmi-uniontessile.md) | 48 000 | exploratory | 6 | 0 | 42 | aggregator | none | none |
 | [`trasporto-aereo-assaeroporti`](../contracts/trasporto-aereo-assaeroporti.md) | 40 000 | exploratory | 1 | 49 | 46 | party or official | none | none |
 | [`energia-petrolio-confindustria`](../contracts/energia-petrolio-confindustria.md) | 38 000 | exploratory | 1 | 56 | 119 | party or official | none | none |
-| [`alimentari-pmi-unionalimentari`](../contracts/alimentari-pmi-unionalimentari.md) | 35 000 | exploratory | 1 | 38 | 273 | party or official | none | none |
 | [`carta-cartone-assocarta`](../contracts/carta-cartone-assocarta.md) | 35 000 | exploratory | 1 | 61 | 14 | aggregator | none | none |
+| [`alimentari-pmi-unionalimentari`](../contracts/alimentari-pmi-unionalimentari.md) | 35 000 | exploratory | 0 | 43 | 273 | party or official | none | none |
 | [`vetro-meccanizzato-assovetro`](../contracts/vetro-meccanizzato-assovetro.md) | 28 000 | exploratory | 29 | 0 | 73 | aggregator | none | none |
 | [`metalmeccanica-cooperative`](../contracts/metalmeccanica-cooperative.md) | 28 000 | exploratory | 1 | 9 | 37 | party or official | none | none |
 | [`cemento-calce-gesso-industria`](../contracts/cemento-calce-gesso-industria.md) | 25 000 | exploratory | 1 | 36 | 45 | party or official | none | none |
