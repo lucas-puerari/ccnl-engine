@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 23 verified / 9 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 23 verified / 11 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -130,11 +130,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the INAIL agricultural premium.
 
 !!! warning "operai-agricoli-florovivaisti/eban_fisa_agrifondo · bilateral_funds · impact yes · open"
-    BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and FISA (Fondo Integrativo di Settore Agricolo) bilateral fund contributions are set at provincial level and not modelled. Agrifondo (supplementary pension) contributions also omitted.
+    BILATERAL FUNDS. Art. 7 (printed pp. 9-10) charges the employer for EBAN, which funds the FISA health fund of art. 66, 0.30% (OTI) and 0.60% (OTD) of the retribuzione imponibile ai fini previdenziali from 1 January 2014; a separate agreement splits it among the activities, so the FISA share the INPS solidarity contribution of 10% falls on is not known, and the OTD base includes the terzo elemento a fund rate does not read. Not computed; pass them as BilateralFundEvent. The casse extra legem / EBAT of art. 8 are provincial. Agrifondo is modelled as the employer fund AGRIFONDO.
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Pass the provincial EBAN, FISA and Agrifondo contributions as bilateral fund events.
+    **Remediation:** Source the FISA share of the EBAN contribution and compute 0.30% / 0.60% of the INPS base, or pass them as bilateral fund events.
 
 !!! note "operai-agricoli-florovivaisti/apprentice_seniority · seniority · impact unknown · resolved"
     APPRENTICE SENIORITY: art. 54 (PDF p. 55, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) grants a biennial increment to 'gli operai a tempo indeterminato', and the apprenticeship is a contract 'a tempo indeterminato' (art. 41 c. 1 D.Lgs. 81/2015, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-06-15;81~art41): the apprentice accrues the increments of the level of their classification (Allegato 10, p. 123), with no amount of their own.
@@ -389,7 +389,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     CNEL CODE: A011. Confirmed from ilccnl.it page header and contratticcnl.it/ccnl/a011/. CNEL archive (cnel.it) returned 404 at time of extraction.
     
-    PROVINCIAL WAGES (Art. 50, CCNL 23 May 2022, PDF p. 53, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c): 'I salari contrattuali definiti dai contratti provinciali possono essere mensili o giornalieri od orari a seconda dei tipi di rapporto'. The national minimi di area are the floor; the national text prints no provincial amount. The caller states the excess of the contratto provinciale over the minimo of the level as a territorial second-level element (EmployerProfile.second_level_elements, agreement 'territorial', monthly amount, levels, dates), which enters the extra months and the TFR by default; an hour priced on the provincial wage carries its hourly rate on the event.
+    PROVINCIAL WAGES (Art. 50, CCNL 23 May 2022, PDF p. 53, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c): 'I salari contrattuali definiti dai contratti provinciali possono essere mensili o giornalieri od orari a seconda dei tipi di rapporto'. The national minimi di area are the floor; the national text prints no provincial amount. The caller states the excess of the contratto provinciale over the minimo of the level as a territorial second-level element (EmployerProfile.second_level_elements, agreement 'territorial', monthly amount, levels, dates), which enters the extra months and the TFR by default; for an OTD the element is paid on the hours worked and enters the terzo elemento of 30.44% and the TFR of 8.63%; an overtime, holiday or night hour priced on the provincial wage carries its hourly rate on the event.
     
     OTD (Art. 50, p. 52): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, salario over 169) with the terzo elemento of 30.44% on them (festività 5.45%, ferie 8.33%, tredicesima 8.33%, quattordicesima 8.33%), outside the TFR base; no extra month and no leave accrue (parameters.fixed_term_pay). The terzo elemento is also paid on the hours of the overtime events 'nella misura in atto per le ore ordinarie' (Art. 44, p. 48); the ordinary holiday and night hours are in the hours worked. The OTD accrues 8.63% of the salario of the hours paid and 10% on the overtime hours worked 'a titolo non occasionale' (art. 58, PDF p. 58; parameters.fixed_term_pay.tfr_rate and overtime_tfr_rate, OvertimeEvent.non_occasional).
     
