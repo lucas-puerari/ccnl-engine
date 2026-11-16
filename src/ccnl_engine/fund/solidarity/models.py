@@ -14,14 +14,21 @@ attività professionali) charges a rate by headcount in place of the FIS and
 CIGS shares of the sector rates, to every worker the sector rates apply to.
 A fund of D.Lgs. 148/2015 art. 27 (the FSBA of the artigianato) charges a
 rate by headcount on top of sector rates that hold no such share.
+
+A CCNL whose employers sit in more than one INPS sector, or whose fund
+changes its rates, lists its funds in ``CCNLParameters.solidarity_funds``,
+each with the sectors and dates it holds for (Telecomunicazioni: on top of
+the CIGO, or in place of the FIS); the run takes the one of its employer.
 """
 
 from __future__ import annotations
 
+from datetime import date
 from typing import TYPE_CHECKING, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.agreement.types import TaxSector
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.types import PercentageRate
 
@@ -32,6 +39,7 @@ if TYPE_CHECKING:
 __all__ = [
     "SolidarityFund",
     "SolidarityTier",
+    "select_solidarity_fund",
     "with_solidarity_headcount",
     "with_solidarity_tiers",
 ]
@@ -74,6 +82,15 @@ class SolidarityFund(BaseModel):
         requires_employer_coverage: Whether the employer must confirm its
             eligibility for this fund independently of its choice of CCNL.
         covers_executives: Whether the ordinary contribution includes executives.
+        wage_integration_permanent_only: Whether a fund in place of the FIS
+            charges only the permanent workers and apprentices, not the
+            fixed terms nor the executives, who then lose the FIS and CIGS
+            shares and pay nothing (Telecomunicazioni, D.I. 4 agosto 2023
+            art. 7); false for every worker the sector rates apply to.
+        sectors: INPS sectors of the employers the fund holds for, when the
+            CCNL lists several funds; ``None`` for every sector.
+        valid_from: First day the rates hold, ``None`` for always.
+        valid_until: Day the rates stop holding, ``None`` for never.
         provenance: Source of the rates and of the workers they cover.
     """
 
@@ -87,7 +104,23 @@ class SolidarityFund(BaseModel):
     covers_fixed_term: bool = False
     requires_employer_coverage: bool = False
     covers_executives: bool = True
+    wage_integration_permanent_only: bool = False
+    sectors: frozenset[TaxSector] | None = None
+    valid_from: date | None = None
+    valid_until: date | None = None
     provenance: RuleProvenance
+
+    def holds(self, sector: TaxSector, day: date) -> bool:
+        """Whether the fund holds for an employer of ``sector`` on ``day``.
+
+        Returns:
+            True in one of its sectors (any, without) and within its dates.
+        """
+        return (
+            (self.sectors is None or sector in self.sectors)
+            and (self.valid_from is None or day >= self.valid_from)
+            and (self.valid_until is None or day < self.valid_until)
+        )
 
     @model_validator(mode="after")
     def _check_shape(self) -> Self:
@@ -142,8 +175,29 @@ class SolidarityFund(BaseModel):
         )
 
 
+def select_solidarity_fund(ccnl: CCNL, day: date) -> CCNL:
+    """Return ``ccnl`` with the fund of its INPS sector on ``day``.
+
+    Returns:
+        ``ccnl`` unchanged without ``solidarity_funds``; else a copy whose
+        ``solidarity_fund`` is the listed fund that holds, ``None`` when
+        none does.
+    """
+    funds = ccnl.parameters.solidarity_funds
+    if not funds:
+        return ccnl
+    sector = ccnl.meta.tax_sector
+    fund = next((f for f in funds if f.holds(sector, day)), None)
+    params = ccnl.parameters.model_copy(update={"solidarity_fund": fund})
+    return ccnl.model_copy(update={"parameters": params})
+
+
 def with_solidarity_tiers(
-    rules: YearRules, fund: SolidarityFund | None, headcount: int
+    rules: YearRules,
+    fund: SolidarityFund | None,
+    headcount: int,
+    *,
+    covered: bool = True,
 ) -> YearRules:
     """Return ``rules`` with the fund's tier in place of the FIS and CIGS shares.
 
@@ -153,6 +207,10 @@ def with_solidarity_tiers(
     fund grants too (INPS circ. 5/2025 p. 3: 0.50% down to 0.30% for the
     Fondo delle attività professionali), so it stays right after the swap.
 
+    A worker the fund does not cover (``covered`` false: a fixed term or an
+    executive its decree leaves out) loses the FIS and CIGS shares and pays
+    no tier: the employer left the FIS for the fund.
+
     Returns:
         ``rules`` unchanged without a tiered fund or INPS rates; else the
         employee, employer and apprentice rates moved by the tier less the
@@ -161,6 +219,8 @@ def with_solidarity_tiers(
     if fund is None or not fund.wage_integration_tiers or rules.inps is None:
         return rules
     tier = fund.tier(headcount)
+    if not covered:
+        tier = tier.model_copy(update={"employer_rate": 0, "employee_rate": 0})
     inps = rules.inps
     employer = tier.employer_rate - inps.wage_integration_employer_rate
     employee = tier.employee_rate - inps.wage_integration_employee_rate

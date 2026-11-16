@@ -24,7 +24,9 @@ from ccnl_engine.contribution.fis.models import with_fis_reduction
 from ccnl_engine.contribution.zone.models import with_zone_reduction
 from ccnl_engine.employment.context.models import EffectiveDateContext, TemporalContext
 from ccnl_engine.errors import InvalidInputError, UnknownLevelError
+from ccnl_engine.fund.solidarity.coverage import fund_covers
 from ccnl_engine.fund.solidarity.models import (
+    select_solidarity_fund,
     with_solidarity_headcount,
     with_solidarity_tiers,
 )
@@ -193,6 +195,7 @@ def load_contract(
     ccnl = with_second_level_rates(
         ccnl, request.level_code, request.employer.second_level_rates, tctx.competence
     )
+    ccnl = select_solidarity_fund(ccnl, tctx.competence)
     ccnl = with_solidarity_headcount(ccnl, request.employer.headcount.value)
     level = ccnl.level_by_code(request.level_code)
     level = require_effective_salary(
@@ -220,6 +223,7 @@ def load_contract(
         ),
         ccnl.parameters.solidarity_fund,
         headcount,
+        covered=fund_covers(ccnl.parameters.solidarity_fund, request),
     )
     if request.employer.activity in ccnl.meta.cigo_activities:
         assert request.employer.activity is not None

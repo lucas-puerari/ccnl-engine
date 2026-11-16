@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 19/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 252 open limitations (252 with a monetary impact), 34 declared residuals.
+**Complete: 20/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 251 open limitations (251 with a monetary impact), 34 declared residuals.
 
 ## Declared window
 
@@ -191,7 +191,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [sistemazioni-idraulico-forestali-operai](../contracts/sistemazioni-idraulico-forestali-operai.md) | `bonifica-forestazione` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 3 monetary limitations; 7 non-native capabilities |
 | [studi-professionali-confprofessioni](../contracts/studi-professionali-confprofessioni.md) | `servizi-professionali` | reviewed | — | 2 rows | 2 open requirements; 2 outside_input limitations; 3 non-native capabilities |
 | [tabacco-apti](../contracts/tabacco-apti.md) | `alimentare` | exploratory | — | 26 rows | 26 open requirements; 24 weak rules; 1 monetary limitation; 1 outside_input limitation; 7 non-native capabilities |
-| [telecomunicazioni-asstel](../contracts/telecomunicazioni-asstel.md) | `ict-telecomunicazioni` | exploratory | — | 1 rows | 1 open requirement; 1 monetary limitation; 2 non-native capabilities |
+| [telecomunicazioni-asstel](../contracts/telecomunicazioni-asstel.md) | `ict-telecomunicazioni` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [terziario-confesercenti](../contracts/terziario-confesercenti.md) | `commercio` | reviewed | 2027-03-31 | 2 rows | 2 open requirements; 1 monetary limitation; 1 outside_input limitation; 2 non-native capabilities; 2 declared residuals |
 | [tessile-moda-artigianato-confartigianato](../contracts/tessile-moda-artigianato-confartigianato.md) | `tessile-moda` | exploratory | — | 6 rows | 6 open requirements; 5 monetary limitations; 1 outside_input limitation; 4 non-native capabilities |
 | [tessile-pmi-uniontessile](../contracts/tessile-pmi-uniontessile.md) | `tessile-moda` | exploratory | 2027-03-31 | 12 rows | 12 open requirements; 6 weak rules; 4 monetary limitations; 2 outside_input limitations; 7 non-native capabilities; 1 declared residual |

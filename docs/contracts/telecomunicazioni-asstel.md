@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -66,6 +66,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Rows of the seniority table of art. 41 of the testo coordinato 2025, from the targeted research of a separate model session; text layer. | confirmed | C2 is in the 5° row (25.56) and D1 in the 7° (30.73); A1 passes to A2 after 18 months, before any biennio. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[0:night_shift], bands[1:night], bands[2:holiday], bands[3:rest_day], bands[4:holiday_compensatory_rest], bands[5:sunday], bands[6:night_holiday_shift], bands[7:night_holiday], bands[8:night_holiday_shift_compensatory_rest], bands[9:night_holiday_compensatory_rest].<br>Left out: bands[10:night]: quote skipped; travel: kind delegated applied by hand. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 13 monthly pays. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Fondo TLC: D.I. 4 agosto 2023 art. 7 and 10, D.I. 1 settembre 2026 art. 1, INPS circ. 107/2023, read in the cited files by sha256. | corrected | Applied: the Fondo TLC by INPS sector and date.<br>The INPS sector is the employer's: industria or terziario. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Art. 43 Trasferte (PDF p. 84) read in the cited file by sha256; the renewal of 11 November 2025 checked for changes. | corrected | Applied: travel delegated to the company level. |
 
 ## Salary table
 
@@ -115,13 +117,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; level in A1, C2, D1.
 
     **Remediation:** Resolved: art. 41 and capitolo D of the testo coordinato 2025 read on 2026-11-14.
-
-!!! warning "telecomunicazioni-asstel/industria_tax_sector_unverified · inps_employer · impact unknown · open"
-    INPS: reuses the industria contribution table. SIMPLIFICATION: tax_sector='industria' is a modelling choice. Supporting facts: (a) Asstel is a Confindustria federation; (b) large TLC operators (Telecom Italia, etc.) have historically accessed CIGO/CIGS; (c) the CCNL itself (Art. 58 rinnovo 11/11/2025) describes the Fondo di Solidarietà Bilaterale TLC as 'in aggiunta' (supplementary), not as a CIG substitute. Counterargument: D.Lgs. 148/2015 Art. 26 bilateral funds are formally for sectors without CIG coverage; this was not verified against an INPS circular. The employer rate of the terziario table is about 1.2 points lower than the industria one in each headcount band of the bundle. The Fondo di Solidarietà Bilaterale (0.20% datore + 0.10% lavoratore) is NOT modelled in either case (review of 2026-10-30).
-
-    **Applies when:** `inps_employer` applies.
-
-    **Remediation:** Verify the INPS classification of TLC employers and model the Fondo di Solidarieta Bilaterale TLC.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -301,6 +296,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOURLY DIVISOR: 173 (Art. 40, CCNL 12/11/2020: 'dividendo per 173'; 40h/week standard).
     
     ADDITIONAL MONTHS: 13 (tredicesima only). Source: Art. 42, CCNL 12/11/2020. Quattordicesima not provided by this CCNL.
+    
+    INPS SECTOR AND FONDO TLC: the employers of the filiera are in the CIGO and CIGS (industria) or were in the FIS and CIGS (terziario): INPS circ. 107/2023 (sha256 20865780…, p. 2) names both, so the CCNL does not settle it and EmployerProfile.inps_sector chooses (meta.inps_sectors). The Fondo di solidarietà bilaterale per la Filiera delle Telecomunicazioni (D.I. 4 agosto 2023) charges every employer 0.45% (0.75% from February 2027) and an employer outside the CIGO also 0.80% in place of the FIS and CIGS: parameters.solidarity_funds, by sector and date, on the permanent workers and apprentices, not the dirigenti.
     
 
 ## Raw data
