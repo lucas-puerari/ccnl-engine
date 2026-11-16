@@ -215,3 +215,12 @@ def test_permanent_incapacity_is_a_bool() -> None:
     """Any other value is rejected."""
     with pytest.raises(InvalidInputError, match="permanent_incapacity"):
         EmploymentPeriod(started_on=date(2001, 4, 15), permanent_incapacity="yes")  # type: ignore[arg-type]
+
+
+def test_no_hourly_pay_settles_nothing(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Without a divisor the hours have no value: nothing is posted."""
+    monkeypatch.setattr(
+        "ccnl_engine.compensation.loyalty.termination._hourly_pay",
+        lambda *_: None,
+    )
+    assert _bonus(_end(WorkerCategory.OPERAIO, TerminationCause.DEATH)) == []
