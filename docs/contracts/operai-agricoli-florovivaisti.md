@@ -206,12 +206,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
+!!! warning "sickness_cumulation_equity · sickness · impact unknown · unsourced"
+    The CCNL sets the comporto (180 days, arts. 61-62 of the operai agricoli e florovivaisti) without saying whether separate episodes are summed or over which window, and the law gives no default: art. 2110 c. 2 c.c. leaves the period to the law, the usages or equity, and Cass. 23596/2018 has the judge set both limits of the comporto per sommatoria by equity. The engine counts the comporto over one episode and its relapses; a judge may sum separate episodes. The run is affected when an earlier episode outside the relapse chain is recorded.
 
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
+    **Remediation:** None from the sources: the window is set by a judge case by case; a provincial contract or usage that sets it can be added as the sickness rule of the CCNL.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · awaiting_publication"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
