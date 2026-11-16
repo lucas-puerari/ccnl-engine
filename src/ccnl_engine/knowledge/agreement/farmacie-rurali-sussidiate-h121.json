@@ -307,9 +307,27 @@
           "valid_until": null,
           "value": 14,
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-farmacie-private-2021",
+                "title": "CCNL dipendenti da farmacia privata, 7 settembre 2021 (Federfarma, Filcams, Fisascat, Uiltucs)",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+              },
+              "page": "26",
+              "section": "Titolo XXII Mensilità supplementari, artt. 62-63",
+              "quote": "In coincidenza con la Vigilia di Natale di ogni anno le farmacie dovranno corrispondere al personale dipendente un importo pari ad una mensilità della retribuzione di fatto. [...] Al personale compreso nella sfera di applicazione del presente contratto sarà corrisposto, il 1° luglio di ogni anno, un importo pari ad una mensilità della retribuzione di fatto al 30 giugno immediatamente precedente (quattordicesima mensilità)."
+            },
+            "transformation": "Fourteen monthly payments: the tredicesima at Christmas and the quattordicesima on 1 July.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2021-11-01",
+              "verification_status": "unverified"
+            }
           }
         }
       ]
@@ -1783,7 +1801,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "0cfc2f23bc181eaf11d470476144c021df632fba94990782145bf3ebe0548705",
+    "source_hash": "a226b51039e68998efd1c22d015fbef6e781664b01c13e1d645cd1d517a8fb60",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
