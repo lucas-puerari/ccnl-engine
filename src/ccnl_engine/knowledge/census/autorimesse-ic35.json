@@ -17,21 +17,6 @@
           "autorimesse-ic35/parental_top_up_scope"
         ]
       }
-    },
-    {
-      "id": "rule_accrual_rule",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/autorimesse-ic35.json#accrual_rule",
-      "calculation": "base_salary",
-      "state": "absent",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/autorimesse-ic35.json#accrual_rule"
-        ]
-      }
     }
   ]
 }

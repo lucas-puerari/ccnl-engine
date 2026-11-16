@@ -1725,6 +1725,36 @@
           "effective_from": "2023-06-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "vigilanza-privata-assiv-sf-accrual",
+            "title": "https://uiltucs.it/wp-content/uploads/2024/07/IPOTESI-CCNL-VIGILANZA-PRIVATA-16.02.2024.pdf",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/IPOTESI-CCNL-VIGILANZA-PRIVATA-16.02.2024.pdf",
+            "sha256": "96a2d7ffc954a3da46969d05eec9bd25e20f8743800b58e268d145daad271cee"
+          },
+          "page": "3",
+          "section": "Art. 26, comma 5, Sezione Servizi Fiduciari (testo sostituito dall'accordo 16 febbraio 2024)",
+          "quote": "A tal fine le frazioni di mese che superino i 15 giorni saranno considerate mese intero."
+        },
+        "transformation": "A month counts whole when its fraction is more than 15 days.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-accrual-rule"
+        }
+      }
     }
   },
   "apprenticeship": [
@@ -1755,7 +1785,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "3ec884d3adf2d5271aa67d6f23f63def885d2a5500969fa76d6b9824827ddefb",
+    "source_hash": "e079b67a5d81d7e800e082361e7f015b8eb5c0b2bdf20af63c44020a28cb6891",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2197,6 +2227,27 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-accrual-rule",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The clause on the fraction of a month of the extra-month ratei, located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/IPOTESI-CCNL-VIGILANZA-PRIVATA-16.02.2024.pdf",
+            "sha256": "96a2d7ffc954a3da46969d05eec9bd25e20f8743800b58e268d145daad271cee"
+          }
+        ],
+        "findings": [
+          "Sourced: parameters.accrual_rule."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.accrual_rule"
         ]
       }
     ]

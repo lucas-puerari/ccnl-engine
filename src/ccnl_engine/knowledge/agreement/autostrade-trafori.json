@@ -5358,6 +5358,36 @@
       },
       "apprentice_level_amount": true,
       "apprentice_pct_scaled": true
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "autostrade-trafori-accrual",
+            "title": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+            "kind": "associazione",
+            "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+            "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+          },
+          "page": "58",
+          "section": "Parte generale, art. 37, comma 3",
+          "quote": "3. Nel caso di inizio o cessazione del rapporto di lavoro durante il corso dell'anno il lavoratore ha diritto a tanti dodicesimi della tredicesima mensilità quanti sono i mesi interi di servizio prestato. Le frazioni di mese superiori a 15 giorni vengono computate come mese intero."
+        },
+        "transformation": "A month counts whole when its fraction is more than 15 days. The fourteenth: Parte generale, art. 38, comma 3, \"3. Nel caso di inizio o cessazione del rapporto di lavoro nel corso del periodo di riferimento il lavoratore ha diritto a tanti dodicesimi del premio annuo quanti sono i mesi interi di servizio prestato. Le frazioni di mese superiori a 15 giorni vengono computate come mese intero.\"",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-accrual-rule"
+        }
+      }
     }
   },
   "apprenticeship": [
@@ -5435,7 +5465,7 @@
     "effective_until": null,
     "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
     "verification_status": "unverified",
-    "source_hash": "630a79632dffa65bb9b1fdf783d7ab7f0b667f6807179fdf344c6ed11acc0bb2",
+    "source_hash": "da09c96cd64484197d641e5ddd4d598cdd64a8d5d12b78b4154aa14c6be41511",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5831,6 +5861,27 @@
         "independence": "separate_model",
         "checked": [
           "levels[].fixed_allowances[].apprenticeship_pct_relevant"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-accrual-rule",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The clause on the fraction of a month of the extra-month ratei, located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+            "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+          }
+        ],
+        "findings": [
+          "Sourced: parameters.accrual_rule."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.accrual_rule"
         ]
       }
     ]

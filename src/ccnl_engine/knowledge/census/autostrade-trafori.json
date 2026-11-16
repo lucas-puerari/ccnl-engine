@@ -19,21 +19,6 @@
       }
     },
     {
-      "id": "rule_accrual_rule",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/autostrade-trafori.json#accrual_rule",
-      "calculation": "base_salary",
-      "state": "absent",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/autostrade-trafori.json#accrual_rule"
-        ]
-      }
-    },
-    {
       "id": "sickness_pay_bands",
       "institute": "sickness",
       "variant": "all",

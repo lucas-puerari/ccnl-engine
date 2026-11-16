@@ -4139,7 +4139,37 @@
           ]
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "vetro-meccanizzato-assovetro-accrual",
+            "title": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/135749",
+            "kind": "associazione",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/135749",
+            "sha256": "e91271f843086e80780b607d9b62f3f6b7a40d65888fb542ecc8ecfed667d95f"
+          },
+          "page": "107",
+          "section": "Art. 33, comma 2",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno, al lavoratore verranno corrisposti tanti dodicesimi dell'ammontare della 13esima mensilità per quanti sono i mesi di servizio prestato presso l'Azienda. La frazione di mese superiore ai 15 giorni viene considerata, a questo effetto, come mese intero."
+        },
+        "transformation": "A month counts whole when its fraction is more than 15 days. The fourteenth: Art. 34, comma 4 (premio speciale), \"Nel caso di inizio o di cessazione del rapporto di lavoro nel corso dell’anno al lavoratore saranno concessi tanti dodicesimi di premio per quanti sono i mesi di servizio prestati presso l'Azienda. La frazione di mese superiore ai 15 giorni viene considerata come mese intero.\"",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-accrual-rule"
+        }
+      }
+    }
   },
   "apprenticeship": [],
   "coverage": {
@@ -4253,6 +4283,27 @@
           "levels",
           "parameters.seniority_increments"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-accrual-rule",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The clause on the fraction of a month of the extra-month ratei, located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/135749",
+            "sha256": "e91271f843086e80780b607d9b62f3f6b7a40d65888fb542ecc8ecfed667d95f"
+          }
+        ],
+        "findings": [
+          "Sourced: parameters.accrual_rule."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.accrual_rule"
+        ]
       }
     ]
   },
@@ -4265,7 +4316,7 @@
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/vetro_lampade/260409_VETRO_RINNOVO_ACCORDO_2026-2028_TABELLE.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "1fb7deb7b1c03fa9380569a9b05848e9b660ec14119434d4b2aebbd14bd48f59"
+    "source_hash": "837cd1acd05dbe56c88a63e775d603e704884f68c98568a275a21de2da5d8840"
   },
   "work_rules": {
     "parental_hourly": {

@@ -145,6 +145,27 @@
           "levels.base_salary",
           "levels.fixed_allowances"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-accrual-rule",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The clause on the fraction of a month of the extra-month ratei, located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/1831",
+            "sha256": "91b7444b9d8c2e7b621f0d0a90d6e0e8d79103c83c1b23f7e6599a156da44028"
+          }
+        ],
+        "findings": [
+          "Sourced: parameters.accrual_rule."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.accrual_rule"
+        ]
       }
     ]
   },
@@ -354,7 +375,37 @@
           "note": "Read from the PDF the url serves (sha256 7e9b29394505b6cd14125c88c6f0cc4ba78c14f026b546bb387636e40e42ee15), text layer. valid_from is the first day of the bundled tax year, the rates being in force from 01.01.2026. No human review recorded."
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "chimica-affini-pmi-unionchimica-accrual",
+            "title": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/1831",
+            "kind": "associazione",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/1831",
+            "sha256": "91b7444b9d8c2e7b621f0d0a90d6e0e8d79103c83c1b23f7e6599a156da44028"
+          },
+          "page": "226",
+          "section": "Art. 33, Chimica – Concia e settori accorpati, comma sull'inizio/cessazione",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso del- l'anno, il lavoratore ha diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità quanti sono i mesi di servizio prestati presso l'azienda, computando come mese intero la frazione di mese superiore a 15 giorni."
+        },
+        "transformation": "A month counts whole when its fraction is more than 15 days. The fourteenth: Art. 25, chiarimento a verbale per il settore coibentazione; rinvio all'art. 33, \"Il premio speciale è stato abolito, a livello aziendale, con l'erogazione di una quattordicesima mensilità da liquidarsi secondo i criteri della tredicesima.\"",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-accrual-rule"
+        }
+      }
+    }
   },
   "levels": [
     {
@@ -2044,7 +2095,7 @@
     "effective_until": "2028-12-31",
     "source": "https://a0e3h6.emailsp.com/assets/1/All.%202%20Ipotesi%20di%20accordo%2023.02.2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "2ad4416c7e83f8f8338db55a8f681fccc93cbc559c58ee26c2ca8e214115a75c",
+    "source_hash": "7d7f15ee6f12e8a42ce8be1cb998438bf95caada53aff12ec4136e1feb5f4d2a",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

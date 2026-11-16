@@ -210,6 +210,27 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-accrual-rule",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The clause on the fraction of a month of the extra-month ratei, located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+            "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
+          }
+        ],
+        "findings": [
+          "Sourced: parameters.accrual_rule."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.accrual_rule"
+        ]
       }
     ]
   },
@@ -362,6 +383,36 @@
         }
       },
       "apprentice_level_amount": true
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "occhiali-occhialeria-industria-accrual",
+            "title": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
+            "sha256": "d89575d27ada28b26a5397b086ce9ca472aca6dfc66f28f70f2654e0fb82d79c"
+          },
+          "page": "18",
+          "section": "Art. 46, comma 3, testo nel rinnovo 30 gennaio 2026",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno il lavoratore ha diritto a tanti dodicesimi dell'ammontare della 13ma mensilità quanti sono i mesi di servizio prestati presso l'azienda, computando come mese intero la frazione di mese superiore a 15 giorni."
+        },
+        "transformation": "A month counts whole when its fraction is more than 15 days.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-accrual-rule"
+        }
+      }
     }
   },
   "levels": [
@@ -3331,7 +3382,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
     "verification_status": "verified",
-    "source_hash": "f80827cff35c1bef3b013d92aa3884f9916757ba6fee34816628dcfdc978ee9b",
+    "source_hash": "738a28fef551b0918f5c5daae2544b5cca2655003579313dc669479c5723f129",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
