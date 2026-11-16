@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-09-29 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -80,6 +80,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 141 c. 6 of the Testo Unico DMO 2025, deadline of the permits. | corrected | The file had the permit buckets but no deadline: the hours left at year end were never paid or carried. Added permit_deadline (30 June, ex festivita and ROL) as Art. 141 c. 6 sets it, the same clause as Commercio art. 158. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Weekly threshold of the overtime band beyond the 48th hour. | corrected | OvertimeEvent.weekly_hours_before counts all the hours worked in the week: the 20% band 'eccedenti la 48a ora settimanale' starts at 48, not at 8 (which paid the 41st-48th hours at 20% instead of 15% when the caller stated the hours before). |
 | 2026-11-15 | claude-opus-5-5 (ai) | Travel allowance of Art. 162 cc. 2-5, quote located in the cited file by sha256 and read against the model. | corrected | The diaria is a share (twice) of the daily retribuzione di fatto, a third less without overnight stay, 10% less for long missions or habitual travel. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Shift work: artt. 12, 115 and 134 read in the cited file by sha256. | corrected | Applied: shift work none_in_ccnl; the night hours keep the 15% of art. 134. |
 
 ## Salary table
 
