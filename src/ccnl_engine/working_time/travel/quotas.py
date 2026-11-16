@@ -69,22 +69,33 @@ def share_amount(
         _require(event, "agreed_at_hiring", "whether the hiring letter provides for it")
         if event.agreed_at_hiring:
             return _ZERO
-    rate = share.rate
-    if event.abroad and share.abroad_rate is not None:
-        rate = share.abroad_rate
-    if share.partial_from_hours is not None and share.partial_rate is not None:
-        _require(event, "hours_away", "the hours away of each day")
-        hours = event.hours_away or Decimal(0)
-        if hours < _DAY_HOURS:
-            if hours <= share.partial_from_hours:
-                return _ZERO
-            rate = share.partial_rate
+    rate = _rate(event, share)
     daily = rate * monthly / share.divisor
     if share.no_overnight_discount:
         _require(event, "overnight", "whether the day has an overnight stay away")
         if not event.overnight:
             daily *= Decimal(1) - share.no_overnight_discount
     return money(daily)
+
+
+def _rate(event: TravelAllowanceEvent, share: TravelDailyShare) -> Decimal:
+    """Return the share of the daily pay a day of ``event`` is paid.
+
+    Returns:
+        ``abroad_rate`` abroad, else ``rate``; for a day of fewer than 24
+        hours away, ``partial_rate`` past ``partial_from_hours`` and zero
+        at or below them.
+    """
+    rate = share.rate
+    if event.abroad and share.abroad_rate is not None:
+        rate = share.abroad_rate
+    if share.partial_from_hours is None or share.partial_rate is None:
+        return rate
+    _require(event, "hours_away", "the hours away of each day")
+    hours = event.hours_away or _ZERO
+    if hours >= _DAY_HOURS:
+        return rate
+    return share.partial_rate if hours > share.partial_from_hours else _ZERO
 
 
 def _require(event: TravelAllowanceEvent, field: str, what: str) -> None:
