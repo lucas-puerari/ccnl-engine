@@ -65,6 +65,11 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Allegato 1 nn. 2-5 (PDF p. 32) against the encoding of the superminimi by years in the level, by a separate model session. | corrected | Confirmed the amounts, levels and thresholds of nn. 2, 3 and 5.<br>Corrected: n. 4 is for the 'altri impiegati', not every impiegato; n. 3 does not end at eight years (role 'non_diplomato' for n. 4).<br>Flagged: without career_months the service months stand for the years in the level (limitation level_years_from_service). |
 | 2026-11-10 | claude-opus-5-5 (ai) | Allegato 1 nn. 2-5 level-tenure gate and missing level entry fact. | corrected | PDF p. 32, Allegato 1 nn. 2-5: "dopo otto anni di permanenza nel livello", "dopo quattro anni di permanenza nel 3° livello", "dopo otto anni di permanenza nello stesso", "anzianità di livello pari o superiore a 10 anni". Completed months since Employment.level_started_on measure time in the level. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Apprentice pay (Appendice, Apprendistato professionalizzante, punto 2, PDF p. 41): the elements the percentage applies to, read in the cited file by sha256. | corrected | apprenticeship_pct_relevant EAR = false: La percentuale si applica esclusivamente al minimo: EAR separato, ove spettante, dovuto intero.<br>apprenticeship_pct_relevant INDENNITA_FUNZIONE = false: Indennità quadri esclusa dal minimo e non spettante a un apprendista non quadro.<br>apprenticeship_pct_relevant SUPERMINIMO_LIVELLO = false: Superminimo distinto dal minimo; non ridotto, maturabile solo dopo dieci anni nel livello II (non durante apprendistato).<br>apprenticeship_pct_relevant SUPERMINIMO_LIVELLO_DIPLOMA = false: Superminimo distinto dal minimo; maturabile dopo quattro anni nel livello III (non durante apprendistato).<br>Clause: Le retribuzioni degli apprendisti sono pari alle percentuali di seguito specificate in
+corrispondenza agli archi temporali di applicazione delle stesse. Ai fini della determinazione
+della retribuzione, la percentuale si applica esclusivamente sul minimo contrattuale del
+lavoratore non apprendista avente inquadramento corrispondente a quello al cui conseguimento
+è finalizzato il contratto: |
 
 ## Salary table
 
@@ -120,13 +125,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
-
-!!! warning "apprenticeship_pct_undeclared_components · base_salary · impact unknown · open"
-    A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.
-
-    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

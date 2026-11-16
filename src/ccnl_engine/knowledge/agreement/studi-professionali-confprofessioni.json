@@ -1554,7 +1554,8 @@
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1756,7 +1757,8 @@
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1958,7 +1960,8 @@
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2378,7 +2381,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "167e50262377f8af19de80e3a184d7bc82ab13ffeabe6eec9f90d99425e408b0",
+    "source_hash": "1e5a3239b4d19244de6739f384fb7a19299db8427e336bb2ff59151a3c60cafd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4601,6 +4604,28 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (art. 28, C; art. 141, PDF p. 62): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf",
+            "sha256": "35cc1ec44a282f39fa401949828f180897872a8c7907eb39d4f7a51420e04477"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant ENAC = false: ENAC riservato agli ex dipendenti Confedertecnica già inquadrati e non ai nuovi apprendisti, pur integrando il minimo per gli aventi diritto.",
+          "Clause: la retribuzione dell’apprendista è stabilita in misura percen-\ntualizzata rispetto ai parametri retributivi previsti al Titolo XXVIII, art. 140, così\ncome indicata nell’allegato B del presente CCNL, tenuto conto del monte ore\nformativo e dell’anzianità di servizio."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
         ]
       }
     ],

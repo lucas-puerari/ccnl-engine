@@ -87,6 +87,10 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 92 (flexibility) and Art. 95 (overtime premium) of the CCNL of 16 February 2024. | corrected | Added the flexibility permits of Art. 92 (30 or 60 minutes a week over 40 hours, paid with the 15% overtime premium in the sixth month after the programme year) and closed unused_leave_hours. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 97 F and Art. 95 of the CCNL of 16 February 2024. | corrected | Added the rest-day premium of Art. 97 F: the hours on the weekly rest day take the premium alone, read as the 30% of Art. 95 for work on non-working days, with the compensatory rest. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: none.night_work.<br>Left out: none.shift_work: skipped. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Apprentice pay (art. 28, C; art. 141, PDF p. 62): the elements the percentage applies to, read in the cited file by sha256. | corrected | apprenticeship_pct_relevant ENAC = false: ENAC riservato agli ex dipendenti Confedertecnica già inquadrati e non ai nuovi apprendisti, pur integrando il minimo per gli aventi diritto.<br>Clause: la retribuzione dell’apprendista è stabilita in misura percen-
+tualizzata rispetto ai parametri retributivi previsti al Titolo XXVIII, art. 140, così
+come indicata nell’allegato B del presente CCNL, tenuto conto del monte ore
+formativo e dell’anzianità di servizio. |
 
 ## Salary table
 
@@ -175,13 +179,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
-
-!!! warning "apprenticeship_pct_undeclared_components · base_salary · impact unknown · open"
-    A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.
-
-    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

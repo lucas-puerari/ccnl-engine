@@ -259,6 +259,30 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (Art. G14, comma 16, PDF p. 32): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+            "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant CONTINGENZA = true: Indennità di contingenza inclusa espressamente tra gli istituti percentualmente ridotti.",
+          "apprenticeship_pct_relevant CONTRIBUTO_DPI = false: Contributo condizionato al mancato servizio aziendale di lavaggio, non nella base percentuale: dovuto intero se spettante.",
+          "apprenticeship_pct_relevant IND_MANEGGIO_DENARO = true: Indennità del 10% calcolata anche su minimo e contingenza del livello effettivo: la base dell’apprendista è ridotta.",
+          "Clause: 16. Agli apprendisti si riconoscono gli istituti previsti dal presente CCNL, in quanto applicabili e, per\nquanto concerne la retribuzione mensile, la stessa viene determinata applicando le percentuali di cui\nalla tabella sotto riportata ai seguenti istituti: minimi tabellari in vigore, indennità di contingenza e\nlivello inquadramentale tempo per tempo previsto sulla base della legge e degli iter p"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
+        ]
       }
     ]
   },
@@ -889,7 +913,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -999,7 +1024,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "CONTRIBUTO_DPI",
@@ -1043,7 +1069,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-07-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1254,7 +1281,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1364,7 +1392,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "CONTRIBUTO_DPI",
@@ -1408,7 +1437,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-07-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1619,7 +1649,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1729,7 +1760,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "CONTRIBUTO_DPI",
@@ -1773,7 +1805,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-07-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1984,7 +2017,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -2094,7 +2128,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "CONTRIBUTO_DPI",
@@ -2138,7 +2173,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-07-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2349,7 +2385,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -2459,7 +2496,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "CONTRIBUTO_DPI",
@@ -2503,7 +2541,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-07-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2714,7 +2753,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -2824,7 +2864,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "CONTRIBUTO_DPI",
@@ -2868,7 +2909,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-07-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -3079,7 +3121,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -3189,7 +3232,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "CONTRIBUTO_DPI",
@@ -3233,7 +3277,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-07-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -3444,7 +3489,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -3554,7 +3600,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "CONTRIBUTO_DPI",
@@ -3598,7 +3645,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-07-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -3809,7 +3857,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -3919,7 +3968,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "CONTRIBUTO_DPI",
@@ -3963,7 +4013,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-07-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -4174,7 +4225,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -4284,7 +4336,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "CONTRIBUTO_DPI",
@@ -4328,7 +4381,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-07-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -4539,7 +4593,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -4649,7 +4704,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "CONTRIBUTO_DPI",
@@ -4693,7 +4749,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-07-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -4839,7 +4896,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "07a4bf4013b86bdca6887f780ab87624fc8ecbc6d7620e50ecb9dea810464edf",
+    "source_hash": "596cbda03e88769ee7b534efe8782ef62c241acacee6dbcc7b73b71d9be370ae",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

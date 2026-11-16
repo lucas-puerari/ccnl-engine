@@ -300,6 +300,28 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (Art. 27.8 – Trattamento economico, PDF p. 23): the elements the percentage applies to, read in the cited file by sha256 (OCR of the scanned page).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+            "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant SALARIO_ANZIANITA_2025 = false: Il salario matura dopo due anni, quando la retribuzione globale dell’apprendista è già al 100% (o l’apprendistato di 24 mesi è terminato): dovuto intero se spettante.",
+          "Clause: 27.8 - Trattamento economico\nL'apprendista ha diritto, per l'intera durata dell'apprendistato, compresi i periodi di formazione a)\nesterna all'azienda, allo stesso trattamento normativo previsto dal presente contratto per i D_\nlavoratori della qualifica per la quale egli compie il tirocinio ed allo stesso trattamento retributivo $\ncosì parametrato: S\nDurata 24 mesi: QQ\n- primo semestre: 90% della "
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
+        ]
       }
     ]
   },
@@ -731,7 +753,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -983,7 +1006,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1235,7 +1259,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1487,7 +1512,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1739,7 +1765,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1991,7 +2018,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2243,7 +2271,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2495,7 +2524,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2576,7 +2606,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "176532e416cdb1d3553f8f7e2c2e7463ca971a41c4d839ad1db99f2bd39a4522",
+    "source_hash": "1ef5cd902dee909d394d7cb7b63f64c606e245b5a2f4a7839646cbd47acbd471",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

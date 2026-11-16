@@ -70,6 +70,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto and sick pay against a second research of a separate model session; quotes checked on the source. | corrected | Comporto of one illness 360 days (12 months of 30 days) and 540 within 36 months, hospital stays left out. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: bands[0:night], travel.<br>Left out: bands[1:holiday]: quote quote_not_in_file; bands[2:rest_day]: quote quote_not_in_file; bands[3:night_holiday_compensatory_rest]: quote quote_not_in_file; bands[4:sunday]: quote quote_not_in_file; bands[5:sunday]: quote quote_not_in_file; bands[6:night_shift]: quote quote_not_in_file; bands[7:day_shift]: quote quote_not_in_file; bands[8:day_shift]: more day_shift bands the engine cannot tell apart; bands[9:day_shift]: quote quote_not_in_file. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Apprentice pay (Art. 15, Inquadramento e trattamento retributivo, PDF p. 50): the elements the percentage applies to, read in the cited file by sha256. | corrected | apprenticeship_pct_relevant EDR = false: EDR corrisposto in aggiunta alla retribuzione mensile contrattuale e non compreso nel minimo contrattuale integrato percentualmente ridotto: dovuto intero.<br>Clause: 5. L’apprendista viene inquadrato nella categoria corrispondente alla qualifica-
+    zione da conseguire al termine dell’apprendistato con una retribuzione in mi-
+    sura percentuale e proporzionata all’anzianità di servizio. |
 
 ## Salary table
 
@@ -138,13 +141,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
-
-!!! warning "apprenticeship_pct_undeclared_components · base_salary · impact unknown · open"
-    A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.
-
-    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

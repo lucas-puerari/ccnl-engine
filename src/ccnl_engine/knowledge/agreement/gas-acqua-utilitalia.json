@@ -493,7 +493,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -703,7 +704,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -913,7 +915,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1123,7 +1126,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1333,7 +1337,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1543,7 +1548,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1753,7 +1759,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1963,7 +1970,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -2173,7 +2181,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "IND_FUN",
@@ -2230,7 +2239,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2353,7 +2363,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "c010f4f2874cb00ebb9165c9cd57ce180ef77fd51f9a82ef9493bd1f586d4412",
+    "source_hash": "a62020bc2cb166d78592328f435cae7d43856f26ed3ac5c5be57c6adf3ff950a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2897,6 +2907,29 @@
         "independence": "separate_model",
         "checked": [
           "parameters.additional_months"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (art. 13, A, inquadramento e trattamento retributivo, PDF p. 35–36): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+            "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant EDR = true: La base comprende espressamente minimo tabellare integrato ed EDR; indennità di funzione quadri separata.",
+          "apprenticeship_pct_relevant IND_FUN = false: La base comprende espressamente minimo tabellare integrato ed EDR; indennità di funzione quadri separata.",
+          "Clause: (minimo tabellare integrato ed EDR) prevista dal CCNL per il livello di inqua-\n       dramento assegnato;\n    b) secondo periodo di apprendistato: 85% della retribuzione contrattuale minima\n       prevista dal CCNL per il livello di inquadramento assegnato;\n    c) terzo periodo di apprendistato: 90% della retribuzione contrattuale minima\n       prevista dal CCNL per il livello di inquadramento ass"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
         ]
       }
     ]

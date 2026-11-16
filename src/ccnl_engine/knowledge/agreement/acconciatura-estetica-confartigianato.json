@@ -867,7 +867,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "operaio",
@@ -1079,7 +1080,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "impiegato",
@@ -1248,7 +1250,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "eaae2bdc582a15a4af72828b62f9b79c98906a65de03a586b076499a3c03139a",
+    "source_hash": "51c775cf696a8651381c8f39f274c4cbd0a9158c8c5bd37274d0e284332cb0d4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1943,6 +1945,28 @@
         "independence": "separate_model",
         "checked": [
           "parameters.additional_months"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (prospetto apprendistato professionalizzante, PDF p. 1): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/ccnl-benessere-app.prof-fino-30.9.24.pdf",
+            "sha256": "983aabfa123ccecd673a56cd93b010bae641ce36660fc3a07328a236d0512045"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant RESPONSABILE_TECNICO = false: La tabella percentualizza la retribuzione tabellare, non l’indennità separata di responsabile tecnico; quest’ultima richiede designazione e qualifica.",
+          "Clause: mesi          %        retribuzione tabellare            tot.mese          %      retrib. tabellare            mensile"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
         ]
       }
     ]

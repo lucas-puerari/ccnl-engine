@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-04-15 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -66,6 +66,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses of the operai, against the research of a separate model session; quote checked on the source text. | corrected | Added the operai comporto windows (9 months in 20, 12 in 24 above three and a half years). |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of the impiegati of art. 66 against the research of a separate model session; quote checked on the source. | corrected | Added the impiegato rule: comporto of one illness and of several within 30 months by seniority; the reduced pay months are recorded as a limitation. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Fondapi contribution of Allegato Y against the research of a separate model session; text layer of the source. | corrected | The operai pay per ordinary hour worked; the impiegati 14 months with 15 days in the month, part time in proportion. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Apprentice pay (regolamento apprendistato, lett. G, PDF p. 164): the elements the percentage applies to, read in the cited file by sha256. | corrected | apprenticeship_pct_relevant CONTINGENZA = true: Indennità di contingenza inclusa espressamente; EDR non compare nella base percentualizzata.<br>apprenticeship_pct_relevant EDR = false: Indennità di contingenza inclusa espressamente; EDR non compare nella base percentualizzata.<br>Clause: La retribuzione dell’apprendista è determinata mediante l’applicazione delle per-
+centuali sottoindicate sul minimo di paga, indennità di contingenza, indennità ter-
+ritoriale di settore. E.V.R. e percentuale per i riposi annui spettante al lavoratore |
 
 ## Salary table
 
@@ -201,13 +204,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
-
-!!! warning "apprenticeship_pct_undeclared_components · base_salary · impact unknown · open"
-    A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.
-
-    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

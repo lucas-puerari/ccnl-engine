@@ -1646,7 +1646,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": null,
@@ -2464,7 +2465,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "bc006aeffe1987b9cb406be04ee96ccb8396db56c8ccb6bbd17f5d6a4b2690be",
+    "source_hash": "89206f9dc1f0eed20a4b596dd7e56eb592df1562a2130f615b697c6949cde4bd",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2907,6 +2908,28 @@
         "independence": "separate_model",
         "checked": [
           "parameters.additional_months"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (Art. 27, punto 7 – Retribuzione, PDF p. 34): the elements the percentage applies to, read in the cited file by sha256 (OCR of the scanned page).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2020/09/CCNL-Area-Comunicazione.pdf",
+            "sha256": "0dd7c5250635b270cc064115d5288679d3cb1af6619f76c26a42ce9d91a13513"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant IND_FUN = false: Indennità riservata ai quadri, non compresa nella retribuzione tabellare percentualmente ridotta; non dovuta se non si è quadro.",
+          "Clause: Il trattamento economico durante l'apprendistato è determinato dall'applicazione delle percentuali\nriportate di seguito sulla retribuzione tabellare relativa al livello salariale nel quale egli sarà inquadrato al\ntermine del periodo di apprendistato al lordo delle ritenute previdenziali."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
         ]
       }
     ]

@@ -681,7 +681,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -883,7 +884,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1085,7 +1087,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1287,7 +1290,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1489,7 +1493,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1691,7 +1696,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -1729,7 +1735,8 @@
               "verification_status": "unverified"
             },
             "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1931,7 +1938,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -1969,7 +1977,8 @@
               "verification_status": "unverified"
             },
             "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2171,7 +2180,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -2209,7 +2219,8 @@
               "verification_status": "unverified"
             },
             "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2411,7 +2422,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -2449,7 +2461,8 @@
               "verification_status": "unverified"
             },
             "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2643,7 +2656,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -2681,7 +2695,8 @@
               "verification_status": "unverified"
             },
             "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2883,7 +2898,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -2921,7 +2937,8 @@
               "verification_status": "unverified"
             },
             "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -3123,7 +3140,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -3161,7 +3179,8 @@
               "verification_status": "unverified"
             },
             "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -3363,7 +3382,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Rows I and L follow the parametri 110, 116 and 119 in order."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -3401,7 +3421,8 @@
               "verification_status": "unverified"
             },
             "transformation": "10 euro at B3 'da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The riders' letters I and L did not exist in 2011 and have no row."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -3510,7 +3531,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "e121f1d5d3def3c97f1eb1c99fbe973b3a3743e8a677b116447b9ae276293878",
+    "source_hash": "e5d6104660c11afd8d52fef057632da40b2a5163c23e1f267a0d8f9becd430cc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4644,6 +4665,29 @@
         "independence": "separate_model",
         "checked": [
           "levels.fixed_allowances.EDR_2021"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (art. 50 apprendistato, PDF p. 73): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant EDR_2011 = false: Percentuale sul solo minimo contrattuale; EDR 2011 riservato ai lavoratori già in servizio nel 2011; EDR 2021 è elemento distinto, non minimo.",
+          "apprenticeship_pct_relevant EDR_2021 = false: Percentuale sul solo minimo contrattuale; EDR 2011 riservato ai lavoratori già in servizio nel 2011; EDR 2021 è elemento distinto, non minimo.",
+          "Clause: inquadramento, definendo altresì per ciascuno di essi il trattamento retributivo da calcolarsi in percentuale sul\nminimo contrattuale."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
         ]
       }
     ],
