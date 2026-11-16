@@ -28,6 +28,15 @@ ROLE_DEFAULTS: Mapping[str, FieldDefault] = {
         "with an eligible weekday holiday or weekend Epiphany has a "
         "missing_fact holiday_company_offset blocker; zero states none",
     ),
+    "Employment.fund_opt_ins": requires_fact(
+        "contractual_funds",
+        "employment.fund_opt_ins",
+        FactEnforcement.REPORTED,
+        "unknown choice of a fund that covers only the worker paying its "
+        "worker share (Alimentari FASA from 1 June 2029): nothing is posted "
+        "for it, with a missing_fact fund_opt_ins blocker; an empty set "
+        "states that the worker pays none",
+    ),
     "Employment.roles": requires_fact(
         "base_salary",
         "employment.roles",

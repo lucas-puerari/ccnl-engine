@@ -75,18 +75,8 @@
         "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 21 B-C, PDF pp. 56-58): modelled in dual_apprenticeship (school hours unpaid, 20% of T.E.M. and I.A.R. for the training at the employer, the table percentages at the conventional level 3A for the first level, one or two levels below the destination for the third). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions. The first school year of qualifica and diploma, which the table leaves out, is refused."
       },
       {
-        "kind": "simplification",
-        "text": "HEALTH AND BILATERAL FUNDS (artt. 74 bis-quinquies, pp. 155-158): FASA EUR 12 (16 from 2025) for the permanent workers and the fixed terms of at least nine months in the calendar year, Cassa maternità EUR 3.50 (4.50), Cassa rischio vita EUR 30 a year and bilateralità EUR 2 (2.50) a month are modelled, with the EDR of EUR 20 of an employer outside the bilateralità, and the reduced bilateralità of EUR 1.50 (2.00 from 2025) of a company with better union-leave terms (fund bilateralita_aspettativa_sindacale). Not modelled: from 1 June 2029 the worker's optional EUR 2 a month to FASA, without which the enrolment and the company contribution end (art. 74 quater).",
-        "capability": "bilateral_funds",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "health_and_bilateral_funds",
-          "applies_when": {
-            "trigger": "owed",
-            "effective_from": "2029-06-01"
-          },
-          "remediation": "Model the FASA worker opt-in of 1 June 2029 as a worker fact."
-        }
+        "kind": "info",
+        "text": "HEALTH AND BILATERAL FUNDS (artt. 74 bis-quinquies, pp. 155-158): FASA EUR 12 (16 from 2025) for the permanent workers and the fixed terms of at least nine months in the calendar year, Cassa maternità EUR 3.50 (4.50), Cassa rischio vita EUR 30 a year and bilateralità EUR 2 (2.50) a month are modelled, with the EDR of EUR 20 of an employer outside the bilateralità, and the reduced bilateralità of EUR 1.50 (2.00 from 2025) of a company with better union-leave terms (fund bilateralita_aspettativa_sindacale). From 1 June 2029 the worker's optional EUR 2 a month to FASA, without which the enrolment and the company contribution end (art. 74 quater), is modelled: Employment.fund_opt_ins."
       },
       {
         "kind": "info",
@@ -465,7 +455,24 @@
             ]
           }
         },
+        "employee": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": "2029-06-01",
+                "value": "0"
+              },
+              {
+                "valid_from": "2029-06-01",
+                "valid_until": null,
+                "value": "2.0"
+              }
+            ]
+          }
+        },
         "solidarity_rate": "0.1",
+        "employee_deductible": true,
         "alternative": {
           "monthly": {
             "periods": [
@@ -492,7 +499,7 @@
             "section": "Art. 74 quater cc. 1, 3-4 - FASA; Art. 74 bis cc. 2-3 - EDR",
             "quote": "a favore dei lavoratori con contratto di lavoro a tempo indeterminato e a tempo determinato con durata del rapporto pari o superiore a nove mesi nell’arco dell’anno solare [...] A partire dal 01.01.2022, l’importo [...] sarà pari a 12 euro al mese per 12 mensilità. Tale importo sarà incrementato di 4 euro/mese a partire dal 1° gennaio 2025. [Art. 74 bis] a decorrere dal 1° gennaio 2021 le imprese non aderenti alla bilateralità e che non versano il relativo contributo dovranno erogare a ciascun lavoratore un importo forfettario pari a euro 20 lordi mensili per dodici mensilità [...] non avrà riflesso alcuno sugli istituti contrattuali e di legge, diretti o/e indiretti di alcun genere"
           },
-          "transformation": "EUR 12 a month on 12 months from the employer (16 from 1 January 2025), with the 10% INPS solidarity of a health fund (L. 166/1991 art. 9-bis); the fixed-term workers of nine months or more in the year, also covered, are not modelled. An employer outside the bilateralità owes one EDR of EUR 20 a month on 12 months for FASA, the Cassa maternità, the Cassa rischio vita and the bilateralità of art. 74 quinquies, outside every institute (TFR included). Art. 74 quater: permanent workers and fixed terms of at least nine months within the calendar year ('pari o superiore a nove mesi nell'arco dell'anno solare'), counted on the part of the fixed term in the year of the run.",
+          "transformation": "EUR 12 a month on 12 months from the employer (16 from 1 January 2025), with the 10% INPS solidarity of a health fund (L. 166/1991 art. 9-bis); the fixed-term workers of nine months or more in the year, also covered, are not modelled. An employer outside the bilateralità owes one EDR of EUR 20 a month on 12 months for FASA, the Cassa maternità, the Cassa rischio vita and the bilateralità of art. 74 quinquies, outside every institute (TFR included). Art. 74 quater: permanent workers and fixed terms of at least nine months within the calendar year ('pari o superiore a nove mesi nell'arco dell'anno solare'), counted on the part of the fixed term in the year of the run. From 1 June 2029: 'il finanziamento al Fondo potrà essere implementato di ulteriori 2 euro mensili (per 12 mensilità) a carico del lavoratore dipendente, dietro espressa volontà dello stesso. Laddove il lavoratore non manifesti la volontà di partecipare con la propria quota al Fondo, lo stesso decade dall'iscrizione e cessa automaticamente la contribuzione da parte dell'impresa' (art. 74 quater, PDF p. 157): the worker share of EUR 2 a month, deductible as a health-fund contribution (TUIR art. 51 c. 2 lett. a), is due only from a worker in Employment.fund_opt_ins; one who is not leaves FASA, its employer share and solidarity with it (opt_in_from).",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
@@ -505,7 +512,8 @@
           }
         },
         "minimum_fixed_term_months": 9,
-        "fixed_term_months_in_year": true
+        "fixed_term_months_in_year": true,
+        "opt_in_from": "2029-06-01"
       },
       {
         "code": "cassa_maternita",
@@ -4218,7 +4226,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "59b78bacf531f368f8d0ef57147720b847fcfd1b555493b30c6f9fb7461cf40c",
+    "source_hash": "35b8444b64f8b24faa450e9d7a57471c64daad5907799c6d5b4e828b1d840138",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -14421,6 +14429,27 @@
         "independence": "separate_model",
         "checked": [
           "parameters.loyalty_premium"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-fasa-worker-opt-in",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 74 quater (FASA, PDF p. 157): the worker share and the opt-in from 1 June 2029, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          }
+        ],
+        "findings": [
+          "Applied: the EUR 2 worker share from 1 June 2029 and the end of the enrolment, employer share included, of a worker who does not opt in."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.health_funds"
         ]
       }
     ],

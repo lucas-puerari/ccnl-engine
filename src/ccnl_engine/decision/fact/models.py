@@ -20,6 +20,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "cohabiting": "Dependent.cohabiting",
     "contribution_history": "Employment.contribution_history",
     "contractual_funds": "EmployerProfile.contractual_funds",
+    "fund_opt_ins": "Employment.fund_opt_ins",
     "current_year": "PeriodInput.current_year",
     "employment_income": "PriorYearTaxFacts.employment_income",
     "ended_by": "EmploymentPeriod.ended_by",
