@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 4 | 289 | 244 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 17 | 982 | 2031 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 46 | 5 257 055 | 17 | 990 | 2031 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 118 | 1250 | 2657 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 76 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 29 | 156 | 373 | 2 | `metalmeccanico-artigianato` |
@@ -83,7 +83,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`servizi-postali-appalto-fise`](../contracts/servizi-postali-appalto-fise.md) | 1 000 | exploratory | 0 | 28 | 23 | party or official | none | none |
 | [`agenti-immobiliari-fiaip`](../contracts/agenti-immobiliari-fiaip.md) | none | exploratory | 1 | 2 | 42 | party or official | none | none |
 | [`vigilanza-privata-federdat-sf`](../contracts/vigilanza-privata-federdat-sf.md) | none | exploratory | 1 | 0 | 27 | party or official | none | none |
-| [`autoscuole-unasca`](../contracts/autoscuole-unasca.md) | none | exploratory | 0 | 33 | 5 | party or official | none | none |
+| [`autoscuole-unasca`](../contracts/autoscuole-unasca.md) | none | exploratory | 0 | 41 | 5 | party or official | none | none |
 | [`aziende-termali-federterme`](../contracts/aziende-termali-federterme.md) | none | exploratory | 0 | 66 | 0 | party or official | none | none |
 | [`turismo-confesercenti`](../contracts/turismo-confesercenti.md) | none | exploratory | 0 | 8 | 50 | aggregator | none | none |
 
