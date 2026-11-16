@@ -612,7 +612,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -668,7 +669,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EAR",
@@ -724,7 +726,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -959,7 +962,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1015,7 +1019,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EAR",
@@ -1071,7 +1076,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1306,7 +1312,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1362,7 +1369,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EAR",
@@ -1418,7 +1426,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1653,7 +1662,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1709,7 +1719,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EAR",
@@ -1765,7 +1776,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -2000,7 +2012,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -2056,7 +2069,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EAR",
@@ -2112,7 +2126,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -2347,7 +2362,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -2403,7 +2419,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EAR",
@@ -2459,7 +2476,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -2694,7 +2712,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -2750,7 +2769,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EAR",
@@ -2806,7 +2826,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -3041,7 +3062,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -3097,7 +3119,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EAR",
@@ -3153,7 +3176,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -3388,7 +3412,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -3444,7 +3469,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EAR",
@@ -3500,7 +3526,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -3735,7 +3762,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -3791,7 +3819,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EAR",
@@ -3847,7 +3876,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -4082,7 +4112,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -4138,7 +4169,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EAR",
@@ -4194,7 +4226,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -4224,7 +4257,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "4a8504ce1ad024ab54eeab51738166ea30fd3b75ce5ce254f538db84cac8c192",
+    "source_hash": "dd7ff154070c22ed12b850b4372ad2d72414585507e5625bc131a1329599209e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5050,6 +5083,30 @@
         "independence": "separate_model",
         "checked": [
           "parameters.additional_months"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (Art. 32, Trattamento economico/normativo, PDF p. 66): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+            "sha256": "af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant CONTINGENZA = true: Inclusa nella retribuzione base e quindi nella globale ridotta.",
+          "apprenticeship_pct_relevant EAR = true: Incluso nella retribuzione base e quindi nella globale ridotta.",
+          "apprenticeship_pct_relevant EDR = true: Incluso nella retribuzione base e quindi nella globale ridotta.",
+          "Clause: Agli apprendisti spettano gli istituti previsti dal vigente CCNL, in quanto applicabili, e, per quanto\nconcerne la retribuzione, la stessa è determinata come segue:\n• nel primo anno: 85% della retribuzione globale;\n• nel secondo anno: 90% della retribuzione globale."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
         ]
       }
     ]

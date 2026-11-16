@@ -335,6 +335,30 @@
           "work_rules.time_supplements",
           "work_rules.capability_basis"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (Accordo apprendistato, Apprendistato professionalizzante, PDF p. 89): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
+            "sha256": "917a3c2643ef1624ffc267cb7591080b47f04eb753cdc6768c1aacc2c2dedec5"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant CONTINGENZA = true: Ex indennità di contingenza inclusa esplicitamente nella base percentuale.",
+          "apprenticeship_pct_relevant EDR = true: EDR incluso esplicitamente nella base percentuale.",
+          "apprenticeship_pct_relevant INDENNITA_FUNZIONE = false: Indennità quadro estranea alla base percentuale e alle qualifiche apprendibili; non dovuta ad apprendisti non quadri.",
+          "Clause: Il trattamento economico degli apprendisti non può essere inferiore alle sottoindicate percentuali della retribuzione\ncalcolata su minimo di paga base o stipendio mensile, ex indennità di contingenza, indennità territoriale di settore per gli\noperai o premio di produzione per gli impiegati, EDR, eventuale elemento variabile della retribuzione, riferita al livello per\nil quale è finalizzato il rela"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
+        ]
       }
     ]
   },
@@ -692,7 +716,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -723,7 +748,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -873,7 +899,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -904,7 +931,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1054,7 +1082,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1085,7 +1114,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1235,7 +1265,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1266,7 +1297,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1416,7 +1448,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1447,7 +1480,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1597,7 +1631,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1628,7 +1663,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1778,7 +1814,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1809,7 +1846,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1938,7 +1976,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1969,7 +2008,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "INDENNITA_FUNZIONE",
@@ -2025,7 +2065,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2175,7 +2216,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -2206,7 +2248,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -2335,7 +2378,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -2366,7 +2410,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "INDENNITA_FUNZIONE",
@@ -2422,7 +2467,8 @@
               "verification_status": "unverified",
               "effective_from": "2025-02-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2452,7 +2498,7 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "06bedc17f0b1c19786bad6bfd8a1bdcd58a793c926a8812f95f8c84085529519",
+    "source_hash": "851e084fc89980955dac527e49bf612ec1808d9af81bfa7cdf405e833f0f3fcd",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

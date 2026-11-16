@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-20 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -72,6 +72,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses of the operai, against the research of a separate model session; quote checked on the source text. | corrected | Added the operai comporto windows (9 months in 20, 12 in 24 above three and a half years). |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses of the impiegati of art. 66, OCR of the scanned source, against the research of a separate model session. | corrected | Added the impiegato and quadro windows of several illnesses; the comporto of one illness and the reduced pay months stay a limitation. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: bands[0:holiday], bands[1:night], bands[2:day_shift], bands[3:night_shift], bands[6:night_holiday], bands[7:sunday], bands[8:rest_day], bands[9:saturday_sixth_day], bands[10:holiday], bands[11:night], bands[12:night_shift], bands[13:night_holiday].<br>Left out: bands[4:night]: quote skipped; bands[5:night]: quote skipped; travel: kind share applied by hand. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Apprentice pay (regolamento apprendistato, art. 7, PDF p. 168): the elements the percentage applies to, read in the cited file by sha256. | corrected | apprenticeship_pct_relevant CONTINGENZA = true: Contingenza inclusa espressamente; EDR e indennità quadri non compaiono fra gli elementi percentualizzati.<br>apprenticeship_pct_relevant EDR = false: Contingenza inclusa espressamente; EDR e indennità quadri non compaiono fra gli elementi percentualizzati.<br>apprenticeship_pct_relevant IND_FUN = false: Contingenza inclusa espressamente; EDR e indennità quadri non compaiono fra gli elementi percentualizzati.<br>Clause: La retribuzione dell’apprendista è determinata mediante l’applicazione delle per-
+centuali sottoindicate sul minimo di paga, indennità di contingenza, indennità
+territoriale di settore, E.v.r. e percentuale per i riposi annui spettante al lavoratore |
 
 ## Salary table
 
@@ -171,13 +174,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
-
-!!! warning "apprenticeship_pct_undeclared_components · base_salary · impact unknown · open"
-    A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.
-
-    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

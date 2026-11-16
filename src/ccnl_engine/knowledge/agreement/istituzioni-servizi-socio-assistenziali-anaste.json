@@ -324,6 +324,29 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (Art. 27, comma 14, PDF p. 25): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.anaste.com/download/?wpdmdl=11171",
+            "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant INDENNITA_FUNZIONE = false: La percentuale riguarda solo il minimo conglobato; indennità quadri esterna e non spettante ai livelli apprendibili.",
+          "apprenticeship_pct_relevant INDENNITA_PROFESSIONALE_INFERMIERI = false: Il profilo infermiere è espressamente escluso dall’apprendistato (art. 27 c. 4): indennità non dovuta.",
+          "Clause: 14. Il trattamento economico dell’apprendista è determinato in percentuale rispetto al minimo contrattuale mensile\nconglobato previsto dall’art. 68 del presente CCNL, con riferimento al livello di inquadramento della qualifica da\nconseguire, secondo le seguenti progressioni:"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
+        ]
       }
     ]
   },
@@ -716,7 +739,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1500,7 +1524,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-anaste-nurse-offset"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1747,7 +1772,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-anaste-nurse-offset"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2919,7 +2945,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "5da895e584dfa83372036e31563eb26fe9f1a16590bba60c7f27e54a90bc62e7",
+    "source_hash": "1e6b54fb77a7c76f760bdf70e8958326055521a033e76e9eab748e6ce0bd3459",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

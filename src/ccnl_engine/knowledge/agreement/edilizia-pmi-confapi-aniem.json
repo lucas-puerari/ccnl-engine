@@ -995,7 +995,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1026,7 +1027,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1148,7 +1150,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1179,7 +1182,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1301,7 +1305,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1332,7 +1337,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1454,7 +1460,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1485,7 +1492,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1607,7 +1615,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1638,7 +1647,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1760,7 +1770,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1791,7 +1802,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1913,7 +1925,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1944,7 +1957,8 @@
               "verification_status": "verified",
               "effective_from": "2025-04-15"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1974,7 +1988,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "7068ebccadd67e870182af78724082747db2026eb9eb64d6e346aa48022bbbd9",
+    "source_hash": "c4968c041807e3a95766d92c9e383f46cf89aae352528e5bb11d88cfd564729e",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -2679,6 +2693,29 @@
         "checked": [
           "parameters.contractual_fund_contribution",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (regolamento apprendistato, lett. G, PDF p. 164): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+            "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant CONTINGENZA = true: Indennità di contingenza inclusa espressamente; EDR non compare nella base percentualizzata.",
+          "apprenticeship_pct_relevant EDR = false: Indennità di contingenza inclusa espressamente; EDR non compare nella base percentualizzata.",
+          "Clause: La retribuzione dell’apprendista è determinata mediante l’applicazione delle per-\ncentuali sottoindicate sul minimo di paga, indennità di contingenza, indennità ter-\nritoriale di settore. E.V.R. e percentuale per i riposi annui spettante al lavoratore"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
         ]
       }
     ],

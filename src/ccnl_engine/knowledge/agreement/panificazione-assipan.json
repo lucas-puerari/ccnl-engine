@@ -172,6 +172,28 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (Art. 28, Trattamento economico, PDF p. 46): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
+            "sha256": "8533abbd8719e1de2e7f3fa2f228ebe44e62154d27b2e9a3120bd47ab31e1abf"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant PREMIO_PROD = false: Il premio di produzione nazionale è voce fissa separata, non è uno degli elementi elencati nella base percentuale; dovuto per intero se spettante.",
+          "Clause: Ai fini della determinazione della retribuzione, la percentuale si applica\nsugli elementi retributivi di seguito specificati, propri del lavoratore non apprendista avente inquadramento\ncorrispondente a quello al cui conseguimento è finalizzato il contratto: paga base, ex indennità di contingenza,\nE.D.R., eventuali elementi derivanti dalla contrattazione di secondo livello:"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
+        ]
       }
     ]
   },
@@ -549,7 +571,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "operaio",
@@ -790,7 +813,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "operaio",
@@ -1031,7 +1055,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "operaio",
@@ -1272,7 +1297,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "operaio",
@@ -1513,7 +1539,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "operaio",
@@ -1754,7 +1781,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "impiegato",
@@ -1988,7 +2016,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "impiegato",
@@ -2068,7 +2097,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "ddb19f5a2c82156abd5fd091d9cf440900a9d275ccc3fbc25dabafa72d962a40",
+    "source_hash": "6e7de70534a5962e11eab93c0b5d63adbfdc9b27f3069261dbf8284fcb7a5d8a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

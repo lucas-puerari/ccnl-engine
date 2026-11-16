@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-21 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -65,6 +65,10 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 24 values read identically by both readings and equal to the file. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Historical cohort and frozen valuation in Art. 98 of the 2000 text; no inference about continued force in the current agreement. | corrected | Art. 98 (PDF p. 97) limits the annual award to clerical employees already at 20 years' uninterrupted actual service on 30 April 1982. The frozen Art. 80 items 1–14 pay and whole-month fractions on non-disciplinary departure cannot be inferred from current pay; the cohort may still be employed in 2026. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: bands[1:day_shift], bands[2:night_shift], bands[5:holiday], bands[6:night_holiday], bands[7:sunday].<br>Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[3:night]: work/role/rate not applicable (guardiano); bands[4:night]: quote skipped; travel: kind delegated applied by hand. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Apprentice pay (Accordo apprendistato, Apprendistato professionalizzante, PDF p. 89): the elements the percentage applies to, read in the cited file by sha256. | corrected | apprenticeship_pct_relevant CONTINGENZA = true: Ex indennità di contingenza inclusa esplicitamente nella base percentuale.<br>apprenticeship_pct_relevant EDR = true: EDR incluso esplicitamente nella base percentuale.<br>apprenticeship_pct_relevant INDENNITA_FUNZIONE = false: Indennità quadro estranea alla base percentuale e alle qualifiche apprendibili; non dovuta ad apprendisti non quadri.<br>Clause: Il trattamento economico degli apprendisti non può essere inferiore alle sottoindicate percentuali della retribuzione
+calcolata su minimo di paga base o stipendio mensile, ex indennità di contingenza, indennità territoriale di settore per gli
+operai o premio di produzione per gli impiegati, EDR, eventuale elemento variabile della retribuzione, riferita al livello per
+il quale è finalizzato il rela |
 
 ## Salary table
 
@@ -145,13 +149,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
-
-!!! warning "apprenticeship_pct_undeclared_components · base_salary · impact unknown · open"
-    A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.
-
-    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · awaiting_publication"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
