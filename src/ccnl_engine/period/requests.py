@@ -119,6 +119,7 @@ class PeriodCalculationRequest:
         seniority: Recognised seniority, aged to the competence month; ``None``
             unknown, a ``missing_fact`` blocker when the level pays on seniority.
         roles: Role codes of allowances and former-worker pay; ``None`` unknown.
+        fund_opt_ins: Funds whose optional worker share the worker pays.
         presence_days: Count of days actually present at work in the month.
         site_presence_days: Subset of those days present at the work site.
             ``None`` means the count is missing, not zero.
@@ -207,6 +208,7 @@ class PeriodCalculationRequest:
     level_started_on: date | None = None
     seniority: SeniorityFact | None = None
     roles: frozenset[str] | None = None
+    fund_opt_ins: frozenset[str] | None = None
     presence_days: int | None = None
     site_presence_days: int | None = None
     meal_benefit_days: int | None = None
