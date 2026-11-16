@@ -45,6 +45,8 @@ def test_movement_milestone_only_in_qualifying_month_and_levels() -> None:
         manual_monthly_pay=False,
         levels=("QD3", "QD4"),
         service_basis="recognised",
+        early_hours={},
+        dismissal_pro_rata=False,
         manual_hours=None,
         provenance=SimpleNamespace(location=SimpleNamespace(section="Art. 102")),
     )
@@ -120,6 +122,8 @@ def test_recognised_service_requires_active_milestone(case: str) -> None:
         manual_monthly_pay=False,
         levels=("QD3",),
         service_basis="recognised",
+        early_hours={},
+        dismissal_pro_rata=False,
         manual_hours=None,
         provenance=SimpleNamespace(location=SimpleNamespace(section="Art. 102")),
     )

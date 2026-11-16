@@ -28,6 +28,7 @@ from ccnl_engine.pay_item.services import (
     _require_resolution,
     _treatment_from_resolution,
 )
+from ccnl_engine.run.models import PayrollRun, RunKind
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -60,16 +61,23 @@ def _months_since(anniversary: date, ended: date) -> int:
     return months - (ended.day < boundary)
 
 
-def _in_month(ctx: RunContext, day: date) -> bool:
-    """Whether ``day`` falls in the month of the run.
+def _closes(ctx: RunContext, day: date) -> bool:
+    """Whether the run closes an employment that ends on ``day``.
+
+    As for the ratei of the extra months (``run_settlements``): the regular
+    run of the month, or the termination run of the month when its regular
+    run is not closed.
 
     Returns:
-        ``True`` when the run is of the month of ``day``.
+        ``True`` for that run.
     """
-    return (ctx.request.period_id.year, ctx.request.period_id.month) == (
-        day.year,
-        day.month,
-    )
+    month = ctx.request.period_id
+    if (month.year, month.month) != (day.year, day.month):
+        return False
+    if ctx.run_kind is RunKind.REGULAR:
+        return True
+    regular = PayrollRun.regular(day.year, day.month).identifier
+    return regular not in ctx.request.opening_state.accrual.competence_runs
 
 
 def _missing(fact: str) -> LoyaltySettlement:
@@ -106,7 +114,7 @@ def dismissal_award(  # noqa: PLR0911
     if not clause.dismissal_pro_rata or period.ended_on is None:
         return LoyaltySettlement()
     ended = period.ended_on
-    if not _in_month(ctx, ended):
+    if not _closes(ctx, ended):
         return LoyaltySettlement()
     previous = _anniversary(period.started_on, ended.year)
     if previous > ended:
@@ -185,7 +193,7 @@ def early_award(
     category = ctx.worker_category
     hours = None if category is None else clause.early_hours.get(category)
     ended = period.ended_on
-    if hours is None or ended is None or not _in_month(ctx, ended):
+    if hours is None or ended is None or not _closes(ctx, ended):
         return LoyaltySettlement()
     start = period.uninterrupted_service_started_on or period.started_on
     years = _whole_years(start, ended)
