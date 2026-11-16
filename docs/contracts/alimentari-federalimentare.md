@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | bilateral_funds |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-01 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -78,6 +78,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Sugar-industry supplementary rule 25 (physical PDF p. 230), once-only award and outstanding eligibility facts. | corrected | The sugar rule pays one normal monthly salary to clerical employees or 200 normal hourly wages to manual workers after 25 uninterrupted years in the same company or group. Early death/incapacity, direct transfers and group continuity require facts not available in the run. |
 | 2026-11-14 | claude-opus-5-5 (ai) | FASA Regolamento 2024 art. 9 and the beneficiary notices 2026 and 2027, against the research of a separate model session. | corrected | The family member fee is paid by the worker to FASA by MAV only, not through the payslip: the fasa_family_members limitation had no payroll effect and becomes an info note. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Sugar-industry punto 25 (gratifica venticinquennale, PDF p. 230) and punto 14 (hourly normal pay over 174, PDF p. 212), read in the cited file by sha256. | corrected | The 200 hours of the operai were valued over the general divisor 173: punto 14 sets 174.<br>Applied: the ratei of 8 and 7 hours a whole year on death or permanent incapacity before 25 years. |
 
 ## Salary table
 
@@ -134,13 +135,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `bilateral_funds` applies; from 2029-06-01.
 
     **Remediation:** Model the FASA worker opt-in of 1 June 2029 as a worker fact.
-
-!!! warning "alimentari-federalimentare/sugar_twenty_five_year_award · base_salary · impact yes · open"
-    Sugar-industry supplementary rule 25 (PDF p. 230): the once-only award at 25 uninterrupted years is modelled for clerical and manual workers in the sugar branch. Still missing: settlement before the threshold on death or permanent incapacity, qualifying direct transfers between sugar companies, and proof of uninterrupted service within the same company or group from the employment facts.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Represent early death or permanent-incapacity settlement, qualifying direct transfers, and uninterrupted company or group service as worker facts.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -338,6 +332,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     OVERTIME (Art. 31): the overtime rates above 40 hours (day, weekday night, holiday) of each sub-sector table, by EmployerProfile.subsector (carni, dolciari, alimenti_zootecnici, lattiero_caseari, vini_liquori, bevande_gassate, acque_minerali, distillatori, birra_malto, conserve_vegetali, alimentari_varie, risiera, molitoria_pastificazione, conserve_ittiche, avicoli) and category (the operai column, the impiegati column for impiegati and quadri). The intermedi, the involucri of p. 287 and the non-overtime rows (night not in shifts, shifts, Sunday with compensatory rest) are not modelled: the caller states those rates.
     
     ORDINARY HOURS PREMIUMS (Art. 31): the Saturday or sixth-day work of birra e malto (50%) and avicoli (65%) is paid on HolidayWorkEvent of kind saturday_sixth_day; the 5% of the two day shifts of the alimenti zootecnici on three continuous alternating shifts (terza nota a verbale, p. 86) on ShiftWorkEvent of kind day.
+    
+    Sugar-industry supplementary rule 25 (PDF p. 230): the once-only award at 25 uninterrupted years, one normal month for the impiegati and 200 normal hours over 174 (punto 14, PDF p. 212) for the operai, and the ratei of 7 and 8 hours a whole year when the employment ends before by death or permanent incapacity (EmploymentPeriod.permanent_incapacity), are modelled for the sugar branch. The uninterrupted company or group service, with the conventional seniority of a direct sugar-sector transfer the dichiarazione aggiuntiva extends to the award, is EmploymentPeriod.uninterrupted_service_started_on.
     
     SENIORITY: five biennial increments (Art. 53); the per-level amounts of the table 'Importi singolo scatto dal 1/8/1998' are consolidated and not recalculated, in force for the whole ruleset. Apprentices accrue none; on confirmation half the apprenticeship counts (Art. 21).
     

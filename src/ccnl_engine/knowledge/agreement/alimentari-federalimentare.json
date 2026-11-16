@@ -101,17 +101,8 @@
         "text": "ORDINARY HOURS PREMIUMS (Art. 31): the Saturday or sixth-day work of birra e malto (50%) and avicoli (65%) is paid on HolidayWorkEvent of kind saturday_sixth_day; the 5% of the two day shifts of the alimenti zootecnici on three continuous alternating shifts (terza nota a verbale, p. 86) on ShiftWorkEvent of kind day."
       },
       {
-        "kind": "simplification",
-        "text": "Sugar-industry supplementary rule 25 (PDF p. 230): the once-only award at 25 uninterrupted years is modelled for clerical and manual workers in the sugar branch. Still missing: settlement before the threshold on death or permanent incapacity, qualifying direct transfers between sugar companies, and proof of uninterrupted service within the same company or group from the employment facts.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "sugar_twenty_five_year_award",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Represent early death or permanent-incapacity settlement, qualifying direct transfers, and uninterrupted company or group service as worker facts."
-        }
+        "kind": "info",
+        "text": "Sugar-industry supplementary rule 25 (PDF p. 230): the once-only award at 25 uninterrupted years, one normal month for the impiegati and 200 normal hours over 174 (punto 14, PDF p. 212) for the operai, and the ratei of 7 and 8 hours a whole year when the employment ends before by death or permanent incapacity (EmploymentPeriod.permanent_incapacity), are modelled for the sugar branch. The uninterrupted company or group service, with the conventional seniority of a direct sugar-sector transfer the dichiarazione aggiuntiva extends to the award, is EmploymentPeriod.uninterrupted_service_started_on."
       }
     ]
   },
@@ -128,6 +119,11 @@
         "saccarifero"
       ],
       "manual_hours": "200",
+      "hourly_divisor": "174",
+      "early_hours": {
+        "operaio": "8",
+        "impiegato": "7"
+      },
       "provenance": {
         "status": "verified",
         "location": {
@@ -143,15 +139,15 @@
           "section": "Sugar-industry supplementary rules, Norme integrative, 25. Gratifica venticinquennale",
           "quote": "Ricorrendo per qualsiasi lavoratore - operaio o impiegato - 25 anni di servizio prestato ininterrottamente presso la stessa azienda o gruppo aziendale (intendendosi per tale il complesso di fabbriche facenti capo alla stessa società) questa concederà all’interessato una gratifica venticinquennale nella misura non inferiore ad una mensilità della retribuzione normale per gli impiegati e a 200 ore della retribuzione normale per gli operai."
         },
-        "transformation": "Pay once in the 25th service anniversary month in the sugar subsector: one normal monthly pay for clerical staff or 200 normal hourly wages for manual workers. The existing monthly run-chain approximates normal pay; hourly conversion uses the agreement's general divisor 173 (Art. 51 lett. A, PDF p. 117). Death or permanent incapacity before 25 years, direct transfers, and proof of uninterrupted company or group service remain limitations. The rule does not specify a distinct award effective date.",
+        "transformation": "Pay once in the 25th service anniversary month in the sugar subsector: one normal monthly pay for clerical staff or 200 normal hourly wages for manual workers. The normal hourly pay is the normal monthly pay over 174: 'Per la determinazione della quota oraria della retribuzione normale si divide la retribuzione normale mensile per 174' (Disposizioni specifiche saccarifero, punto 14, PDF p. 212), not the general divisor 173 of Art. 51. Second paragraph of punto 25: 'In caso di risoluzione anticipata del rapporto di lavoro per causa di morte o di invalidità permanente, saranno liquidati agli aventi diritto o al lavoratore i ratei corrispondenti agli anni interi maturati in funzione di 8 ore annue per gli operai e 7 ore per gli impiegati': early_hours, on the whole years of uninterrupted service at the end, with EmploymentPeriod.ended_by death or EmploymentPeriod.permanent_incapacity. The dichiarazione aggiuntiva extends the conventional seniority of a direct sugar-sector transfer to the award for the workers in force on 1 March 2024: the caller states it in EmploymentPeriod.uninterrupted_service_started_on, the start of the uninterrupted company or group service. The monthly run chain approximates normal pay. The rule does not specify a distinct award effective date.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-11-09T22:16:13Z",
           "verification_status": "verified",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-09T22:16:13Z",
-          "review_id": "2026-11-09-ai-sugar-award"
+          "verified_at": "2026-11-16T09:00:00Z",
+          "review_id": "2026-11-16-ai-sugar-award-early-ratei"
         }
       }
     },
@@ -4222,7 +4218,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "c897f17fe92f5d67697a969506780a8372431dc8ed70608f7b1ca2e5e5523c0f",
+    "source_hash": "59b78bacf531f368f8d0ef57147720b847fcfd1b555493b30c6f9fb7461cf40c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -14403,6 +14399,28 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-sugar-award-early-ratei",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Sugar-industry punto 25 (gratifica venticinquennale, PDF p. 230) and punto 14 (hourly normal pay over 174, PDF p. 212), read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          }
+        ],
+        "findings": [
+          "The 200 hours of the operai were valued over the general divisor 173: punto 14 sets 174.",
+          "Applied: the ratei of 8 and 7 hours a whole year on death or permanent incapacity before 25 years."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.loyalty_premium"
         ]
       }
     ],

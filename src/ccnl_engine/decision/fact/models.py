@@ -24,6 +24,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "employment_income": "PriorYearTaxFacts.employment_income",
     "ended_by": "EmploymentPeriod.ended_by",
     "disciplinary_dismissal": "EmploymentPeriod.disciplinary_dismissal",
+    "permanent_incapacity": "EmploymentPeriod.permanent_incapacity",
     "fis_reduction": "EmployerProfile.fis_reduction",
     "cigs_indotto": "EmployerProfile.cigs_indotto",
     "provincial_pay_element": "EmployerProfile.provincial_pay_element",

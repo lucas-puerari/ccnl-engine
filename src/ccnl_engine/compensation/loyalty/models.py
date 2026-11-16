@@ -26,6 +26,10 @@ class LoyaltyPremium(BaseModel):
     eligibility to employees already in service on a historical date.
     A recognised-service milestone uses the caller's seniority fact, which
     must describe the service credited for that award, not merely increments.
+    A clause may value the hours by its own divisor (``hourly_divisor``) and
+    settle, when the employment ends before the threshold by death or
+    permanent incapacity, ``early_hours`` of normal pay of the category for
+    each whole year of service (Alimentari saccarifero, punto 25).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -44,6 +48,8 @@ class LoyaltyPremium(BaseModel):
     manual_hours: Decimal | None = Field(default=None, gt=0)
     manual_monthly_pay: bool = False
     in_service_on: date | None = None
+    hourly_divisor: Decimal | None = Field(default=None, gt=0)
+    early_hours: dict[WorkerCategory, Decimal] = Field(default_factory=dict)
     provenance: RuleProvenance
 
     @model_validator(mode="after")

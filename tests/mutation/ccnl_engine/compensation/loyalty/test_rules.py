@@ -276,6 +276,7 @@ def test_one_time_subsector_award(
         levels=(),
         service_basis="actual",
         manual_hours=Decimal(200),
+        hourly_divisor=None,
         provenance=SimpleNamespace(location=SimpleNamespace(section="Rule 25")),
     )
     ctx.contract.ccnl.parameters.hourly_divisor = SimpleNamespace(
@@ -331,6 +332,7 @@ def test_manual_milestone_without_hourly_divisor_pays_nothing(
         levels=(),
         service_basis="actual",
         manual_hours=Decimal(200),
+        hourly_divisor=None,
     )
     ctx.contract.ccnl.parameters.hourly_divisor = SimpleNamespace(
         period_at=lambda _day: divisor
