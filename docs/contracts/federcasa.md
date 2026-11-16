@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 23 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 1 verified / 24 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-11-06 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2024-12-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 76 - Tredicesima e quattordicesima mensilità (p. 68): "In tali casi il lavoratore non in prova ha diritto a tanti dodicesimi dell'ammontare delle predette mensilità quanti sono i mesi interi di servizio prestato. Le frazioni di mese superiore a quindici giorni vanno computate come un mese intero.". Match: more_than 15. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | pre_2018_seniority_cohort: Art. 73(4) preserves increments matured before 01/01/2018 at their full amounts; later increments use the 10%-reduced column. federcasa.json has 24-month cadence, maximum 14, and the reduced amounts (A1 €25.20). The existing SeniorityFact.earned (count, monthly, as_of) is paid un |
+| 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
 
 ## Salary table
 

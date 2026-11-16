@@ -35,21 +35,6 @@
       }
     },
     {
-      "id": "rule_additional_months_2022_11_01",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/pulizia-artigianato-confartigianato.json#additional_months[2022-11-01]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/pulizia-artigianato-confartigianato.json#additional_months[2022-11-01]"
-        ]
-      }
-    },
-    {
       "id": "rule_levels_1_base_salary_2022_11_01",
       "institute": "base_salary",
       "variant": "all",

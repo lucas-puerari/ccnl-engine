@@ -106,9 +106,20 @@
           "valid_until": null,
           "value": 14,
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-43.pdf",
+                "title": "Art. 41",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/43",
+                "sha256": "aaec9fe6e382a0a0c1ae7988384c34e66d6696bf2d79d21d157dbb133d8a70d5"
+              },
+              "page": "41",
+              "section": "Art. 41",
+              "quote": "L'azienda corrisponderà entro il 10 luglio di ciascun anno una quattordicesima erogazione nella misura di una mensilità di paga tabellare, contingenza e scatti biennali."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -1660,7 +1671,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/",
     "verification_status": "unverified",
-    "source_hash": "05d6cb2c8fb3c58d7a665bb46a2363b531795ec341519d391934af7cb51d0ee5",
+    "source_hash": "763d4b81a707178463ef7f1af662bb497aea7a4423a4c09dddf02433816ef452",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2079,6 +2090,27 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/43",
+            "sha256": "aaec9fe6e382a0a0c1ae7988384c34e66d6696bf2d79d21d157dbb133d8a70d5"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

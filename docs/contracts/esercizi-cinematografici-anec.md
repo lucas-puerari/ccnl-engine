@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 61 verified / 9 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 61 verified / 10 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-10-16 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 61 - Festività, sickness paragraph (p. 47): In caso di assenza dovuta a malattia, infortunio, gravidanza e puerperio, nei giorni festivi innanzi elencati l'azienda integrerà il trattamento economico corrisposto dagli istituti assistenziali ed assicurativi fino a raggiungere l'intera retribuzione giornaliera prevista dal 2° comma del presente articolo. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 61 pregnancy and puerperium holiday daily-pay target against the cached agreement PDF. | confirmed | Art. 61, PDF p. 47: pregnancy and puerperium holiday pay is integrated to the full daily pay. The list includes Easter Sunday and the local patron saint, but the current absence holiday mechanisms skip Sundays. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 64 hospital exclusions, printed p. 50 of the cached primary contract. | confirmed | Art. 64 excludes hospital stays including day hospital from both the job-protection and pay counts; therapies and qualifying serious-illness absences are additional exclusions not represented by hospital stays. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
 
 ## Salary table
 

@@ -193,6 +193,27 @@
           "levels.fixed_allowances",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aia.it/download/ccnl/?wpdmdl=1787",
+            "sha256": "0d98962630c8e46ecb1c07a8e7f727c2d145e653d9430c1e78960cf914fdc528"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -213,9 +234,20 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "aia-ccnl.pdf",
+                "title": "Art. 17",
+                "kind": "associazione",
+                "url": "https://www.aia.it/download/ccnl/?wpdmdl=1787",
+                "sha256": "0d98962630c8e46ecb1c07a8e7f727c2d145e653d9430c1e78960cf914fdc528"
+              },
+              "page": "24",
+              "section": "Art. 17",
+              "quote": "Il dipendente ha diritto ad una tredicesima mensilità pari alla retribuzione mensile percepita nel mese di dicembre e ad una quattordicesima mensilità pari alla retribuzione mensile percepita nel mese di giugno, costituite dagli elementi di cui al primo comma dell’articolo 16."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -2148,7 +2180,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "d5d8d1355a5ad55b0e308bc061839ce9d5c8ef5a7b620b66461048b6bd1aa106",
+    "source_hash": "af19016449cfe4ae5088e5fd93a35eb779ca495179b2452e3b98850ab7841617",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

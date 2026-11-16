@@ -315,6 +315,27 @@
           "parameters.health_funds",
           "parameters.employer_funds"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+            "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -335,9 +356,20 @@
           "valid_until": null,
           "value": 14,
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ancef-fonte.pdf",
+                "title": "Art. 47",
+                "kind": "associazione",
+                "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+                "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
+              },
+              "page": "29",
+              "section": "Art. 47",
+              "quote": "Al personale compreso nella sfera di applicazione del presente contratto, sarà corrisposto, il 1º Luglio di ogni anno, un importo pari ad una mensilità della retribuzione in atto al 30 Giugno immediatamente precedente (quattordicesima mensilità)."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -1781,7 +1813,7 @@
     "effective_until": null,
     "source": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
     "verification_status": "unverified",
-    "source_hash": "32ef8784b569019f863a7c6df5452c9b1f512b7492272004660be7dc3bcd2c6c",
+    "source_hash": "2c15973b43fe029e623fc749678d62f5b6e242d81a7c81bd26f1186643d95bb1",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

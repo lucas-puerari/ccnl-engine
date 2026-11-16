@@ -298,6 +298,27 @@
         "checked": [
           "parameters.seniority_increments"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+            "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -318,9 +339,20 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "flai-ccnl-2026.pdf",
+                "title": "Art. 76 - Retribuzione annua",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+              },
+              "page": "83",
+              "section": "Art. 76 - Retribuzione annua",
+              "quote": "Per ogni anno solare di servizio spettano al dipendente quattordici mensilità di retribuzione."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -5079,7 +5111,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "47512755d1c81545c9483f929bcaacc00509fc234180ff69bc8d4c03f1b9bd7d",
+    "source_hash": "43aced3ece2d8c63706947aae12bdb7fb5b631761ccdf9f1cebfa99f27bd4ea9",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

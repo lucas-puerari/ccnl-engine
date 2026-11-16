@@ -65,10 +65,10 @@ def _weak(result: PeriodResult) -> set[tuple[str | None, str]]:
 
 
 def test_an_assumed_ccnl_rule_blocks_the_capability_that_reads_it() -> None:
-    """Agenti immobiliari, level Q: its minimum is recorded assumed."""
+    """Agenti immobiliari, level Q: its seniority rule is recorded assumed."""
     result = regular_period(ccnl_id="agenti-immobiliari-fiaip", level_code="Q")
 
-    assert ("base_salary", "assumed") in _weak(result)
+    assert ("seniority", "assumed") in _weak(result)
     assert not result.is_payable
 
 

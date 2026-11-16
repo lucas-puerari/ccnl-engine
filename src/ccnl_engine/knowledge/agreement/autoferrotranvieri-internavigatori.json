@@ -155,9 +155,20 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-tpl-integrato.pdf",
+                "title": "Art. 19",
+                "kind": "associazione",
+                "url": "https://www.amt.genova.it/amt/accordi_aziendali/CCNL_TPL_integrato.pdf",
+                "sha256": "288cec0840b850299ce1f5b65ae9b57dd7b338aac2d1bca742f71c71f543ee36"
+              },
+              "page": "10",
+              "section": "Art. 19",
+              "quote": "Al personale in servizio viene corrisposta, tra il 1° e il 20 luglio di ciascun anno, la 14° mensilità nella misura di una mensilità della retribuzione normale del mese di giugno."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -6240,7 +6251,7 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "cb73f0a10b0cf6b9b8d47a565737c5273f05436fee88579cab1e72855ec1f4fd",
+    "source_hash": "bdbea73cf241a892788b700ab6d65d493279772fbe3ea76c1fe6e7e178182fcb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -6541,6 +6552,27 @@
         "checked": [
           "parameters.employer_funds",
           "parameters.contractual_fund_contribution"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.amt.genova.it/amt/accordi_aziendali/CCNL_TPL_integrato.pdf",
+            "sha256": "288cec0840b850299ce1f5b65ae9b57dd7b338aac2d1bca742f71c71f543ee36"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

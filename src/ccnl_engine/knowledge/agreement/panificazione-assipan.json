@@ -151,6 +151,27 @@
           "levels.base_salary",
           "levels.fixed_allowances"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+            "sha256": "8533abbd8719e1de2e7f3fa2f228ebe44e62154d27b2e9a3120bd47ab31e1abf"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -171,9 +192,20 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-panificazione-2025.pdf",
+                "title": "Art. 52",
+                "kind": "associazione",
+                "url": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+                "sha256": "8533abbd8719e1de2e7f3fa2f228ebe44e62154d27b2e9a3120bd47ab31e1abf"
+              },
+              "page": "66",
+              "section": "Art. 52",
+              "quote": "Il lavoratore ha diritto ad una 13ª mensilità da corrispondere entro il 20 dicembre di ogni anno e ad una 14ª\nmensilità da corrispondere entro il 1° luglio di ogni anno; tali mensilità aggiuntive saranno commisurate alla\nretribuzione normale relativa all'ultimo mese di riferimento."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -2036,7 +2068,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "b88bff4f888bb7dac85e3483ec852152384d98a0e5a06376bd74db31e55d3edf",
+    "source_hash": "ddb19f5a2c82156abd5fd091d9cf440900a9d275ccc3fbc25dabafa72d962a40",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

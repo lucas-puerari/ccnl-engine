@@ -5183,9 +5183,21 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-autostrade-2024.pdf",
+                "title": "Art. 38 - Premio annuo",
+                "kind": "associazione",
+                "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+                "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+              },
+              "page": "59",
+              "section": "Art. 38 - Premio annuo",
+              "quote": "A tutti i lavoratori in servizio la Società corrisponde, unitamente alle competenze del mese di giugno, un premio annuo pari alla retribuzione mensile costituita a tale effetto dallo stipendio e dall'indennità di contingenza secondo gli importi di cui a ciascuna Sezione Speciale. Ciascuno degli elementi citati viene corrisposto nella misura in vigore al 30 giugno."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
           }
         }
       ]
@@ -5400,7 +5412,7 @@
     "effective_until": null,
     "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
     "verification_status": "unverified",
-    "source_hash": "48fb917915d2046260e14c7ee2115eac37e3fb68ceeec63a509d16aad7dc6bfd",
+    "source_hash": "3e910c966b9d423db5fa987616e3d65ff048c545477bd8447da3e55bf1178e2c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5751,6 +5763,27 @@
         "checked": [
           "work_rules.sickness_rules.comporto_windows",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf",
+            "sha256": "a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

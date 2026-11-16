@@ -2070,9 +2070,20 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "CCNL-Sport-2024-2026.pdf",
+                "title": "Art. 125",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "91",
+              "section": "Art. 125",
+              "quote": "Il 5 dicembre di ogni anno i datori di lavoro dovranno corrispondere al personale dipendente un\nimporto pari ad una mensilità della retribuzione di fatto di cui all'art. 117 (esclusi gli assegni\nfamiliari)."
+            },
+            "transformation": "13 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -2223,7 +2234,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "968fda520f1d8483fb8556a96b8b0b045dec812a659b9422a71558fa78125292",
+    "source_hash": "cb967bd219a8dcffd1f24bfc671d6c0b17e7efcdfde627d6d5bb2f964d81e4b2",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -3480,6 +3491,27 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

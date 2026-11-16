@@ -158,9 +158,21 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "termali.pdf",
+                "title": "Art. 37 – 13° e 14° mensilità",
+                "kind": "associazione",
+                "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+              },
+              "page": "47",
+              "section": "Art. 37 – 13° e 14° mensilità",
+              "quote": "I. In occasione del Natale l'Azienda erogherà a tutte le lavoratrici ed a tutti i lavoratori una\n13° mensilità pari alla retribuzione mensile di fatto percepita dalla lavoratrice e dal lavoratore\n(173,33 ore). Salvo diversa pattuizione a livello aziendale, con la retribuzione del mese di giugno\nl'Azienda erogherà altresì una 14° mensilità pari alla retribuzione mensile di fatto (173,33 ore)\npercepita dalla lavoratrice e dal lavoratore."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
           }
         }
       ]
@@ -2864,7 +2876,7 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "cc3c23768684f03c290484341b94115e4162147174799689a537d42219ecb13d",
+    "source_hash": "976101193bbd89e74f95290b768cde02c1ba9f9a02e591b7cc4b28f161aac6e6",
     "published_at": "2026-09-12",
     "source_type": "commercial_secondary"
   },
@@ -3059,6 +3071,27 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+            "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

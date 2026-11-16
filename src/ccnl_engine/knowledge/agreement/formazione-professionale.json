@@ -126,9 +126,20 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-236584-estratto.pdf",
+                "title": "Art. 26",
+                "kind": "associazione",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/236584",
+                "sha256": "9b42f827613b72c414f475c30a8aaf0ff107baafc954b5c178feffb12a3990cf"
+              },
+              "page": "41",
+              "section": "Art. 26",
+              "quote": "Al personale dipendente, entro il 16 dicembre di ogni anno, è cor-\n    risposta la retribuzione globale mensile vigente a quella data a\n    titolo di tredicesima mensilità."
+            },
+            "transformation": "13 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -1122,7 +1133,7 @@
     "effective_until": null,
     "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
     "verification_status": "verified",
-    "source_hash": "db8effe587dddb4db57a9811433b82f5af046d80b54b11ae37e96ab3cbc30d68",
+    "source_hash": "fd2686da90fc44d07b2ac6ad1daf6acbc77bb50f65449564e30bacb84be256bc",
     "published_at": "2026-09-11",
     "source_type": "contracting_party"
   },
@@ -1629,6 +1640,27 @@
         "independence": "separate_model",
         "checked": [
           "dual_apprenticeship"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/236584",
+            "sha256": "9b42f827613b72c414f475c30a8aaf0ff107baafc954b5c178feffb12a3990cf"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

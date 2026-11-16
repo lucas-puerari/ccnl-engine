@@ -401,6 +401,27 @@
           "work_rules.time_supplements",
           "work_rules.capability_basis"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/wp-content/uploads/2014/10/CCNL-Legno-Lapidei-Artigiani-25.03.14.pdf",
+            "sha256": "6e40ca166cb3acb734bc103bf1692e60c4ca97344138d20dba07d66d59b3de30"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -421,9 +442,21 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "feneal-2014.pdf",
+                "title": "Art. 47 bis (lapidei); art. 47 (legno)",
+                "kind": "associazione",
+                "url": "https://www.fenealuil.it/wp-content/uploads/2014/10/CCNL-Legno-Lapidei-Artigiani-25.03.14.pdf",
+                "sha256": "6e40ca166cb3acb734bc103bf1692e60c4ca97344138d20dba07d66d59b3de30"
+              },
+              "page": "45",
+              "section": "Art. 47 bis (lapidei); art. 47 (legno)",
+              "quote": "una tredicesima mensilità di importo pari alla retribuzione mensile di fatto."
+            },
+            "transformation": "13 monthly pays: twelve and the additional months the article sets.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
           }
         }
       ]
@@ -3829,7 +3862,7 @@
     "effective_until": null,
     "source": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
     "verification_status": "unverified",
-    "source_hash": "339e93697b8fcbd23931096c4a0f23d3856e137f2bc8c538a999145b70cb1c23",
+    "source_hash": "1ade75b5ec084b1114e5800b5bef0b03e64f0a67c974b039fb083ba8e5cbb3c7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

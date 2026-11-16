@@ -235,6 +235,27 @@
         "checked": [
           "work_rules.sunday_holidays"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
+            "sha256": "6cef4caef940ce4fc26ce76bde9669d95d7e7a3cf74cf8bc36ed555c2a878d91"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -255,9 +276,20 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-agenziemarittime21-23.pdf",
+                "title": "ART. 25",
+                "kind": "associazione",
+                "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
+                "sha256": "6cef4caef940ce4fc26ce76bde9669d95d7e7a3cf74cf8bc36ed555c2a878d91"
+              },
+              "page": "27",
+              "section": "ART. 25",
+              "quote": "Entro il 10 luglio di ogni anno l’azienda è tenuta a corrispondere al personale una quattordicesima mensilità pari alla retribuzione globale mensile in atto al 30 giugno."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -1348,7 +1380,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "cef94d1012b63e28642616b77b1bf73c20c002060d469789d4efb07cb0146a77",
+    "source_hash": "60087730b91e89d595dd93f12aae04687a247306162a98695185f4b65de7b548",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 53 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 1 verified / 54 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-23 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Annex 10 first-semester 2024 vacancy arrears, page 178, against the cached PDF. | confirmed | Annex 10: A1 397.79, A2 361.14, B 319.11, C 300.00, D 289.69, E 265.57, F 244.92; one twelfth per first-semester month or fraction exceeding 15 days, permanent staff in service at signing, paid September 2024. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 41 II special comporto eligibility, rolling 48-month count and full fixed pay, PDF pp. 111–113. | confirmed | A documented listed grave pathology, certified L. 68/99 disability or certified related life-saving therapy changes the limit and full-pay days to 730; ordinary days still count in the 48-month window. |
 | 2026-11-09 | claude-opus-5-5 (ai) | RIA and promotion-only absorption, Arts. 63, 67, 68 and 78, pp. 140-142 and 148. | confirmed | — |
+| 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
 
 ## Salary table
 

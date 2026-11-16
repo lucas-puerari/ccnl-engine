@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 64 verified / 5 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 64 verified / 6 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-10-30 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-10 | claude-opus-5-5 (ai) | Tables A, A-bis, A-ter, A-quater pp. 2, 4, 6, 8; Arts. 43, 49, 117, 119 pp. 40, 43, 72-73. | corrected | Added nine printed full-time monthly salaries and Art. 125 post-2004 seniority steps of EUR 10.00; hourly divisors 195/208 and TFR-only accommodation valuation remain limitations. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 117(1)-(3) hourly coefficients and Arts. 119-120 ordinary pay elements, cached scanned PDF pp. 72-74. | corrected | A2/A4/A7/A9 use 208; A1/A3/A5/A6/A8 use 195; B/C/D use 173. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source. | corrected | The 180 days of art. 105 c. 7 count over the calendar year. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 13 monthly pays. |
 
 ## Salary table
 

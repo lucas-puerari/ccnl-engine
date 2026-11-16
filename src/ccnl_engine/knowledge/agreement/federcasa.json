@@ -167,6 +167,27 @@
         "checked": [
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
+            "sha256": "4c9e5b5a0a22a0712fbbe475c9cc77248f0e0a33b3c338fab6881915146c2c0c"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -187,9 +208,21 @@
           "valid_until": null,
           "value": 14,
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "CCNL-Federcasa-2022-2024.pdf",
+                "title": "Art. 76, comma 2",
+                "kind": "associazione",
+                "url": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
+                "sha256": "4c9e5b5a0a22a0712fbbe475c9cc77248f0e0a33b3c338fab6881915146c2c0c"
+              },
+              "page": "68",
+              "section": "Art. 76, comma 2",
+              "quote": "2. L'Azienda corrisponde altresì, unitamente alla retribuzione del mese di giugno, una quattordicesima mensilità pari a detta retribuzione."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
           }
         }
       ]
@@ -1221,7 +1254,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "c9f5871a66c47255ba0efe3924cf8d287dde0212c02a51b46caa48b0658cbc56",
+    "source_hash": "1c626fede5fdfcc51b9d20367ddf95c5621806146b926ff9f910d440e52a960b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

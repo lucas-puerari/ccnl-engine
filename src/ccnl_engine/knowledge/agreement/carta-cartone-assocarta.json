@@ -205,6 +205,27 @@
           "work_rules.time_supplements",
           "work_rules.capability_basis"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+            "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -225,9 +246,20 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-carta-industria2022.pdf",
+                "title": "Art. 86",
+                "kind": "associazione",
+                "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+                "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77"
+              },
+              "page": "86",
+              "section": "Art. 86",
+              "quote": "L'azienda corrisponderà una tredicesima mensilità pari a 30/26 della normale retribuzione mensile percepita dall'impiegato; la corresponsione di tale mensilità avverrà normalmente alla vigilia di Natale."
+            },
+            "transformation": "13 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -2885,7 +2917,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
     "verification_status": "unverified",
-    "source_hash": "0ca0ff9893496d6496e34e23c058ad7762415e85c6401c1aaa95c7f7ee03a53f",
+    "source_hash": "b6a2217e564212d445ff4202f16362b9804727a420ee829d988adeb700419aa4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -35,21 +35,6 @@
       }
     },
     {
-      "id": "rule_additional_months_2024_10_01",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/aziende-termali-federterme.json#additional_months[2024-10-01]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/aziende-termali-federterme.json#additional_months[2024-10-01]"
-        ]
-      }
-    },
-    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",

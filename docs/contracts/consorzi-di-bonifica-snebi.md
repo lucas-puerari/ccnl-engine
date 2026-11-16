@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 50 verified / 10 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 50 verified / 11 derived / 0 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-21 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 72 scatti table of the CCNL 2023-2026 (PDF p. 72), against the research of a separate model session. | corrected | The sub-level mapping was inverted: ex 4ª f.f. has the lower scatto (44.44, 47.73), ex 5ª f.f. the higher (47.92, 50.05). |
 | 2026-11-15 | claude-opus-5-5 (ai) | Sick pay and comporto against the research of a separate model session; quotes checked on the source. | corrected | Replaced the per-episode tiers with the chain of art. 98 reset after three months, 10 months in full and 5 at half pay. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Amounts of the later seniority increments of art. 72, from the research of a separate model session. | confirmed | Art. 72 gives each of the ten increments the unit amount of its comma 4 or 5: the tiers already pay it. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
 
 ## Salary table
 

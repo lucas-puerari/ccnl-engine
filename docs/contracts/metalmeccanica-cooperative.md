@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 37 verified / 9 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 37 verified / 10 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-07-22 |
-| **Last review** | 2026-11-13 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Titolo IV - Retribuzione ed altri istituti economici, Art. 7 - Tredicesima mensilità (p. 123): "il lavoratore ha diritto a tanti dodicesimi dell'ammontare della 13° mensilità quanti sono i mesi di anzianità di servizio presso l'azienda. La frazione di mese superiore a 15 giorni va considerata a questi effetti come mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 36 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 | 2026-11-13 | claude-opus-5-5 (ai) | Allegato 10 artt. 1, 2 and 8 of the C016 coordinated text of 16 January 2025 (CNEL 211353, PDF pp. 189 and 192, scanned pages read on the images) and art. 5 of the 2025 renewal (CNEL 242518). | corrected | The 85/90/95% table is C016's own (not only Federmeccanica's): limitation apprenticeship_from_federmeccanica removed; added the 30 and 24 month tracks of the same table. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 13 monthly pays. |
 
 ## Salary table
 

@@ -238,6 +238,27 @@
         "checked": [
           "work_rules.parental_hourly"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.studiobergonzini.it/uploads/3004241047572021-04-12-ccnlpdf.pdf",
+            "sha256": "31758caf2480d3645bf46c30b70c28c921d0eb13e36d52ca49d9d858f960adb8"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -258,9 +279,20 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "testo-2021.pdf",
+                "title": "Art. 25, comma 1",
+                "kind": "associazione",
+                "url": "https://www.studiobergonzini.it/uploads/3004241047572021-04-12-ccnlpdf.pdf",
+                "sha256": "31758caf2480d3645bf46c30b70c28c921d0eb13e36d52ca49d9d858f960adb8"
+              },
+              "page": "39",
+              "section": "Art. 25, comma 1",
+              "quote": "1. A norma di quanto stabilito dall'art. 17 dell'Accordo Interconfederale 27.10.1946, l'azienda è tenuta a corrispondere al lavoratore, considerato in servizio, in occasione della ricorrenza natalizia, una tredicesima mensilità di importo ragguagliato alla retribuzione mensile, calcolata con riferimento agli elementi ed alle modalità di cui all'art. 19, comma 2."
+            },
+            "transformation": "13 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -3010,7 +3042,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
     "verification_status": "unverified",
-    "source_hash": "8c6d116fb6e486b7eca50678fe23898dd2d9b7d463f86790a5523ad7a78edf71",
+    "source_hash": "1f6fbab4077456deebbbd9c7bd613fa185c954cf9ca8077274c9454008b8c4b4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

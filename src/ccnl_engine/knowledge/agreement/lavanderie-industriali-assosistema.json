@@ -167,9 +167,20 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-testo-unico-2023.pdf",
+                "title": "Art. 111",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245795",
+                "sha256": "cdfa2207cd7010a97b45d65123fccd7822632475cc14e7b4eef5b5e6cf705aa7"
+              },
+              "page": "132",
+              "section": "Art. 111",
+              "quote": "La liquidazione della tredicesima mensilità sarà effettuata nella misura annua di una mensilità della retribuzione di fatto."
+            },
+            "transformation": "13 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -2031,7 +2042,7 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "4d85d4bf9446b8f9d2d0160c8274da2ed7b3f2f85dd425d727a26daf41ab74dd",
+    "source_hash": "37c9c19cdc395264bfb35991010f948540c897e2be04271fed1be191ddbe8e35",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2329,6 +2340,27 @@
         "independence": "same_process",
         "checked": [
           "levels.base_salary"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245795",
+            "sha256": "cdfa2207cd7010a97b45d65123fccd7822632475cc14e7b4eef5b5e6cf705aa7"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

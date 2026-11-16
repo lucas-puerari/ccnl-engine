@@ -200,9 +200,20 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-2022.pdf",
+                "title": "Art. 176",
+                "kind": "associazione",
+                "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+              },
+              "page": "110",
+              "section": "Art. 176",
+              "quote": "Al personale compreso nella sfera di applicazione del presente contratto sarà corrisposto, il 1° luglio di ogni anno, un importo pari ad una mensilità della retribuzione di fatto di cui all'art.168 in atto al 30 giugno immediatamente precedente (quattordicesima mensilità), esclusi gli assegni familiari."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -2202,7 +2213,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "7eea17ce4997bae9e280ee5d802b67991d77fff71e40d5a95a16e497e507e00c",
+    "source_hash": "c521ce1d9c8ddc353135b2c287cab0ee37b019f66beda7362d5534be1fbbc4cc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3459,6 +3470,27 @@
         "checked": [
           "parameters.health_funds",
           "parameters.employer_funds"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

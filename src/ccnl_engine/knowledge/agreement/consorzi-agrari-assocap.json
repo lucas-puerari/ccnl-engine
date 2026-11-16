@@ -352,6 +352,27 @@
         "checked": [
           "work_rules.capability_basis"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+            "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -409,9 +430,20 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-consorzi-agrari-2024-2027.pdf",
+                "title": "Art. 41, comma 2",
+                "kind": "associazione",
+                "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+                "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+              },
+              "page": "40",
+              "section": "Art. 41, comma 2",
+              "quote": "2) Oltre a detta mensilità, in occasione della Pasqua o del Ferragosto dell’anno successivo, ne sarà corrisposta un’altra formata dagli stessi elementi nella misura in atto nel mese di erogazione, fermo restando che detta mensilità si riferisce all’anno precedente."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -2463,7 +2495,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "faaf6ff15d78c7691728c9f3b383e0d07deab3741fdb9e3c1c5aaba8574d161f",
+    "source_hash": "91f727c942f7a5737ecf011204f7322b0f5975312b128ae8baad0ea06943b33f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

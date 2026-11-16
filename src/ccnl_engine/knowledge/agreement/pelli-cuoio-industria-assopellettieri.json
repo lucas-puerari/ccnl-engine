@@ -109,9 +109,21 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "pelli.pdf",
+                "title": "Art. 79",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/pelli_ombrelli/170310_PELLI_RINNOVO%20CCNL%202016-2019.pdf",
+                "sha256": "0b98e2421572705c4ca03b3a418ecbdf7961df291b4c07357161d94908fb6d79"
+              },
+              "page": "69",
+              "section": "Art. 79",
+              "quote": "non oltre il 24 dicembre nella misura annua di una mensilità della retribuzione di fatto."
+            },
+            "transformation": "13 monthly pays: twelve and the additional months the article sets.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
           }
         }
       ]
@@ -1346,7 +1358,7 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "cfc48c1058c0dd48026892b75ed0fbdc16c349f6d14a16d92997a036bb684354",
+    "source_hash": "8fb73f1f8bd1a44a8b7f77379429cf82cec161cb1a01b939408ca7111e87db66",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1663,6 +1675,27 @@
         "checked": [
           "apprenticeship",
           "levels[1].base_salary"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/pelli_ombrelli/170310_PELLI_RINNOVO%20CCNL%202016-2019.pdf",
+            "sha256": "0b98e2421572705c4ca03b3a418ecbdf7961df291b4c07357161d94908fb6d79"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

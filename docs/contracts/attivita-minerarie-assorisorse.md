@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 36 verified / 0 derived / 2 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 36 verified / 1 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2022-07-13 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2025-01-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-17 | claude-opus-5-5 (ai) | The minimi of the nine levels against Art. 17 of the renewal of 13 July 2022. | corrected | Art. 17 (p. 9 of the scan, read by OCR and on the page image): the 36 minimi of the nine levels at 1-1-2022, 1-1-2023, 1-12-2023 and 1-1-2025 move from assumed to verified.<br>Corrected: level 8 at 1-1-2022 is printed 1.557,23, and 1.557,23 + 33,33 (the first tranche at parameter 100) gives the 1.590,56 printed for 1-1-2023; the file held 1.557,28. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | seniority_not_modelled: The 2017 renewal abolishes new scatti from 1 April 2017. The agreement sets maximum_count=0 and amount_by_level={}, so no new increments accrue. For a worker with a documented post-absorption residual, SeniorityFact.earned.monthly is returned unchanged by earned_seniority (zero r |
+| 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 13 monthly pays. |
 
 ## Salary table
 

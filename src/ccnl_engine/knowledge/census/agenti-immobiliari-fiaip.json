@@ -3,21 +3,6 @@
   "ccnl_id": "agenti-immobiliari-fiaip",
   "requirements": [
     {
-      "id": "rule_additional_months_2025_05_01",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/agenti-immobiliari-fiaip.json#additional_months[2025-05-01]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/agenti-immobiliari-fiaip.json#additional_months[2025-05-01]"
-        ]
-      }
-    },
-    {
       "id": "rule_seniority_increments",
       "institute": "seniority",
       "variant": "all",

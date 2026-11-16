@@ -960,9 +960,21 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "accordo-167336.pdf",
+                "title": "Art. 112",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+              },
+              "page": "65",
+              "section": "Art. 112",
+              "quote": "Ogni anno, entro il 15 Luglio, deve essere corrisposto al lavoratore un importo pari ad una mensilità della normale retribuzione. La 13ma si intende riferita al periodo annuale 1° gennaio - 31 dicembre e la 14ma al periodo annuale 1° luglio - 30 giugno."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
           }
         }
       ]
@@ -1224,7 +1236,7 @@
     "effective_until": null,
     "source": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
     "verification_status": "unverified",
-    "source_hash": "b0b4f5cea9eb8c8542020b5986d21e5ecbdbc27d8464659ae27ae7c1c8c266a8",
+    "source_hash": "70a3b4be7b017edd4d3eba61a968786ae57f1328e1fdd85e5051dc468f693e31",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1882,6 +1894,27 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+            "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

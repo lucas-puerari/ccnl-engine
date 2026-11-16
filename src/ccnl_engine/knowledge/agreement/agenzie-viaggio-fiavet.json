@@ -67,9 +67,20 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "rinnovo2024.pdf",
+                "title": "Articolo 158",
+                "kind": "associazione",
+                "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AgenzieViaggioTurismo_AccordoRinnovo_26.7.24.pdf",
+                "sha256": "4a110c78751772f16c62ea511166996a2316c61bf8096c9259e67eb343874d68"
+              },
+              "page": "28",
+              "section": "Articolo 158",
+              "quote": "A tutto il personale sarà corrisposta una mensilità della retribuzione in atto al 30 giugno di ciascun armo (paga-base nazionale conglobata, eventuali scatti di anzianità, eventuale terzo elemento o quote aggiuntive provinciali, eventuali trattamenti integrativi salariali aziendali comunque denominati), esclusi gli assegni familiari."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -2484,7 +2495,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "8c58e48b6345db65fa903906b10bb001959be20fc193d917a4e1bcc6443abbfd",
+    "source_hash": "6751706c9eea0800ea7f89697a68794c17d887f0c35ba2d99a48aff933454358",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2826,6 +2837,27 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.sunday_holidays"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AgenzieViaggioTurismo_AccordoRinnovo_26.7.24.pdf",
+            "sha256": "4a110c78751772f16c62ea511166996a2316c61bf8096c9259e67eb343874d68"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

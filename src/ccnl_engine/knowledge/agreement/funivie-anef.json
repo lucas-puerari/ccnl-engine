@@ -113,9 +113,20 @@
           "valid_until": null,
           "value": 14,
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                "title": "Art. 21",
+                "kind": "associazione",
+                "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+                "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
+              },
+              "page": "28",
+              "section": "Art. 21",
+              "quote": "In coincidenza con il pagamento della retribuzione di giugno al lavoratore viene corrisposto un premio annuo o 14ª mensilità pari alla retribuzione mensile ordinaria ultima raggiunta."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -2025,7 +2036,7 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "6aa3837d7a040621d3fd3be44d816f2eda496525793e86ee55c478021036b1d9",
+    "source_hash": "0b6721e9331a5ac9e600286e805583a79d8019d19ca7c40f399b9c3bd0229e63",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2432,6 +2443,27 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+            "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

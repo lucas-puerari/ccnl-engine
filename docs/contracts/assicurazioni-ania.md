@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 21 verified / 9 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 21 verified / 10 derived / 0 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-05-13 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Allegati 2/A and 2/B (tranches 1.1.2026, 1.1.2027, 1.1.2028) of the signed annex, scanned pp. 3, 5, 7, 9, transcribed cell by cell by a separate model session; art. 113 of the CCNL 2017 (CNEL 224217, p. 81). Class 1 of 2/B checked against the base salaries of the file and on the page image (L5 2027). | corrected | Added Level.class_tables for both cohorts.<br>Corrected the 2027 base salary of L5 to the printed 2391.48 (was 2391.49). |
 | 2026-11-15 | claude-opus-5-5 (ai) | Sickness of artt. 44 and 46 against the research of a separate model session; quotes checked on the OCR of the source. | corrected | Replaced 360 days of one episode with the chain of art. 46 reset after four months, by seniority, with the serious-illness and hospital rules of art. 44. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: none.shift_work.<br>Left out: bands[0:holiday]: work/role/rate not applicable (personale della Disciplina Speciale, Parte prima); bands[1:sunday]: work/role/rate not applicable (personale della Disciplina Speciale, Parte prima); bands[2:rest_day]: work/role/rate not applicable (personale della Disciplina Speciale, Parte prima); bands[3:night_early]: quote quote_not_in_file; travel: kind delegated applied by hand. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
 
 ## Salary table
 
