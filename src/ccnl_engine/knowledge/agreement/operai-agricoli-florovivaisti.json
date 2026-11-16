@@ -197,7 +197,7 @@
       },
       {
         "kind": "simplification",
-        "text": "ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (Art. 54-bis, new, verbale of 28 May 2026): from 1 January 2027 a fixed-term operaio who worked at least 150 days a year for the same employer for three consecutive years receives, from the fourth year, 0.4% of the salario contrattuale. The request carries no history of days per employer, so it is not paid.",
+        "text": "ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (Art. 54-bis, new, verbale of 28 May 2026): from 1 January 2027 a fixed-term operaio who worked at least 150 days a year for the same employer for three consecutive years receives, from the fourth year, 0.4% of the salario contrattuale. FixedTerm.qualifying_years states the consecutive years: the element is the hourly percentage ELEMENTO_AGGIUNTIVO of the fixed-term pay.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -209,7 +209,8 @@
             ],
             "effective_from": "2027-01-01"
           },
-          "remediation": "Add the consecutive years of at least 150 days with the employer to the request and pay 0.4% of the salary, then remove this note."
+          "remediation": "Add the consecutive years of at least 150 days with the employer to the request and pay 0.4% of the salary, then remove this note.",
+          "status": "resolved"
         }
       },
       {
@@ -501,6 +502,47 @@
               }
             },
             "include_territorial": true
+          },
+          {
+            "code": "ELEMENTO_AGGIUNTIVO",
+            "description": "Elemento aggiuntivo della retribuzione degli operai a tempo determinato (art. 54-bis)",
+            "rate": {
+              "periods": [
+                {
+                  "valid_from": "2027-01-01",
+                  "valid_until": null,
+                  "value": "0.004"
+                }
+              ]
+            },
+            "include_territorial": true,
+            "settlement": "cash",
+            "tfr_relevant": true,
+            "fixed_term_years": 3,
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "verbale-ccnl-operai-agricoli-2026-05-28-flai",
+                  "title": "Verbale di accordo di rinnovo del CCNL operai agricoli e florovivaisti, 28 maggio 2026 (FLAI CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/Verbale-di-accordo-CCNL-operai-agricoli-e-florovivaisti-maggio-2026.pdf",
+                  "published_on": "2026-05-28",
+                  "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
+                },
+                "page": "34",
+                "section": "Art. 54 bis (nuovo articolo) - Elemento aggiuntivo della retribuzione",
+                "quote": "A decorrere dal 1 ° gennaio 2027 agli operai a tempo determinato che hanno svolto presso la stessa azienda per almeno tre anni consecutivi un numero di giornate non inferiore a 150, è riconosciuto, a partire dal quarto anno, un elemento aggiuntivo della retribuzione pari a 0,4 per cento del salario contrattuale di cui all'art. 50 del presente CCNL."
+              },
+              "transformation": "0.4% of the salario contrattuale of art. 50 (the provincial wage, so territorial elements join the base, as for the terzo elemento, not compounded on it) on the hours of an OTD with at least three consecutive years of 150 days with the employer (FixedTerm.qualifying_years >= 3), from 1 January 2027. Readings: the years before 2027 count, as 'hanno svolto' looks back; the element is pay, so it enters the TFR of 8.63% (art. 58 excludes only the terzo elemento); percentages_on_overtime applies it to the overtime hours too. The second paragraph keeps it in the following years while the worker goes on with 150 days a year, which the stated years carry.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-16T00:00:00Z",
+                "effective_from": "2027-01-01",
+                "verification_status": "unverified"
+              }
+            }
           }
         ],
         "provenance": {
@@ -1321,7 +1363,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "48a871970c702f7f82969d3a72af7759bd8dd1841aa653c9aef1ea20738b417b",
+    "source_hash": "311b4f37dfc4f84b58081dc298a4efff985adbb09e976c2f1b04c928bd0c95b3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
