@@ -660,7 +660,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-istruzione-ricerca-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "e143b17acaae10337a539712bec15900b1f36ca980e0a5063eb419bf6969c7ac",
+      "source_hash": "4a113c20542e1f2d2fcd2e0f06de5266c68368750f00d6bcd6a94aa5f3ee6bb2",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-istruzione-ricerca-aran.json.gz"
@@ -3181,7 +3181,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "c90526de2b9247cf29f2066a17050f8223ab8c49130dfefdb98288c5d031d0b5",
+      "source_hash": "6f6d1f959dda63a072100a553af81340492094e688b7191f53882fc682bf5b04",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/dirigenza-istruzione-ricerca-aran.json.gz",

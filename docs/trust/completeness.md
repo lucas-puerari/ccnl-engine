@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 15/136 CCNLs**; complete except declared residuals: 2. Bundle: 246 weak rules, 255 open limitations (255 with a monetary impact), 33 declared residuals.
+**Complete: 15/136 CCNLs**; complete except declared residuals: 3. Bundle: 246 weak rules, 254 open limitations (254 with a monetary impact), 34 declared residuals.
 
 ## Declared window
 
@@ -110,7 +110,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [cooperative-sociali](../contracts/cooperative-sociali.md) | `socio-sanitario` | reviewed | — | 5 rows | 5 open requirements; 2 monetary limitations; 3 outside_input limitations; 3 non-native capabilities |
 | [dirigenza-funzioni-centrali-aran](../contracts/dirigenza-funzioni-centrali-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 0 rows | complete; 3 limitations awaiting publication |
 | [dirigenza-funzioni-locali-aran](../contracts/dirigenza-funzioni-locali-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 0 rows | complete; 3 limitations awaiting publication |
-| [dirigenza-istruzione-ricerca-aran](../contracts/dirigenza-istruzione-ricerca-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 1 rows | 1 open requirement; 1 monetary limitation; 1 non-native capability |
+| [dirigenza-istruzione-ricerca-aran](../contracts/dirigenza-istruzione-ricerca-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 0 rows | complete except 1 declared residual |
 | [dirigenza-sanitaria-area-sanita-aran](../contracts/dirigenza-sanitaria-area-sanita-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 1 rows | tables from 2026-03-01; 1 open requirement; 1 outside_input limitation; 5 non-native capabilities |
 | [dirigenza-sanitaria-medico-veterinaria-aran](../contracts/dirigenza-sanitaria-medico-veterinaria-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 6 rows | tables from 2026-03-01; 6 open requirements; 3 weak rules; 2 monetary limitations; 1 outside_input limitation; 2 non-native capabilities |
 | [distribuzione-cooperativa-ancc](../contracts/distribuzione-cooperativa-ancc.md) | `commercio` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 monetary limitation; 2 non-native capabilities; 2 declared residuals |

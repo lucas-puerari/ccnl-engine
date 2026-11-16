@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-08-06 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2024-01-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-15 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text. The CCNL text read is silent: the law applies. | confirmed | work_rules.sunday_holidays: 04-25, 05-01, 06-02 |
+| 2026-11-16 | claude-opus-5-5 (ai) | Injury pay (art. 23 CCNL Area IR 8/7/2019) and the hourly divisor, read in the cited files by sha256. | corrected | Applied: the whole pay during the injury.<br>The divisor 165 is not in the Area IR texts nor in those of the former areas V and VII: declared unsourced. |
 
 ## Salary table
 
@@ -79,12 +80,12 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "dirigenza-istruzione-ricerca-aran/approximate_hourly_divisor · workplace_injury · impact unknown · open"
-    Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area IR 2022-2024 — stesso orario di riferimento delle altre aree ARAN dirigenza). Standard contrattuale PA.
+!!! warning "dirigenza-istruzione-ricerca-aran/approximate_hourly_divisor · workplace_injury · impact unknown · unsourced"
+    Hourly divisor 165 = 38 hours a week x 52 / 12, not set by the Area IR texts. Since the injury is paid in full (art. 23 CCNL 8/7/2019), it only splits the total between the INAIL indemnity and the employer's integration.
 
     **Applies when:** `workplace_injury` applies.
 
-    **Remediation:** Source the divisor of the Area IR (or the INAIL base of the dirigenti) and replace 165, or mark it not applicable so the INAIL daily base is not derived from it.
+    **Remediation:** Source the divisor of the Area IR, or of the former areas V, VII and ASI its art. 1 c. 13 keeps in force, and replace 165.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
