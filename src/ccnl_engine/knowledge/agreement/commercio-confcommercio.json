@@ -213,7 +213,8 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Settle whether the daily quota of art. 210 measures a day of notice and apply it, then resolve this limitation."
+          "remediation": "Resolved by the maintainer decision of 2026-11-15: a day of notice is a calendar day of the month, paid at the monthly pay over 30, as art. 209 refers the monthly pay to all the days of the calendar month; the 1/26 daily quota of art. 210 measures the working days of the absences and deductions, not the calendar days of a notice.",
+          "status": "resolved"
         }
       }
     ]
@@ -4351,7 +4352,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "56d4a5811aa882bd380398d10bc534f559c28404389c0b286a2075d323aa343c",
+    "source_hash": "deacc19b25aed041b594d8b59353cd07a7cce8394e48f3b037bfe58efa6e5369",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5937,6 +5938,37 @@
           "review_id": "2026-11-15-ai-commercio-confcommercio-travel"
         }
       }
+    },
+    "capability_basis": {
+      "shift_work": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-tds-confcommercio-testo-unico-2019",
+              "title": "CCNL Terziario Distribuzione e Servizi, Testo Unico 30 luglio 2019",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+              "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+            },
+            "page": "33",
+            "section": "Art. 12 c. 1 n. 1",
+            "quote": "Nelle aziende che abbiano, anche in più unità decentrate nell’ambito di una stessa provincia, più di trenta dipendenti potranno essere concordate particolari norme riguardanti: 1) turni o nastri orari, distribuzione dell’orario di lavoro attraverso uno o più dei seguenti regimi di orario: turni continui, turni spezzati, fasce differenziate;"
+          },
+          "transformation": "The CCNL sets no shift supplement: the organisation of shifts is left to the company agreement (art. 12), and the ordinary night hours, in shifts too, take the 15% of art. 151. A company rate is stated once with EmployerProfile.second_level_rates.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2019-07-30",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-commercio-confcommercio-shift"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -6538,6 +6570,27 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.travel_allowance"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-commercio-confcommercio-shift",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Shift work of the Testo Unico 2019: every mention of turni read in the text (artt. 12, 146, 151).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "No national shift supplement: art. 12 leaves shifts to the company agreement; night hours in shifts take the ordinary night 15% of art. 151."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.capability_basis"
         ]
       }
     ],

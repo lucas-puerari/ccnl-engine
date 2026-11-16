@@ -688,7 +688,6 @@
       "cinema-audiovisivi-industria/fpls_rates_approximated"
     ],
     "agreement/commercio-confcommercio.json": [
-      "commercio-confcommercio/notice_daily_quota",
       "commercio-confcommercio/profile_specific_apprenticeship",
       "commercio-confcommercio/sales_operators_commissions"
     ],
