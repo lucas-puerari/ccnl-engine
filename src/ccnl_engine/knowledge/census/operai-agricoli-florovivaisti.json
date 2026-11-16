@@ -39,10 +39,10 @@
       "institute": "bilateral_funds",
       "variant": "all",
       "discriminant": "applies_when.trigger = owed",
-      "rule": "BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and FISA (Fondo Integrativo di Settore Agricolo) bilateral fund contributions are set at provincial level and not modelled. Agrifondo (supplementary pension) contributions also omitted.",
+      "rule": "BILATERAL FUNDS. Art. 7 (printed pp. 9-10) charges the employer for EBAN, which funds the FISA health fund of art. 66, 0.30% (OTI) and 0.60% (OTD) of the retribuzione imponibile ai fini previdenziali from 1 January 2014; a separate agreement splits it among the activities, so the FISA share the INPS solidarity contribution of 10% falls on is not known, and the OTD base includes the terzo elemento a fund rate does not read. Not computed; pass them as BilateralFundEvent. The casse extra legem / EBAT of art. 8 are provincial. Agrifondo is modelled as the employer fund AGRIFONDO.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "remediation": "Pass the provincial EBAN, FISA and Agrifondo contributions as bilateral fund events.",
+      "remediation": "Source the FISA share of the EBAN contribution and compute 0.30% / 0.60% of the INPS base, or pass them as bilateral fund events.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -103,10 +103,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Agricultural and floriculture premiums are selected by EmployerProfile.subsector. Remaining: the 10% regular-shift rule for night AND holiday work (Art. 43 p. 48, Art. 44 p. 49), provincial special tariffs, the third element on overtime/holiday/night hours, and the bank of hours are not fully routed; provincial contractual wages require local inputs.",
+      "rule": "Agricultural and floriculture premiums are selected by EmployerProfile.subsector; the 10% of night work in regular shifts (Art. 43 p. 48, Art. 44 p. 49) is paid on a ShiftWorkEvent of kind night. Remaining: the 10% of holiday work in regular shifts without night work (Art. 43), the provincial special tariffs of agriturismo, acquacoltura and the other special works, the terzo elemento on the overtime, holiday and night hours of an OTD, and the bank of hours; provincial contractual wages require local inputs.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "remediation": "Supply the contractual hourly wage and provincial special tariffs; route the 10% regular-shift night and holiday exceptions, the third element on these hours and bank-of-hours elections separately.",
+      "remediation": "Supply the contractual hourly wage and provincial special tariffs; route the 10% of holiday work in regular shifts, the third element on these hours and bank-of-hours elections separately.",
       "origin": "seeded",
       "links": {
         "limitations": [

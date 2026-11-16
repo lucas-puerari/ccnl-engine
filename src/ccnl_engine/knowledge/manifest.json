@@ -1615,7 +1615,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/operai-agricoli-florovivaisti",
       "ruleset_version": "2026.2",
-      "source_hash": "0263ef7bb70f872a1e2464f7b61599c679ba036a1011b08318e3ed74eb225991",
+      "source_hash": "48a871970c702f7f82969d3a72af7759bd8dd1841aa653c9aef1ea20738b417b",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/operai-agricoli-florovivaisti.json.gz"
@@ -4281,7 +4281,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "7470ff994cd3e50d3f277ef375bd74b216a6faba3a5fc3509f3c490d0f57110a",
+      "source_hash": "e06215220a6ebe1c7509a61dc63bde3e65ad991d83a275eadc4c87ce03424d93",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/operai-agricoli-florovivaisti.json.gz",

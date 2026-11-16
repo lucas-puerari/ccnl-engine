@@ -14,8 +14,9 @@ def percentage_base(chain: MonthlyPayChain, percentage: HourlyPercentage) -> Dec
     """Return contractual base salary and the eligible paid elements.
 
     The named contractual allowances and, when the clause requests them,
-    individual elements enter the percentage base. An ordinary-remuneration
-    floor integration is not automatically a named contractual allowance.
+    individual and territorial elements enter the percentage base.  An
+    ordinary-remuneration floor integration is not automatically a named
+    contractual allowance.
 
     Returns:
         The base of ``percentage`` on the pay of ``chain``.
@@ -27,6 +28,7 @@ def percentage_base(chain: MonthlyPayChain, percentage: HourlyPercentage) -> Dec
             for allowance, value in chain.allowances
             if allowance.code in named
             or (percentage.include_individual and allowance.individual)
+            or (percentage.include_territorial and allowance.territorial)
         ),
         Decimal(0),
     )

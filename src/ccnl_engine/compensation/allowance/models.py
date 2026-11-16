@@ -51,6 +51,9 @@ class Allowance(BaseModel):
     (:class:`~ccnl_engine.compensation.individual.inputs.IndividualElement`):
     the hourly base counts it as the CCNL says
     (:class:`~ccnl_engine.working_time.supplement.models.IndividualElementsRule`).
+    ``territorial=True`` marks an element of a territorial agreement
+    (``EmployerProfile.second_level_elements``): an hourly percentage on the
+    provincial wage counts it (``HourlyPercentage.include_territorial``).
 
     ``in_service_on`` limits the allowance to the workers in service on
     that day (Logistica Confetra art. 60 c. 8: the EDR of the workers "in
@@ -122,6 +125,7 @@ class Allowance(BaseModel):
     in_service_on: date | None = None
     below_weekly_hours: Decimal | None = Field(default=None, gt=0)
     individual: bool = False
+    territorial: bool = False
     absorbed_by_individual_excess: bool = False
     absorbed_by_absorbable_only: bool = False
     provenance: RuleProvenance | None = None
