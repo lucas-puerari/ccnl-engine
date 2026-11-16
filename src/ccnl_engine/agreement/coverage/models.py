@@ -36,6 +36,7 @@ from ccnl_engine.limitation.models import (
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.sickness.integration.models import SicknessRules
 from ccnl_engine.termination.notice.models import NoticeRules
+from ccnl_engine.variable_pay.commission.models import CommissionLevels
 from ccnl_engine.working_time.models import TimeSupplements
 from ccnl_engine.working_time.standby.models import StandbyRules
 from ccnl_engine.working_time.subsector.models import SubsectorRules
@@ -137,6 +138,8 @@ class CCNLWorkRules(BaseModel):
     sickness rules of the workers a CCNL treats apart (Tabacco art. 34: the
     impiegati; Alimentari art. 21: the apprentices); the run takes them in
     place of ``sickness_rules`` (:mod:`ccnl_engine.sickness.variant`).
+    ``commission_levels`` names the levels paid partly by commission, whose
+    extra months hold the average of the commissions.
     ``capability_basis`` names the capabilities whose amount the CCNL hands
     to the employer (:mod:`ccnl_engine.agreement.coverage.basis`).
     """
@@ -160,6 +163,7 @@ class CCNLWorkRules(BaseModel):
     parental_hourly: ParentalHourlyClause | None = None
     legacy_holiday_payment: LegacyHolidayPayment | None = None
     capability_basis: dict[str, CapabilityBasis] = Field(default_factory=dict)
+    commission_levels: CommissionLevels | None = None
 
 
 class CCNLCoverage(BaseModel):

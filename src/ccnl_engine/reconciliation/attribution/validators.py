@@ -77,6 +77,7 @@ KIND_CAPABILITIES: dict[str, frozenset[str]] = {
     "overtime_earning": frozenset({"overtime"}),
     "night_holiday_shift_earning": _WORK_TIME,
     "bonus_earning": frozenset({"bonus"}),
+    "commission_earning": frozenset({"bonus"}),
     "productivity_bonus_earning": frozenset({"bonus"}),
     "contract_renewal_earning": frozenset({"bonus"}),
     "contract_renewal_arrears": frozenset({"contract_renewal_arrears"}),

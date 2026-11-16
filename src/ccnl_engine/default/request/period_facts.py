@@ -20,6 +20,14 @@ PERIOD_FACT_DEFAULTS: dict[str, FieldDefault] = {
         "of the building CCNLs are left out, with a missing_fact "
         "ordinary_hours_worked blocker; other CCNLs do not read it",
     ),
+    "PeriodFacts.commission_average": requires_fact(
+        "base_salary",
+        "facts.commission_average",
+        _PERIOD_REPORTED,
+        "an extra month of a level paid by commission raises "
+        "MissingRequiredFactError without it; zero confirms a fixed-only "
+        "worker; other levels and runs do not read it",
+    ),
     "PeriodFacts.hourly_pay_elements": requires_fact(
         "leave",
         "facts.hourly_pay_elements",

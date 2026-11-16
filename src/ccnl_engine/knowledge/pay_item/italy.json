@@ -6,7 +6,8 @@
       "base_salary_earning",
       "seniority_earning",
       "fixed_allowance_earning",
-      "one_off_earning"
+      "one_off_earning",
+      "commission_earning"
     ],
     "effective_from": "2000-01-01",
     "effective_until": null,
@@ -19,7 +20,9 @@
   {
     "policy_id": "it/earning/loyalty_premium",
     "policy_version": "2026.1",
-    "kinds": ["loyalty_premium_earning"],
+    "kinds": [
+      "loyalty_premium_earning"
+    ],
     "effective_from": "2000-01-01",
     "effective_until": null,
     "tax": "ordinary",
