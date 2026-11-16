@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 7/136 CCNLs**; complete except declared residuals: 1. Bundle: 251 weak rules, 272 open limitations (272 with a monetary impact), 29 declared residuals.
+**Complete: 7/136 CCNLs**; complete except declared residuals: 1. Bundle: 251 weak rules, 271 open limitations (271 with a monetary impact), 29 declared residuals.
 
 ## Declared window
 
@@ -99,7 +99,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [chimica-affini-pmi-unionchimica](../contracts/chimica-affini-pmi-unionchimica.md) | `chimica` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 3 monetary limitations; 5 non-native capabilities |
 | [chimica-farmaceutica-federchimica](../contracts/chimica-farmaceutica-federchimica.md) | `chimica` | reviewed | — | 13 rows | 13 open requirements; 1 monetary limitation; 12 outside_input limitations; 5 non-native capabilities |
 | [cinema-audiovisivi-industria](../contracts/cinema-audiovisivi-industria.md) | `spettacolo-media` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 monetary limitation; 6 non-native capabilities |
-| [commercio-confcommercio](../contracts/commercio-confcommercio.md) | `commercio` | production | 2027-03-31 | 4 rows | 4 open requirements; 2 monetary limitations; 2 outside_input limitations; 3 non-native capabilities; 2 declared residuals |
+| [commercio-confcommercio](../contracts/commercio-confcommercio.md) | `commercio` | production | 2027-03-31 | 3 rows | 3 open requirements; 1 monetary limitation; 2 outside_input limitations; 1 non-native capability; 2 declared residuals |
 | [comunicazione-artigianato-confartigianato](../contracts/comunicazione-artigianato-confartigianato.md) | `carta-grafica` | exploratory | — | 8 rows | 8 open requirements; 1 weak rule; 5 monetary limitations; 2 outside_input limitations; 8 non-native capabilities |
 | [concia-unic](../contracts/concia-unic.md) | `pelli-calzature` | reviewed | — | 1 rows | 1 open requirement; 1 monetary limitation; 5 non-native capabilities |
 | [consorzi-agrari-assocap](../contracts/consorzi-agrari-assocap.md) | `agricoltura` | exploratory | — | 5 rows | 5 open requirements; 1 weak rule; 3 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |

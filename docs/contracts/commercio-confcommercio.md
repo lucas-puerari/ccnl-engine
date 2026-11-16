@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, sickness, termination_notice |
+| **Limits of this contract** | base_salary, sickness |
 
 6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-22 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -85,6 +85,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-13 | gpt-6-sol (ai) | Operatori di vendita rows of the accordo integrativo of 28 March 2024 (scan pp. 64-65, page images) and the protocollo aggiuntivo of the TU 2019 (printed pp. 449-469), by a separate model session. | flagged | Confirmed: every paga base and contingenza + EDR of OV1 and OV2 from April 2024 to February 2027; ten three-year increments of 15,50 and 14,46; the terzo elemento nazionale applies as for the other levels (replaced by a provincial one).<br>Flagged and kept as limitation sales_operators_commissions: the commission guarantee of art. 217, the commission average of the 13th and 14th and the art. 27 premium are not modelled. |
 | 2026-11-14 | gpt-6-sol (ai) | Art. 149 (printed p. 147, PDF p. 149) of the Testo Unico 2019: the weekly threshold of the 20% overtime band, by a separate model session. | corrected | Confirmed: '15% [...] dalla 41a alla 48a ora settimanale; 20% [...] eccedenti la 48a ora settimanale'. OvertimeEvent.weekly_hours_before counts all the hours worked in the week, so the 20% band starts at 48, not at 8, which paid hours 41-48 at 20% when the caller stated the hours already worked. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Travel allowance of Art. 179 cc. 2-5, quote located in the cited file by sha256 and read against the model. | corrected | The diaria is a share (twice) of the daily retribuzione di fatto, a third less without overnight stay, 10% less for long missions or habitual travel. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Shift work of the Testo Unico 2019: every mention of turni read in the text (artt. 12, 146, 151). | corrected | No national shift supplement: art. 12 leaves shifts to the company agreement; night hours in shifts take the ordinary night 15% of art. 151. |
 
 ## Salary table
 
@@ -174,12 +175,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the commission earnings of the operatori di vendita as an input, then the art. 217 guarantee, the commission average of the extra months and the art. 27 premium.
 
-!!! warning "commercio-confcommercio/notice_daily_quota · termination_notice · impact yes · open"
+!!! note "commercio-confcommercio/notice_daily_quota · termination_notice · impact yes · resolved"
     NOTICE INDEMNITY BY THE DAY: a notice in calendar days is paid at the monthly pay over 30 for each day, the default of the engine (decision of 2026-11-15). Art. 209 of the Testo Unico 30 July 2019 refers the monthly pay to all the days of the calendar month, but art. 210 sets the daily quota at 1/26 'in tutti i casi': which of them measures a day of notice is not settled, so the indemnity of a notice not worked in full may be understated.
 
     **Applies when:** `termination_notice` applies.
 
-    **Remediation:** Settle whether the daily quota of art. 210 measures a day of notice and apply it, then resolve this limitation.
+    **Remediation:** Resolved by the maintainer decision of 2026-11-15: a day of notice is a calendar day of the month, paid at the monthly pay over 30, as art. 209 refers the monthly pay to all the days of the calendar month; the 1/26 daily quota of art. 210 measures the working days of the absences and deductions, not the calendar days of a notice.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
