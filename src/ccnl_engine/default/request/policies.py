@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.default.models import FactEnforcement, absence_is_fact, requires_fact
+from ccnl_engine.default.request.apprentice_policies import APPRENTICE_DEFAULTS
 from ccnl_engine.default.request.period_facts import PERIOD_FACT_DEFAULTS
 from ccnl_engine.default.request.role_policies import ROLE_DEFAULTS
 
@@ -45,40 +46,7 @@ _FIRST_RUN = absence_is_fact(
 
 #: Classification of each defaulted field of the root request types.
 REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
-    "Apprentice.programme": absence_is_fact(
-        "a professionalising apprenticeship (D.Lgs. 81/2015 art. 44), the one "
-        "the apprenticeship tracks of the CCNL pay"
-    ),
-    "Apprentice.school_year": requires_fact(
-        "base_salary",
-        "employment.contract_type.school_year",
-        _REPORTED,
-        "unknown school year: a dual track paying by it raises a missing-fact error",
-    ),
-    "Apprentice.programme_months": requires_fact(
-        "base_salary",
-        "employment.contract_type.programme_months",
-        _REPORTED,
-        "unknown programme length: a dual track paying by its half or length "
-        "raises a missing-fact error",
-    ),
-    "Apprentice.hours": requires_fact(
-        "base_salary",
-        "employment.contract_type.hours",
-        _REPORTED,
-        "unknown hours: a first- or third-level apprentice raises a missing-fact error",
-    ),
-    "Apprentice.track": requires_fact(
-        "base_salary",
-        "employment.contract_type.track",
-        _REPORTED,
-        "the unique track of the level; several tracks raise an input error",
-    ),
-    "Apprentice.failed_title_extension_start_month": absence_is_fact(
-        "ordinary apprenticeship progression, or a competence-consolidation "
-        "extension; a failed-title extension is a fact the caller states, "
-        "and only a sourced first-level track can pay its previous-year phase"
-    ),
+    **APPRENTICE_DEFAULTS,
     "PeriodInput.facts": _CONTAINER,
     "PeriodInput.prior_year": _CONTAINER,
     "PeriodInput.current_year": _CURRENT_YEAR,
