@@ -108,7 +108,7 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "lavoro-domestico-non-convivente/tranches_from_2027 · base_salary · impact yes · open"
+!!! warning "lavoro-domestico-non-convivente/tranches_from_2027 · base_salary · impact yes · awaiting_publication"
     SINGLE PERIOD 2026-01-01. Pre-2026 tranches out of scope. Post-2026 CCNL 2025-2028 tranches not yet modelled: +30 on BS from Jan 2027, +15 from Jan 2028, +15 from Sep 2028 (other levels proportional — exact amounts require official ASSINDATCOLF/DOMINA table for those periods).
 
     **Applies when:** `base_salary` applies; from 2027-01-01.
@@ -136,7 +136,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the bands carry the comporto of an oncological illness (serious_comporto_days 15, 68 and 270 days, the periods of c. 4 raised by 50%), applied when the episode states SicknessEpisode.serious_illness; 45 x 1.5 = 67.5 is read as 68, the 68th day being still in part within the period.
 
-!!! warning "lavoro-domestico-non-convivente/annual_minimi_not_updated · base_salary · impact yes · open"
+!!! warning "lavoro-domestico-non-convivente/annual_minimi_not_updated · base_salary · impact yes · awaiting_publication"
     ANNUAL MINIMI: the minimi of the CCNL are updated every year from 1 January by the Commissione nazionale (Art. 38, ISTAT variation of the consumer prices); the bundle holds the table of 2026. From 1 January 2027 the amounts are those of 2026 until the 2027 table is published and added, so a 2027 run is not payable.
 
     **Applies when:** `base_salary` applies; from 2027-01-01.
@@ -150,14 +150,14 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
-!!! warning "provisional_ruleset · irpef · impact unknown · open"
+!!! warning "provisional_ruleset · irpef · impact unknown · awaiting_publication"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
 
     **Applies when:** `irpef` applies; the run takes the engine code path.
 
     **Remediation:** Replace each provisional ruleset of the year with the values of its published sources, drop its provisional flag, then resolve this limitation.
 
-!!! warning "provisional_inps_ruleset · inps_employer · impact unknown · open"
+!!! warning "provisional_inps_ruleset · inps_employer · impact unknown · awaiting_publication"
     The run reads an INPS ruleset marked provisional: the INPS circulars of its year are not published yet, so the rates, the massimale and the minimale (and the hourly contributions of domestic work) are those of the year before, carried over. The indexed amounts change every January: the carried-over values understate them.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path.
@@ -185,7 +185,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the base of an operaio and of a partial month is the sickness base of the month before.
 
-!!! warning "parental_income_condition · parental_leave · impact unknown · open"
+!!! warning "parental_income_condition · parental_leave · impact unknown · awaiting_publication"
     The days of parental leave beyond the indemnified months are paid 30% when the parent's individual income (ParentalLeaveEvent.individual_income) is below 2.5 times the yearly trattamento minimo di pensione (art. 34 c. 3 D.Lgs. 151/2001); a year whose minimum the INPS has not published yet (2027) pays them nothing.
 
     **Applies when:** `parental_leave` applies; the run takes the engine code path.

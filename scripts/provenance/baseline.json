@@ -845,18 +845,11 @@
       "laterizi-industria-f021/asq_seniority_from_as"
     ],
     "agreement/lavoro-domestico-convivente-orario-ridotto.json": [
-      "lavoro-domestico-convivente-orario-ridotto/annual_minimi_not_updated",
       "lavoro-domestico-convivente-orario-ridotto/art34_role_conditions",
       "lavoro-domestico-convivente-orario-ridotto/students_other_levels"
     ],
     "agreement/lavoro-domestico-convivente.json": [
-      "lavoro-domestico-convivente/annual_minimi_not_updated",
-      "lavoro-domestico-convivente/art34_role_conditions",
-      "lavoro-domestico-convivente/tranches_from_2027"
-    ],
-    "agreement/lavoro-domestico-non-convivente.json": [
-      "lavoro-domestico-non-convivente/annual_minimi_not_updated",
-      "lavoro-domestico-non-convivente/tranches_from_2027"
+      "lavoro-domestico-convivente/art34_role_conditions"
     ],
     "agreement/legno-arredamento-federlegno.json": [
       "legno-arredamento-federlegno/renewal_2026_ipotesi"
@@ -1086,9 +1079,6 @@
       "dual_apprenticeship_contributions",
       "inps_minimum_base_exempt_category",
       "parental_hourly_ccnl_rule",
-      "parental_income_condition",
-      "provisional_inps_ruleset",
-      "provisional_ruleset",
       "sickness_cumulation_window",
       "sunday_holiday_ccnl_clause",
       "una_tantum_readings"

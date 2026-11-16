@@ -35,14 +35,16 @@ import json
 import sys
 from collections import Counter
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from typing import TYPE_CHECKING
+from zoneinfo import ZoneInfo
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from ccnl_engine.agreement.census.loaders import load_census
 from ccnl_engine.agreement.census.models import RuleState
+from ccnl_engine.agreement.types import NoteKind
 from ccnl_engine.agreement.validity.models import ValidityWindow, model_window
 from ccnl_engine.capability.loaders import load_capability_catalog
 from ccnl_engine.capability.registry.models import CapabilityImplementation
@@ -70,13 +72,6 @@ NOT_NATIVE = frozenset({
     CapabilityImplementation.CALLER_SUPPLIED,
     CapabilityImplementation.PARTIAL,
     CapabilityImplementation.UNSUPPORTED,
-})
-#: Engine limitations that stand for the future data of the window: a run
-#: that reads a year whose sources are not published yet.
-FUTURE_LIMITATIONS = frozenset({
-    "provisional_ruleset",
-    "provisional_inps_ruleset",
-    "parental_income_condition",
 })
 REFERENCE_CASES = (
     ROOT / "tests" / "knowledge" / "ccnl_engine" / "period" / "reference_case"
@@ -164,6 +159,9 @@ class CcnlCompleteness:
             monetary impact): no source and no statutory default exists
             after a documented search. Not open work, but they keep the
             CCNL from being complete.
+        awaiting: Limitations whose source is due by a known date
+            (``awaiting_publication``): future data, not open work, until
+            that date; the runs they concern stay not payable.
     """
 
     ccnl_id: str
@@ -180,6 +178,7 @@ class CcnlCompleteness:
     window_gaps: tuple[str, ...] = ()
     renewal_due: date | None = None
     residuals: tuple[str, ...] = ()
+    awaiting: tuple[str, ...] = ()
 
     @property
     def gaps(self) -> tuple[str, ...]:
@@ -215,6 +214,9 @@ class CcnlCompleteness:
     def status(self) -> str:
         """The Gaps cell of the page."""
         if self.complete:
+            if self.awaiting:
+                waiting = _count("limitation", len(self.awaiting))
+                return f"complete; {waiting} awaiting publication"
             return "complete"
         residual = _count("declared residual", len(self.residuals))
         if not self.gaps:
@@ -300,6 +302,15 @@ def pending_data(manifest: Path = MANIFEST) -> tuple[str, ...]:
     )
 
 
+def _today() -> date:
+    """Return the current day.
+
+    Returns:
+        Today in Italy, the jurisdiction of the publications awaited.
+    """
+    return datetime.now(ZoneInfo("Europe/Rome")).date()
+
+
 def _count(what: str, n: int, plural: str = "") -> str:
     """Return a count of *what*.
 
@@ -311,8 +322,8 @@ def _count(what: str, n: int, plural: str = "") -> str:
     return f"{n} {what if n == 1 else plural or what + 's'}"
 
 
-def _blocking(limitation: ModelLimitation) -> bool:
-    return limitation.status is LimitationStatus.OPEN and limitation.blocks
+def _blocking(limitation: ModelLimitation, today: date) -> bool:
+    return still_open(limitation, today) and limitation.blocks
 
 
 def _residual(limitation: ModelLimitation) -> bool:
@@ -331,26 +342,53 @@ def ccnl_residuals(ccnl: CCNL, engine: Iterable[ModelLimitation]) -> tuple[str, 
     return (*own, *shared)
 
 
+def ccnl_awaiting(
+    ccnl: CCNL, engine: Iterable[ModelLimitation], today: date | None = None
+) -> tuple[str, ...]:
+    """Return the limitations of *ccnl* awaiting a publication not yet due.
+
+    Returns:
+        The ids of its own and of the engine ones that list it.
+    """
+    day = today or _today()
+    ccnl_id = ccnl.meta.ccnl_id
+    own = [lim.id for lim in ccnl.limitations if lim.awaited_on(day)]
+    shared = [
+        lim.id for lim in engine if lim.awaited_on(day) and ccnl_id in lim.rulesets
+    ]
+    return (*own, *shared)
+
+
+def still_open(limitation: ModelLimitation, today: date) -> bool:
+    """Whether *limitation* is open work on *today*: open, or overdue.
+
+    Returns:
+        ``True`` for an open limitation, and for an awaiting one past its
+        ``expected_by``.
+    """
+    status = limitation.status
+    overdue = (
+        status is LimitationStatus.AWAITING_PUBLICATION
+        and not limitation.awaited_on(today)
+    )
+    return status is LimitationStatus.OPEN or overdue
+
+
 def ccnl_limitations(
-    ccnl: CCNL, engine: Iterable[ModelLimitation]
+    ccnl: CCNL, engine: Iterable[ModelLimitation], today: date | None = None
 ) -> tuple[tuple[str, ...], tuple[str, ...]]:
     """Return the open monetary limitations of *ccnl*, by whether a run meets them.
 
     The limitations the CCNL declares and the engine ones that list it,
-    except :data:`FUTURE_LIMITATIONS`: future data, not a gap.
+    except those awaiting a publication not yet due: future data, not a gap.
 
     Returns:
         The ids a run can meet and the ids whose fact has no input.
     """
+    day = today or _today()
     ccnl_id = ccnl.meta.ccnl_id
-    own = (lim for lim in ccnl.limitations if _blocking(lim))
-    shared = (
-        lim
-        for lim in engine
-        if _blocking(lim)
-        and ccnl_id in lim.rulesets
-        and lim.id not in FUTURE_LIMITATIONS
-    )
+    own = (lim for lim in ccnl.limitations if _blocking(lim, day))
+    shared = (lim for lim in engine if _blocking(lim, day) and ccnl_id in lim.rulesets)
     met: list[str] = []
     outside: list[str] = []
     for limitation in (*own, *shared):
@@ -361,18 +399,51 @@ def ccnl_limitations(
     return tuple(met), tuple(outside)
 
 
-def non_native(ccnl: CCNL, years: Iterable[int]) -> tuple[str, ...]:
+def _lowered_apart(feature: str, ccnl: CCNL, today: date) -> bool:
+    """Whether only limitations the report lists apart lower *feature*.
+
+    Returns:
+        ``True`` when no ``missing`` note names it and every limitation of
+        *ccnl* that blocks it awaits a publication not yet due or is a
+        declared residual: counted there, not as a non-native capability.
+    """
+    if any(
+        note.kind is NoteKind.MISSING and note.capability == feature
+        for note in ccnl.coverage.notes
+    ):
+        return False
+    blocking = [
+        lim for lim in ccnl.limitations if lim.capability == feature and lim.blocks
+    ]
+    return bool(blocking) and all(
+        lim.awaited_on(today) or lim.status is LimitationStatus.UNSOURCED
+        for lim in blocking
+    )
+
+
+def non_native(
+    ccnl: CCNL, years: Iterable[int], today: date | None = None
+) -> tuple[str, ...]:
     """Return the capabilities the engine does not compute natively for *ccnl*.
+
+    A capability the CCNL lowers only by limitations awaiting a publication
+    or by declared residuals keeps the implementation of the catalog: they
+    are listed apart, not counted twice as a gap.
 
     Returns:
         Capability names, sorted, over every supported year.
     """
-    found = {
-        row.feature
-        for year in years
-        for row in ccnl_capabilities(load_capability_catalog(year), ccnl)
-        if row.implementation in NOT_NATIVE and not accepted(row.feature, ccnl)
-    }
+    day = today or _today()
+    found: set[str] = set()
+    for year in years:
+        catalog = load_capability_catalog(year)
+        base = {entry.feature: entry.implementation for entry in catalog.capabilities}
+        for row in ccnl_capabilities(catalog, ccnl):
+            implementation = row.implementation
+            if row.limited_by_ccnl and _lowered_apart(row.feature, ccnl, day):
+                implementation = base[row.feature]
+            if implementation in NOT_NATIVE and not accepted(row.feature, ccnl):
+                found.add(row.feature)
     return tuple(sorted(found))
 
 
@@ -468,6 +539,7 @@ def assess(
     evidence: Evidence,
     engine: Iterable[ModelLimitation],
     years: tuple[int, ...],
+    today: date | None = None,
 ) -> CcnlCompleteness:
     """Return how complete the model of *ccnl* is.
 
@@ -477,7 +549,7 @@ def assess(
     meta = ccnl.meta
     census = load_census(meta.ccnl_id)
     open_rows, errors = ((), ()) if census is None else census_state(census, evidence)
-    met, outside = ccnl_limitations(ccnl, engine)
+    met, outside = ccnl_limitations(ccnl, engine, today)
     weak = evidence.weakness
     return CcnlCompleteness(
         ccnl_id=meta.ccnl_id,
@@ -491,12 +563,13 @@ def assess(
         + sum(weak.by_sector.get(sector, 0) for sector in _sectors(ccnl)),
         limitations=met,
         outside_input=outside,
-        capabilities=non_native(ccnl, years),
+        capabilities=non_native(ccnl, years, today),
         window_gaps=window_gaps(
             model_window(ccnl), Window.of(years, meta.in_force_from)
         ),
         renewal_due=renewal_due(ccnl, Window.of(years)),
         residuals=ccnl_residuals(ccnl, engine),
+        awaiting=ccnl_awaiting(ccnl, engine, today),
     )
 
 
@@ -513,6 +586,7 @@ class Report:
         declared_residuals: Unsourced limitations, each counted once.
         window: The declared window.
         pending: Yearly resources whose sources are not published yet.
+        awaiting: Limitations awaiting a publication not yet due.
     """
 
     rows: tuple[CcnlCompleteness, ...]
@@ -522,6 +596,7 @@ class Report:
     window: Window
     pending: tuple[str, ...] = ()
     declared_residuals: int = 0
+    awaiting: tuple[ModelLimitation, ...] = ()
 
     @property
     def complete(self) -> tuple[CcnlCompleteness, ...]:
@@ -539,18 +614,23 @@ class Report:
         return tuple(f"{r.ccnl_id}/{e}" for r in self.rows for e in r.census_errors)
 
 
-def build_report() -> Report:
+def build_report(today: date | None = None) -> Report:
     """Assess every bundled CCNL.
+
+    Args:
+        today: The day the awaited publications are compared with; the
+            current day by default.
 
     Returns:
         The report of the bundle.
     """
+    day = today or _today()
     rules = inventory()
     pending = pending_data()
     ccnls = [load_ccnl(summary.ccnl_id) for summary in list_contracts()]
     engine = load_engine_limitations()
     every = (*engine, *(lim for ccnl in ccnls for lim in ccnl.limitations))
-    opened = [lim for lim in every if lim.status is LimitationStatus.OPEN]
+    opened = [lim for lim in every if still_open(lim, day)]
     evidence = Evidence(
         weakness=weakness(rules, frozenset(pending)),
         rules=frozenset(map(rule_id, rules)),
@@ -559,7 +639,7 @@ def build_report() -> Report:
     )
     years = supported_tax_years()
     return Report(
-        rows=tuple(assess(ccnl, evidence, engine, years) for ccnl in ccnls),
+        rows=tuple(assess(ccnl, evidence, engine, years, day) for ccnl in ccnls),
         weak_rules=len(evidence.weakness.ids),
         open_limitations=len(evidence.open_limitations),
         monetary_limitations=sum(1 for lim in opened if lim.blocks),
@@ -568,6 +648,7 @@ def build_report() -> Report:
         declared_residuals=sum(
             1 for lim in every if lim.status is LimitationStatus.UNSOURCED
         ),
+        awaiting=tuple(lim for lim in every if lim.awaited_on(day)),
     )
 
 
@@ -631,6 +712,11 @@ def render(report: Report) -> str:
 def _window_lines(report: Report) -> list[str]:
     window = report.window
     pending = [f"- `{path}`" for path in report.pending] or ["- none"]
+    awaiting = [
+        f"- `{lim.id}`: {lim.awaited.publication}, by {lim.awaited.expected_by}"
+        for lim in sorted(report.awaiting, key=lambda lim: lim.id)
+        if lim.awaited is not None
+    ] or ["- none"]
     return [
         "## Declared window",
         "",
@@ -648,12 +734,18 @@ def _window_lines(report: Report) -> list[str]:
             "validity ends inside the window keeps its last tables until the "
             "renewal (column *Renewal due*), and these resources carry the values "
             "of the year before because their sources are not published yet "
-            "(their weak rules and the engine limitations "
-            f"{', '.join(f'`{i}`' for i in sorted(FUTURE_LIMITATIONS))} are not "
-            "counted as gaps):"
+            "(their weak rules are not counted as gaps):"
         ),
         "",
         *pending,
+        "",
+        (
+            "Limitations awaiting a publication due by a known date "
+            "(`awaiting_publication`): not counted as gaps until that date, "
+            "open work again past it; the runs they concern stay not payable:"
+        ),
+        "",
+        *awaiting,
         "",
         (
             "Capabilities a caller value may replace are not counted as gaps "

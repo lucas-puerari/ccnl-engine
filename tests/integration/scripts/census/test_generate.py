@@ -8,9 +8,13 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine.agreement.census.models import Census
-from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.catalog.loaders import list_contracts, load_ccnl
 from ccnl_engine.limitation.loaders import load_engine_limitations
-from ccnl_engine.limitation.models import LimitationStatus, SearchedDocument
+from ccnl_engine.limitation.models import (
+    LimitationStatus,
+    ModelLimitation,
+    SearchedDocument,
+)
 from scripts.census import generate
 from scripts.completeness import report
 from scripts.provenance.evidence.check import snapshot
@@ -102,7 +106,7 @@ def test_merge_rejects_two_seeded_rows_with_one_id() -> None:
 def test_residual_and_future_limitations_seed_no_row() -> None:
     """A declared residual and a future limitation are not open work."""
     engine = load_engine_limitations()
-    future = [lim for lim in engine if lim.id in report.FUTURE_LIMITATIONS]
+    future = [lim for lim in engine if lim.awaited_on(report._today())]
     residual = engine[0].model_copy(
         update={
             "status": LimitationStatus.UNSOURCED,
@@ -137,7 +141,12 @@ def test_every_weak_rule_and_open_limitation_has_a_row() -> None:
         for path in paths
     }
     opened = {i for ids in evidence.open_limitations.values() for i in ids}
-    assert linked == opened - report.FUTURE_LIMITATIONS
+    awaiting = {
+        lim.id
+        for lim in (*load_engine_limitations(), *_ccnl_limitations())
+        if lim.awaited_on(report._today())
+    }
+    assert linked == opened - awaiting
     assert all(row.remediation for c in censuses for row in c.requirements)
 
 
@@ -147,3 +156,11 @@ def test_the_bundled_census_is_up_to_date(tmp_path: Path) -> None:
     assert generate.main(["--check"], root=tmp_path) == 1
     assert generate.main([], root=tmp_path) == 0
     assert generate.main(["--check"], root=tmp_path) == 0
+
+
+def _ccnl_limitations() -> list[ModelLimitation]:
+    return [
+        lim
+        for summary in list_contracts()
+        for lim in load_ccnl(summary.ccnl_id).limitations
+    ]

@@ -34,8 +34,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from ccnl_engine.catalog.loaders import list_contracts, load_ccnl
 from ccnl_engine.limitation.loaders import load_engine_limitations
-from ccnl_engine.limitation.models import LimitationStatus, MonetaryImpact
-from scripts.completeness.report import FUTURE_LIMITATIONS
+from ccnl_engine.limitation.models import MonetaryImpact
+from scripts.completeness.report import _today, still_open
 from scripts.provenance.rules import PayableRule, inventory
 
 if TYPE_CHECKING:
@@ -142,18 +142,15 @@ def rule_row(rule: PayableRule) -> dict[str, Any]:
 def _open(limitations: Iterable[ModelLimitation]) -> list[ModelLimitation]:
     """Return the limitations a seeded row tracks as open work.
 
-    An unsourced limitation is a declared residual, not open work, and a
-    future one waits for data not published yet: the completeness report
-    lists both apart, so neither seeds a row.
+    An unsourced limitation is a declared residual, not open work, and an
+    awaiting one waits for a publication not yet due: the completeness
+    report lists both apart, so neither seeds a row.
 
     Returns:
-        The open limitations, the future ones left out.
+        The open limitations, the awaiting ones not yet due left out.
     """
-    return [
-        lim
-        for lim in limitations
-        if lim.status is LimitationStatus.OPEN and lim.id not in FUTURE_LIMITATIONS
-    ]
+    today = _today()
+    return [lim for lim in limitations if still_open(lim, today)]
 
 
 def seeded_rows(

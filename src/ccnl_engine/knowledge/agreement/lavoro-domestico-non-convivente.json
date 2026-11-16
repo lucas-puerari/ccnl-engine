@@ -92,7 +92,12 @@
           "applies_when": {
             "effective_from": "2027-01-01"
           },
-          "remediation": "Add the 2027 and 2028 tranches from the official ASSINDATCOLF/DOMINA tables."
+          "remediation": "Add the 2027 and 2028 tranches from the official ASSINDATCOLF/DOMINA tables.",
+          "status": "awaiting_publication",
+          "awaited": {
+            "publication": "The 2027 tables of the Commissione nazionale (art. 38), which add to each level the 2027 increase of art. 55 c. 1 (EUR 30 on level BS convivente, the others in proportion) together with the ISTAT adjustment (Appendice n. 1)",
+            "expected_by": "2027-01-31"
+          }
         }
       },
       {
@@ -174,7 +179,12 @@
             "trigger": "run",
             "effective_from": "2027-01-01"
           },
-          "remediation": "Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note."
+          "remediation": "Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note.",
+          "status": "awaiting_publication",
+          "awaited": {
+            "publication": "The minimi of 2027 set by the Commissione nazionale per l'aggiornamento retributivo (art. 38, convened by the Ministero del Lavoro by 20 December 2026) on the ISTAT change of the consumer prices at 30 November 2026, in force from 1 January 2027",
+            "expected_by": "2027-01-31"
+          }
         }
       },
       {
@@ -1536,7 +1546,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "e4cf91a368fbfddf2734e4e39ff281503dc403125cb8b1d6a14d73820f0ce853",
+    "source_hash": "6f1670b634bf41489bc78d465f3ff10b759de1a8f06340cab471515bd564bf6a",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },

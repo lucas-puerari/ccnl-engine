@@ -28,6 +28,7 @@ amount owed only on a fact the request has no field for is
 
 from __future__ import annotations
 
+from datetime import date
 from enum import StrEnum
 from typing import Self
 
@@ -42,6 +43,7 @@ from ccnl_engine.limitation.types import ALL_TOTALS, ResultTotal
 
 __all__ = [
     "HOLDING",
+    "AwaitedPublication",
     "LimitationFacts",
     "LimitationScope",
     "LimitationStatus",
@@ -83,15 +85,57 @@ class LimitationStatus(StrEnum):
             source and no statutory default for the case. The engine still
             computes the simplified amount, so it keeps blocking the runs
             it concerns; it is listed apart from the open work.
+        AWAITING_PUBLICATION: The source is due by a known process on a
+            known date (the minimi of a year, a budget law, an INPS
+            circular): the runs it concerns keep blocking, and it is listed
+            apart from the open work until that date
+            (:class:`AwaitedPublication`); past it, it is open work again.
     """
 
     OPEN = "open"
     RESOLVED = "resolved"
     UNSOURCED = "unsourced"
+    AWAITING_PUBLICATION = "awaiting_publication"
 
 
 #: Statuses of a limitation that still holds.
-HOLDING = frozenset({LimitationStatus.OPEN, LimitationStatus.UNSOURCED})
+HOLDING = frozenset({
+    LimitationStatus.OPEN,
+    LimitationStatus.UNSOURCED,
+    LimitationStatus.AWAITING_PUBLICATION,
+})
+
+
+class AwaitedPublication(BaseModel):
+    """The publication that closes a limitation, and when it is due.
+
+    Attributes:
+        publication: What is due and who publishes it, for a human reader.
+        expected_by: The day by which it is due; past it, the limitation is
+            open work again.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    publication: str = Field(min_length=1)
+    expected_by: date
+
+
+def _require_awaited(
+    status: LimitationStatus, awaited: AwaitedPublication | None, name: str
+) -> None:
+    """Require the awaited publication on an awaiting limitation, and only there.
+
+    Raises:
+        ValueError: When an awaiting limitation names no publication, or
+            another status names one.
+    """
+    if (status is LimitationStatus.AWAITING_PUBLICATION) != (awaited is not None):
+        msg = (
+            f"limitation {name}: an awaiting_publication limitation, and only "
+            "it, names its awaited publication"
+        )
+        raise ValueError(msg)
 
 
 class SearchedDocument(BaseModel):
@@ -143,6 +187,7 @@ class NoteLimitation(BaseModel):
         status: Whether it still holds.
         remediation: What closes it, for a human reader.
         searched: The documents read, for an unsourced limitation only.
+        awaited: The publication due, for an awaiting limitation only.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -153,10 +198,12 @@ class NoteLimitation(BaseModel):
     status: LimitationStatus = LimitationStatus.OPEN
     remediation: str = Field(min_length=1)
     searched: tuple[SearchedDocument, ...] = ()
+    awaited: AwaitedPublication | None = None
 
     @model_validator(mode="after")
     def _check_searched(self) -> Self:
         _require_search(self.status, self.searched, self.variant)
+        _require_awaited(self.status, self.awaited, self.variant)
         return self
 
 
@@ -178,6 +225,7 @@ class ModelLimitation(BaseModel):
         source: Where it is declared: the CCNL file or the engine module.
         remediation: What closes it.
         searched: The documents read, for an unsourced limitation only.
+        awaited: The publication due, for an awaiting limitation only.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -194,11 +242,23 @@ class ModelLimitation(BaseModel):
     source: str = Field(min_length=1)
     remediation: str = Field(min_length=1)
     searched: tuple[SearchedDocument, ...] = ()
+    awaited: AwaitedPublication | None = None
 
     @model_validator(mode="after")
     def _check_searched(self) -> Self:
         _require_search(self.status, self.searched, self.id)
+        _require_awaited(self.status, self.awaited, self.id)
         return self
+
+    def awaited_on(self, today: date) -> bool:
+        """Whether, on ``today``, it waits for a publication not yet due.
+
+        Returns:
+            ``True`` for an awaiting limitation whose ``expected_by`` is not
+            past; an overdue one is open work again.
+        """
+        awaited = self.awaited
+        return awaited is not None and today <= awaited.expected_by
 
     @property
     def blocks(self) -> bool:

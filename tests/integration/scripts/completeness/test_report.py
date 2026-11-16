@@ -201,17 +201,19 @@ def test_the_bundle_totals_match_the_evidence_snapshot() -> None:
     assert built.census_errors == ()
 
 
+_TODAY = date(2026, 11, 16)
 _COMPLETE_CCNLS = [
     "afam-aran",
     "enti-ricerca-aran",
     "istruzione-ricerca-aran",
+    "lavoro-domestico-non-convivente",
     "metalmeccanico-federmeccanica",
     "universita-aran",
     "universita-tecnologi-aran",
 ]
 
 
-def test_today_six_ccnls_are_complete() -> None:
+def test_the_complete_ccnls() -> None:
     """Every other census is seeded only: those CCNLs are incomplete."""
     built = report.build_report()
 
@@ -228,7 +230,7 @@ def test_the_page_names_every_ccnl_and_the_totals() -> None:
     built = report.build_report()
     page = report.render(built)
 
-    assert f"**Complete: 6/{len(built.rows)} CCNLs**" in page
+    assert f"**Complete: 7/{len(built.rows)} CCNLs**" in page
     assert "complete except declared residuals: 0." in page
     assert "| [anas](../contracts/anas.md) | `trasporti-logistica` |" in page
 
@@ -246,7 +248,7 @@ def test_check_and_strict_modes(
     assert page.is_file()
     assert report.main(["--check"]) == 0
     assert report.main(["--check", "--strict"]) == 1
-    assert "Complete: 6/136 CCNLs." in capsys.readouterr().out
+    assert "Complete: 7/136 CCNLs." in capsys.readouterr().out
 
 
 def test_a_census_error_fails_every_mode(
@@ -374,7 +376,9 @@ def test_the_provisional_limitations_are_not_gaps() -> None:
 
     met, outside = report.ccnl_limitations(commercio, engine)
 
-    assert not report.FUTURE_LIMITATIONS.intersection((*met, *outside))
+    awaiting = {lim.id for lim in engine if lim.awaited_on(_TODAY)}
+    assert {"provisional_ruleset", "provisional_inps_ruleset"} <= awaiting
+    assert not awaiting.intersection((*met, *outside))
     assert "disability_permit_tfr" not in met
     assert "una_tantum_readings" not in met
     assert "sickness_cumulation_window" not in {*met, *outside}
@@ -387,3 +391,28 @@ def test_a_window_gap_makes_a_ccnl_incomplete() -> None:
     row = replace(_COMPLETE, window_gaps=("tables from 2026-03-01",))
 
     assert row.gaps == ("tables from 2026-03-01",)
+
+
+def test_an_awaited_publication_past_its_date_is_open_work_again() -> None:
+    """The domestic minimi of 2027 are due by 31 January 2027; past it, a gap."""
+    ccnl = load_ccnl("lavoro-domestico-non-convivente")
+    engine = load_engine_limitations()
+    minimi = "lavoro-domestico-non-convivente/annual_minimi_not_updated"
+
+    before, _ = report.ccnl_limitations(ccnl, engine, date(2027, 1, 31))
+    after, _ = report.ccnl_limitations(ccnl, engine, date(2027, 2, 1))
+
+    assert minimi not in before
+    assert minimi in after
+    assert minimi in report.ccnl_awaiting(ccnl, engine, date(2027, 1, 31))
+    assert not report.ccnl_awaiting(ccnl, engine, date(2027, 4, 1))
+    assert report.non_native(ccnl, (2026, 2027), date(2027, 1, 31)) == ()
+    assert "base_salary" in report.non_native(ccnl, (2026, 2027), date(2027, 2, 1))
+
+
+def test_the_page_lists_the_awaited_publications() -> None:
+    """Each awaiting limitation with what is due and by when."""
+    page = report.render(report.build_report(_TODAY))
+    assert "awaiting publication" in page
+    assert "`provisional_inps_ruleset`:" in page
+    assert "by 2027-02-28" in page
