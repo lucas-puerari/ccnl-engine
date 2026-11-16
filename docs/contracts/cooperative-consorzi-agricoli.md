@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-19 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 60 of the verbale of 19 July 2024 (scanned pp. 14-15, read on the page images). | corrected | Added parameters.fixed_term_pay for the OTD: hourly pay with the 30.44% terzo elemento and twelve monthly payments.<br>Added the 8.63% TFR of art. 66 (stesura 2019-2023, p. 85) and took the terzo elemento out of the TFR base.<br>Chiarimento a verbale p. 86: the overtime hours worked with 'costanza e continuità' accrue the TFR at the 8.63% of art. 66 (no other rate; an independent reading found no reference to the 10% of the CCNL operai agricoli): parameters.fixed_term_pay.overtime_tfr_rate 0.0863. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 24 apprenticeship of the text signed 3 August 2022 (PDF p. 40), against the research of a separate model session. | corrected | The file paid apprentices 100% of the destination level; art. 24 pays by under-classification. Tracks added; the impiegati skip of the 5th level and the seasonal track remain a limitation. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source text. | corrected | Added the comporto window of the CCNL. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Travel allowance: the clause located in the cited file by sha256. | corrected | Applied: travel delegated to second-level bargaining. |
 
 ## Salary table
 

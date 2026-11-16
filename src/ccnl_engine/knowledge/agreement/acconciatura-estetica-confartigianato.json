@@ -1236,7 +1236,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "600352489abd4340d9dc3322a42bf3a84d9f0bca5a91289b0b070a020615685e",
+    "source_hash": "67fa07021909fc8b6a38073666090c7a3604a983c44e0e4e76477f865b44931b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1744,6 +1744,35 @@
             "review_id": "2026-11-15-ai-acconciatura-estetica-confartigianato-time-supplements"
           }
         }
+      },
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "atura-estetica-tricologia-non-curativa-tatuaggio-piercing-e-centri-benessere-pdf",
+              "title": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Acconciatura-Estetica-Tricologia-non-curativa-Tatuaggio-Piercing-e-Centri-Benessere.pdf",
+              "kind": "associazione",
+              "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Acconciatura-Estetica-Tricologia-non-curativa-Tatuaggio-Piercing-e-Centri-Benessere.pdf",
+              "sha256": "916b03a4d5c4d7eb2638a639e1019dc6ee3ab3ac2b841e8cbdd231184fd7df2a"
+            },
+            "page": "41",
+            "section": "Art. 35 - Minimi contrattuali — Retribuzione tabellare (Conglobamento)",
+            "quote": "Sono conglobati in un'unica voce denominata “Retribuzione tabellare” i seguenti istituti retributivi: paga base (o minimo tabellare); ex indennità di contingenza; elemento distinto della retribuzione (EDR)."
+          },
+          "transformation": "The CCNL sets no travel allowance.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-acconciatura-estetica-confartigianato-time-supplements"
+          }
+        }
       }
     }
   },
@@ -1853,6 +1882,29 @@
         ],
         "findings": [
           "Applied: hourly_base, bands[0:night], bands[1:holiday], bands[2:rest_day], bands[3:sunday], none.shift_work."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-acconciatura-estetica-confartigianato-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Acconciatura-Estetica-Tricologia-non-curativa-Tatuaggio-Piercing-e-Centri-Benessere.pdf",
+            "sha256": "916b03a4d5c4d7eb2638a639e1019dc6ee3ab3ac2b841e8cbdd231184fd7df2a"
+          }
+        ],
+        "findings": [
+          "Applied: travel.",
+          "Left out: bands[0:night]: quote skipped; bands[1:holiday]: quote skipped; bands[2:rest_day]: quote skipped; bands[3:sunday]: quote skipped; none.shift_work: skipped."
         ],
         "independence": "separate_model",
         "checked": [

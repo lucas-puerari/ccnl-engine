@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-04 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source text. | corrected | Added the comporto window of the CCNL. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Rules of the 2021 text against the OCR of the renewal signed on 4 December 2025, from the research of a separate model session. | corrected | Arts. 49 (levels 1-5, parameters 100-123) and 52 (divisors 26 and 169) are reproduced in the renewal (PDF pp. 20-22); art. 7 is not amended. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text. | confirmed | work_rules.sunday_holidays: 01-01, 01-06, 04-25, 05-01, 06-02, 08-15, 11-01, 11-04, 12-08, 12-25, 12-26 |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel.<br>Left out: bands[0:night]: quote skipped; bands[1:night_shift]: quote skipped; bands[2:holiday]: quote skipped; bands[3:sunday]: quote skipped; bands[4:night_holiday]: quote skipped; bands[5:night_holiday_shift]: quote skipped. |
 
 ## Salary table
 

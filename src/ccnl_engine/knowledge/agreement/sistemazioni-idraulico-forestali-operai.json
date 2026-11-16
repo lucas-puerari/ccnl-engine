@@ -271,6 +271,33 @@
         "checked": [
           "work_rules.sunday_holidays"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-sistemazioni-idraulico-forestali-operai-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/1724",
+            "sha256": "a1a96985a8efd71775de8776581b4ae26ac477b6f77f6ad6639aadebbd23a402"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239352",
+            "sha256": "68fe8e63590539e2d29a57a578a3576333fbd15687b8406447e7991259e0b5cc"
+          }
+        ],
+        "findings": [
+          "Applied: travel.",
+          "Left out: bands[0:night]: quote skipped; bands[1:night_shift]: quote skipped; bands[2:holiday]: quote skipped; bands[3:sunday]: quote skipped; bands[4:night_holiday]: quote skipped; bands[5:night_holiday_shift]: quote skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -1104,7 +1131,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "a531375e872b9b3f7e6cf6a785eb7062af06713d0c347d748cbcbbdd5607aea3",
+    "source_hash": "34f9de01907cf5b2bcc482c02ad5121e3ebc55d571f91b57291b84bea4fdd869",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -1219,7 +1246,8 @@
             }
           }
         }
-      ]
+      ],
+      "supplement_bands": []
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -1360,6 +1388,37 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461)."
+      }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "2-lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-1724",
+              "title": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/1724",
+              "kind": "associazione",
+              "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/1724",
+              "sha256": "a1a96985a8efd71775de8776581b4ae26ac477b6f77f6ad6639aadebbd23a402"
+            },
+            "page": "19",
+            "section": "Art. 16, cc. 1-2",
+            "quote": "Le spese per viaggio, vitto ed alloggio, ed altre comunque sostenute dal lavoratore per ragioni inerenti al servizio debbono essere rimborsate, previa documentazione, entro un mese. I contratti integrativi potranno stabilire diverse modalità di rimborso delle spese anche non documentabili sostenute per la trasferta."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-sistemazioni-idraulico-forestali-operai-time-supplements"
+          }
+        }
       }
     }
   }

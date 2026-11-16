@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-17 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2029-12-01 |
 
 ## Review history
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | INPS circ. 140/2012 par. 3.3 on the apprentice contribution, against the research of a separate model session. | confirmed | The cuneo reductions (0.91) do not apply to apprentices: the artigianato apprentice rates of the bundle are confirmed. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 39 table, PDF p. 22, read on the page image. | confirmed | Level 2 scatto 26.85 confirmed on the signed table. |
 | 2026-11-15 | claude-opus-5-5 (ai) | IND_FUN instalments and apprenticeship percentages against the 2014 text and the 2025 renewal, from the research of a separate model session. | corrected | IND_FUN enters every contractual institute: 13 instalments.<br>The 2025 renewal leaves art. 58 point 7 unchanged. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel.<br>Left out: none.shift_work: skipped. |
 
 ## Salary table
 

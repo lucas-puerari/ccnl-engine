@@ -208,6 +208,7 @@ _COMPLETE_CCNLS = [
     "dirigenza-funzioni-centrali-aran",
     "dirigenza-funzioni-locali-aran",
     "enti-ricerca-aran",
+    "farmacie-private-h121",
     "funzioni-centrali-aran",
     "funzioni-locali-aran",
     "grafica-editoria-aieg",
@@ -238,8 +239,8 @@ def test_the_page_names_every_ccnl_and_the_totals() -> None:
     built = report.build_report()
     page = report.render(built)
 
-    assert f"**Complete: 15/{len(built.rows)} CCNLs**" in page
-    assert "complete except declared residuals: 3." in page
+    assert f"**Complete: 16/{len(built.rows)} CCNLs**" in page
+    assert "complete except declared residuals: 4." in page
     assert "| [anas](../contracts/anas.md) | `trasporti-logistica` |" in page
 
 
@@ -256,7 +257,7 @@ def test_check_and_strict_modes(
     assert page.is_file()
     assert report.main(["--check"]) == 0
     assert report.main(["--check", "--strict"]) == 1
-    assert "Complete: 15/136 CCNLs." in capsys.readouterr().out
+    assert "Complete: 16/136 CCNLs." in capsys.readouterr().out
 
 
 def test_a_census_error_fails_every_mode(

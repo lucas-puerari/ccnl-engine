@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 45 - Tredicesima mensilità (p. 76): "Nel caso di inizio del rapporto durante il corso dell’anno, il lavoratore avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestati nell’Azienda. Le frazioni di mese superiori a 15 giorni saranno da considerare mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 64 - Preavviso di licenziamento e dimissioni, p. 86). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256. | corrected | Applied: work_rules.parental_hourly. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel.<br>Left out: bands[0:night]: quote skipped; bands[1:holiday]: quote skipped; bands[2:sunday]: quote skipped; bands[3:night_holiday]: quote skipped; bands[4:day_shift]: quote skipped; bands[5:night_shift]: quote skipped. |
 
 ## Salary table
 

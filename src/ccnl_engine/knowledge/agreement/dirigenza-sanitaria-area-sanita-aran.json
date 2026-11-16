@@ -592,7 +592,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "970a578b25c5ada6b6c621bbea9e36b32ba51314295215587c24bdabe0aa1fe0",
+    "source_hash": "46e6fa7fb7a461b6695ec231423b4d6b7de6525cbc4292abb8044f38e7584abc",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -672,7 +672,8 @@
             }
           }
         }
-      ]
+      ],
+      "supplement_bands": []
     },
     "absence_rules": {
       "daily_divisor_method": "by_hourly",
@@ -960,6 +961,37 @@
         },
         "transformation": "The CCNL text read is silent on the holidays falling on a Sunday: the law pays the civil holidays only; art. 5 names the 'Stato, enti pubblici e datori privati', and the maintainer decided on 2026-11-15 that it applies to public employment (documents read: https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf, sha256 78f817dd3665df879f652b9778aeb634037664143ae195c2278d608efce4513a; https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf, sha256 de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375)"
       }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ranagenzia-it-wp-content-uploads-2024-10-definitivo-ccnl-area-sanita-firmato-pdf",
+              "title": "https://www.aranagenzia.it/wp-content/uploads/2024/10/DEFINITIVO-CCNL-AREA-SANITA-firmato.pdf",
+              "kind": "associazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2024/10/DEFINITIVO-CCNL-AREA-SANITA-firmato.pdf",
+              "sha256": "32240e405e685cfad3d8eb91f8d12c7db504f81529357fa0882a567d82deace9"
+            },
+            "page": "100",
+            "section": "Art. 80 c. 1 lett. c)-d)",
+            "quote": "c) per le trasferte di durata superiore a dodici ore, il rimborso della spesa sostenuta per il pernottamento in un albergo fino a quattro stelle e della spesa per i due pasti giornalieri, nel limite di complessivi € 44,26; d) per le trasferte di durata non inferiore a otto ore e fino a dodici ore, il rimborso per un pasto nel limite di € 22,26;"
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-dirigenza-sanitaria-area-sanita-aran-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -1004,6 +1036,33 @@
         "independence": "same_process",
         "checked": [
           "parameters.hourly_divisor"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-dirigenza-sanitaria-area-sanita-aran-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
+            "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/10/DEFINITIVO-CCNL-AREA-SANITA-firmato.pdf",
+            "sha256": "32240e405e685cfad3d8eb91f8d12c7db504f81529357fa0882a567d82deace9"
+          }
+        ],
+        "findings": [
+          "Applied: travel.",
+          "Left out: bands[0:night]: quote skipped; bands[1:holiday]: quote skipped; none.shift_work: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]

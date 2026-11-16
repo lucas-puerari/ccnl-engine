@@ -1755,7 +1755,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "896b813975aecc566b10d30b6fd37535457e3c90a841f8fe5165ee21ef7ba964",
+    "source_hash": "3ec884d3adf2d5271aa67d6f23f63def885d2a5500969fa76d6b9824827ddefb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2039,6 +2039,37 @@
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://a, sha256 81a955e90c3bc3d991eff2c2095dd60506475f5e9553dfe8e94a767fce7738cd; https://u, sha256 8299597cccb79517c35a08a236ea5d773b42fea365dbebfdeeff9de12060eb76)."
       }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "w-anivp-it-wp-content-uploads-2019-09-ccnl-2013-2015-anivp-assvigilanza-univ-pdf",
+              "title": "https://www.anivp.it/wp-content/uploads/2019/09/CCNL-2013-2015-ANIVP-ASSVIGILANZA-UNIV.pdf",
+              "kind": "associazione",
+              "url": "https://www.anivp.it/wp-content/uploads/2019/09/CCNL-2013-2015-ANIVP-ASSVIGILANZA-UNIV.pdf",
+              "sha256": "609c9d2c6597fe20ea9e63b1e6160e428a8dead9db521f4f876be7f79a405cef"
+            },
+            "page": "109",
+            "section": "Sezione Servizi Fiduciari, Art. 22 - Missioni",
+            "quote": "AI lavoratore inviato in missione, ove si renda necessario il suo pernottamento fuori sede è dovuto oltre al rimborso delle spese di viaggio, quelle sostenute per vitto e alloggio."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-vigilanza-privata-assiv-sf-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -2134,6 +2165,33 @@
         "findings": [
           "Applied: hourly_base, bands[0:sunday].",
           "Left out: bands[1:night_holiday]: quote quote_not_in_file; bands[2:night_holiday]: more night_holiday bands the engine cannot tell apart; bands[3:holiday]: quote quote_not_in_file; bands[4:rest_day]: quote skipped; none.shift_work: skipped; none.night: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-vigilanza-privata-assiv-sf-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/IPOTESI-CCNL-VIGILANZA-PRIVATA-16.02.2024.pdf",
+            "sha256": "96a2d7ffc954a3da46969d05eec9bd25e20f8743800b58e268d145daad271cee"
+          },
+          {
+            "url": "https://www.anivp.it/wp-content/uploads/2019/09/CCNL-2013-2015-ANIVP-ASSVIGILANZA-UNIV.pdf",
+            "sha256": "609c9d2c6597fe20ea9e63b1e6160e428a8dead9db521f4f876be7f79a405cef"
+          }
+        ],
+        "findings": [
+          "Applied: travel.",
+          "Left out: bands[0:sunday]: quote skipped; bands[1:night_holiday]: quote skipped; bands[2:night_holiday]: quote skipped; bands[3:holiday]: quote skipped; bands[4:rest_day]: quote skipped; none.shift_work: skipped; none.night: skipped."
         ],
         "independence": "separate_model",
         "checked": [

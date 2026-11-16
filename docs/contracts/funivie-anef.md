@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-16 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2028-03-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 42 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | quadri_function_allowance: Art. 5(1),(3) pays EUR 118.79 monthly to employer-recognised quadri of levels I super and I, without absorbing an individual superminimo or prejudicing second-level payments. funivie-anef.json already defines IND_FUNZIONE_QUADRO on both 1S and 1 at 118.79/month with role='quadro' |
 | 2026-11-15 | claude-opus-5-5 (ai) | Transitional seniority rule of art. 19 and Allegato 3.1 against the research of a separate model session; text layer of the source. | confirmed | Only the increment maturing on 30 April 2016 keeps the Allegato 3.1 amount; the caller states it as an earned increment. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel.<br>Left out: bands[0:night]: quote skipped; bands[1:holiday]: quote skipped; bands[2:rest_day]: quote skipped; bands[3:sunday]: quote skipped; bands[4:sunday]: quote skipped; none.shift_work: skipped. |
 
 ## Salary table
 

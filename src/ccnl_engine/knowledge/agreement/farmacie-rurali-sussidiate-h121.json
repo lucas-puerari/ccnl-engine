@@ -1824,7 +1824,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "e251244606ea83b8a901039d5ef0135d51858b7c47dbb6b1a6826c6df08b27cf",
+    "source_hash": "8fcae037fe4a2ac336c45aa24aadbbc30a7d96404b19886e68d91540f4c7c931",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
@@ -2792,6 +2792,35 @@
             "verified_at": "2026-11-15T00:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-15-ai-farmacie-rurali-sussidiate-h121-time-supplements"
+          }
+        }
+      },
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "menti-contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+              "title": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+              "kind": "associazione",
+              "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+              "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+            },
+            "page": "25",
+            "section": "Art. 55 - Retribuzione di fatto",
+            "quote": "La retribuzione di fatto è costituita dalle voci di cui al precedente art. 54, nonché da tutti gli altri elementi retributivi aventi carattere continuativo, ad esclusione dei rimborsi di spese, dei compensi per lavoro straordinario, delle gratificazioni straordinarie o una tantum, e di ogni elemento espressamente escluso dalle Parti dal calcolo di singoli istituti contrattuali ovvero escluso dall’imponibile retributivo a norma di legge."
+          },
+          "transformation": "The CCNL sets no travel allowance.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-farmacie-rurali-sussidiate-h121-time-supplements"
           }
         }
       }

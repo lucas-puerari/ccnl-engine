@@ -184,6 +184,29 @@
         "checked": [
           "work_rules.parental_hourly"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-radiotelevisive-radiofonico-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2023/06/CCNL_2023.pdf",
+            "sha256": "5813587f3386224c72744d231d82b74989a661a6ddeccbd6eb5a79b052ed7262"
+          }
+        ],
+        "findings": [
+          "Applied: travel.",
+          "Left out: bands[0:night]: quote skipped; bands[1:holiday]: quote skipped; bands[2:sunday]: quote skipped; bands[3:night_holiday]: quote skipped; bands[4:day_shift]: quote skipped; bands[5:night_shift]: quote skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -1417,7 +1440,7 @@
     "source": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "018a4032bb1f7d2c392861185286c59af75903ddf10959b002b59cae2abca4a0"
+    "source_hash": "aa00daadc2d539c921a792fd1e11b836edb74dd4b99cd37e5e148df7b51004b1"
   },
   "work_rules": {
     "notice": {
@@ -1520,6 +1543,40 @@
           "quote": "Ai sensi del D.Lgs.. 15 giugno 2015, n. 80 nel caso in cui il congedo parentale venga richiesto in modalità di fruizione oraria lo stesso sarà riconosciuto in gruppi minimi di 4 ore giornaliere con termine di preavviso pari a 5 giorni lavorativi. L’azienda e la RSU potranno definire modalità e condizioni per la fruizione dei congedi parentali su base oraria in misura inferiore a quelli previsti dalle norme di legge, in relazione alle esigenze organizzative e produttive."
         },
         "transformation": "The contract sets a minimum daily block of four hours for hourly parental leave, unlike the statutory half-average-day criterion. This minimum does not equate four hours to a full day of leave; the clause does not specify part-time scaling. The verified 2017 agreement is the earliest documented occurrence."
+      }
+    },
+    "time_supplements": {
+      "supplement_bands": []
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "https-www-confindustriaradiotv-it-wp-content-uploads-2023-06-ccnl-2023-pdf",
+              "title": "https://www.confindustriaradiotv.it/wp-content/uploads/2023/06/CCNL_2023.pdf",
+              "kind": "associazione",
+              "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2023/06/CCNL_2023.pdf",
+              "sha256": "5813587f3386224c72744d231d82b74989a661a6ddeccbd6eb5a79b052ed7262"
+            },
+            "page": "36",
+            "section": "Art. 58 Trasferta",
+            "quote": "In alternativa al piè di lista le Aziende potranno proporre una indennità forfettaria di trasferta."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-radiotelevisive-radiofonico-time-supplements"
+          }
+        }
       }
     }
   }
