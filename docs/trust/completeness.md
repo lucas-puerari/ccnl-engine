@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 26/136 CCNLs**; complete except declared residuals: 4. Bundle: 168 weak rules, 250 open limitations (250 with a monetary impact), 34 declared residuals.
+**Complete: 27/136 CCNLs**; complete except declared residuals: 4. Bundle: 168 weak rules, 250 open limitations (250 with a monetary impact), 34 declared residuals.
 
 ## Declared window
 
@@ -207,5 +207,5 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [vetro-meccanizzato-assovetro](../contracts/vetro-meccanizzato-assovetro.md) | `chimica` | exploratory | — | 29 rows | 29 open requirements; 28 weak rules; 1 outside_input limitation; 7 non-native capabilities |
 | [vigilanza-privata-assiv](../contracts/vigilanza-privata-assiv.md) | `vigilanza` | exploratory | — | 1 rows | 1 open requirement; 1 monetary limitation; 3 non-native capabilities; 1 declared residual |
 | [vigilanza-privata-assiv-sf](../contracts/vigilanza-privata-assiv-sf.md) | `vigilanza` | exploratory | — | 4 rows | 4 open requirements; 2 weak rules; 2 monetary limitations; 4 non-native capabilities; 1 declared residual |
-| [vigilanza-privata-federdat-gpg](../contracts/vigilanza-privata-federdat-gpg.md) | `vigilanza` | exploratory | — | 0 rows | tables from 2026-07-01; 2 non-native capabilities |
+| [vigilanza-privata-federdat-gpg](../contracts/vigilanza-privata-federdat-gpg.md) | `vigilanza` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [vigilanza-privata-federdat-sf](../contracts/vigilanza-privata-federdat-sf.md) | `vigilanza` | exploratory | — | 4 rows | tables until 2026-06-30; 4 open requirements; 1 monetary limitation; 3 outside_input limitations; 6 non-native capabilities |

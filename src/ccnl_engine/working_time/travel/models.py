@@ -97,7 +97,9 @@ class TravelDailyShare(BaseModel):
     Attributes:
         rate: Share of the daily pay (2 for the double, 0.20 for 20%).
         base: ``"minimum"`` for the minimo of the level, ``"pay"`` for the
-            retribuzione di fatto (minimo, seniority and cash allowances).
+            retribuzione di fatto (minimo, seniority and cash allowances),
+            ``"normal"`` for the minimo and seniority (Vigilanza art. 100:
+            "quota giornaliera della normale retribuzione mensile").
         divisor: Divisor of the monthly pay that gives the daily one.
         no_overnight_discount: Share the diaria drops by on a day without
             an overnight stay away (Commercio: a third).
@@ -115,7 +117,7 @@ class TravelDailyShare(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     rate: Decimal = Field(gt=Decimal(0), le=Decimal(5))
-    base: Literal["minimum", "pay"]
+    base: Literal["minimum", "pay", "normal"]
     divisor: Decimal = Field(default=Decimal(26), gt=Decimal(0))
     no_overnight_discount: Decimal = Field(
         default=Decimal(0), ge=Decimal(0), lt=Decimal(1)

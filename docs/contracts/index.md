@@ -231,7 +231,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 111 | H052 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | Turismo | ~220k | 2024 | ⚠️ | base_salary, sickness | 79 / 1 / 0 / 0 | 🏭 | 🤖✓ |
 | 112 | H052 | [CCNL Turismo — Federalberghi/Faita - Alberghi a una e due stelle e campeggi minori](turismo-federalberghi-alberghi-minori.md) | Turismo | ~220k | 2024 | ⚠️ | base_salary, sickness | 69 / 1 / 0 / 0 | 🧪 | 🤖 |
 | 113 | B132 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | vetro industria — settori meccanizzati | ~28k | 2026 | ⚠️ | base_salary | 74 / 0 / 28 / 0 | 🧪 | 🔍 |
-| 114 | HV51 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2026 | ✅ | — | 28 / 6 / 0 / 0 | 🧪 | 🤖 |
+| 114 | HV51 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2026 | ✅ | — | 30 / 6 / 0 / 0 | 🧪 | 🤖 |
 | 115 | HV51 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | vigilanza privata — servizi fiduciari (SF) | — | 2026 | ⚠️ | base_salary, contractual_funds, overtime | 28 / 0 / 0 / 0 | 🧪 | 🤖 |
 | 116 | H0B1 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | agenzie immobiliari | — | 2025 | ✅ | — | 42 / 2 / 1 / 0 | 🧪 | 🤖 |
 | 117 | IC91 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | autoscuole e consulenza automobilistica | — | 2023 | ✅ | — | 5 / 41 / 0 / 0 | 🧪 | 🤖 |

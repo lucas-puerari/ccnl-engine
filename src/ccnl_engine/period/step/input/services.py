@@ -38,7 +38,7 @@ from ccnl_engine.severance.provision.services import tfr_treasury_fund
 from ccnl_engine.sickness.services import sickness_terms
 from ccnl_engine.termination.notice.services import notice_terms
 from ccnl_engine.variable_pay.benefit.handlers import fringe_threshold_of
-from ccnl_engine.variable_pay.travel.handlers import TravelTerms
+from ccnl_engine.variable_pay.travel.terms import TravelTerms
 from ccnl_engine.working_time.hourly.components import cash_pay
 from ccnl_engine.working_time.hourly.services import hourly_terms
 from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
@@ -107,13 +107,13 @@ def variable_events(
 
 def _travel_terms(ctx: RunContext) -> TravelTerms:
     ccnl = ctx.contract.ccnl
-    work = ccnl.work_rules
     bands = CCNLOvertimeBands.of(ccnl, ctx.contract.tctx.competence.year)
     return TravelTerms(
-        None if work is None else work.travel_allowance,
+        None if ccnl.work_rules is None else ccnl.work_rules.travel_allowance,
         bands.ruleset,
         ctx.regular_chain.base,
         cash_pay(ctx.regular_chain),
+        ctx.regular_chain.base + ctx.regular_chain.seniority,
     )
 
 

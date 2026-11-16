@@ -39,9 +39,9 @@ from ccnl_engine.variable_pay.benefit.handlers import fringe_threshold_of
 from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
 from ccnl_engine.variable_pay.travel.handlers import (
     TravelAllowanceAssessment,
-    TravelTerms,
     _discounted_daily,
 )
+from ccnl_engine.variable_pay.travel.terms import TravelTerms
 from ccnl_engine.working_time.travel.models import CcnlTravelAllowance
 from scripts.provenance.rules import KNOWLEDGE_DIR
 
