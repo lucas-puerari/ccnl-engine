@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 51 verified / 5 derived / 0 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 52 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -75,6 +75,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 104, 106, 111, 117 and 118 of the stesura of 9 March 2022. | corrected | Corrected the weekday overtime band (15%, was 30%), added the tier beyond the 48th hour (20%), the night-holiday band, the holiday and rest-day premiums; recorded the Title XI shift premiums as a limitation. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 221, 266-269 of the stesura of 9 March 2022. | corrected | The file had no fund: added EBCE, EASI with their elements in place and the Il Mio Domani pension fund. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
+| 2026-11-16 | claude-opus-5-5 (ai) | The clause on the fraction of a month of the extra-month ratei, located in the cited file by sha256. | corrected | Sourced: parameters.accrual_rule. |
 
 ## Salary table
 

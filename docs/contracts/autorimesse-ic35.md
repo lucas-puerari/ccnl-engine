@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 59 verified / 41 derived / 0 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 60 verified / 41 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -73,6 +73,7 @@ Derived from the capability registry. The scenario features and the ones outside
 concerne la retribuzione, la stessa è determinata come segue:
 • nel primo anno: 85% della retribuzione globale;
 • nel secondo anno: 90% della retribuzione globale. |
+| 2026-11-16 | claude-opus-5-5 (ai) | The clause on the fraction of a month of the extra-month ratei, located in the cited file by sha256. | corrected | Sourced: parameters.accrual_rule. |
 
 ## Salary table
 

@@ -135,15 +135,15 @@ on unverified sources, or be well sourced and not cleared for production.
 | 15 | B282 | [CCNL Attivita Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | Industria estrattiva - Miniere, cave, saline, metallurgia estrattiva | ~3000 | 2022 | ✅ | — | 36 / 1 / 1 / 1 | 🧪 | 🤖 |
 | 16 | I320 | [CCNL Attività Ferroviarie — AGENS](trasporto-ferroviario-agens.md) | trasporto | ~75k | 2025 | ✅ | — | 55 / 29 / 0 / 0 | 🧪 | 🤖 |
 | 17 | I022 | [CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)](autoferrotranvieri-internavigatori.md) | trasporti | ~120k | 2024 | ⚠️ | inps_employer | 36 / 140 / 0 / 0 | 🧪 | 🤖 |
-| 18 | IC35 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | Autorimesse e noleggio automezzi | ~41k | 2025 | ✅ | parental_leave | 59 / 41 / 0 / 1 | 🧪 | 🤖 |
-| 19 | I192 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | autostrade e trafori — addetti alle concessionarie autostradali | ~15k | 2023 | ✅ | sickness | 55 / 97 / 0 / 1 | 🧪 | 🤖 |
-| 20 | H601 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | Terziario | ~22k | 2025 | ⚠️ | base_salary, inps_employer, maternity_leave, shift_work, workplace_injury | 51 / 5 / 0 / 1 | 🧪 | 🤖 |
+| 18 | IC35 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | Autorimesse e noleggio automezzi | ~41k | 2025 | ✅ | parental_leave | 60 / 41 / 0 / 0 | 🧪 | 🤖 |
+| 19 | I192 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | autostrade e trafori — addetti alle concessionarie autostradali | ~15k | 2023 | ✅ | sickness | 56 / 97 / 0 / 0 | 🧪 | 🤖 |
+| 20 | H601 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | Terziario | ~22k | 2025 | ⚠️ | base_salary, inps_employer, maternity_leave, shift_work, workplace_injury | 52 / 5 / 0 / 0 | 🧪 | 🤖 |
 | 21 | G022 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | carta-cartone | ~35k | 2026 | ⚠️ | base_salary | 21 / 62 / 0 / 0 | 🧪 | 🤖 |
 | 22 | T011 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | Sanità privata | ~150k | 2020 | ⚠️ | base_salary, overtime, seniority, standby | 38 / 2 / 0 / 0 | 🧪 | 🤖 |
 | 23 | F032 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | industria del cemento calce e gesso | ~25k | — | ⚠️ | seniority | 45 / 37 / 0 / 0 | 🧪 | 🤖 |
 | 24 | B122 | [CCNL Ceramica Industria (Confindustria) - Ceramica sanitaria e stoviglieria](ceramica-sanitaria-stoviglieria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 52 / 19 / 0 / 1 | 🧪 | 🤖 |
 | 25 | B122 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 48 / 12 / 1 / 1 | 🧪 | 🤖 |
-| 26 | B018 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | chimica | ~56k | 2026 | ✅ | — | 40 / 13 / 1 / 1 | 🧪 | 🤖 |
+| 26 | B018 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | chimica | ~56k | 2026 | ✅ | — | 41 / 13 / 1 / 0 | 🧪 | 🤖 |
 | 27 | S005 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | Pubblica Amministrazione — Comparto Funzioni Centrali | ~250k | 2026 | ✅ | — | 52 / 5 / 0 / 0 | 👁 | 🤖✓ |
 | 28 | S105 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | Pubblica Amministrazione | ~400k | 2026 | ✅ | — | 22 / 21 / 0 / 0 | 👁 | 🤖✓ |
 | 29 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN](istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~1,2M | 2026 | ✅ | — | 60 / 45 / 0 / 0 | 🧪 | 🤖 |
@@ -184,7 +184,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 64 | H05B | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | turismo — alberghi, campeggi, villaggi e strutture ricettive | ~40k | 2025 | ⚠️ | base_salary | 37 / 10 / 1 / 0 | 🧪 | 🤖 |
 | 65 | G111 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | Cinema e audiovisivo | ~2.3k | 2025 | ⚠️ | inps_employer | 57 / 7 / 0 / 0 | 🧪 | 🤖 |
 | 66 | HV17 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)](vigilanza-privata-assiv.md) | vigilanza-privata | ~85k | 2023 | ⚠️ | seniority | 44 / 8 / 0 / 0 | 🧪 | 🤖 |
-| 67 | HV17 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (Servizi fiduciari)](vigilanza-privata-assiv-sf.md) | vigilanza privata — servizi fiduciari (SF) | ~40k | 2023 | ⚠️ | base_salary, seniority | 48 / 5 / 2 / 1 | 🧪 | 🤖 |
+| 67 | HV17 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (Servizi fiduciari)](vigilanza-privata-assiv-sf.md) | vigilanza privata — servizi fiduciari (SF) | ~40k | 2023 | ⚠️ | base_salary, seniority | 49 / 5 / 2 / 0 | 🧪 | 🤖 |
 | 68 | T241 | [CCNL Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE](scuole-private-agidae.md) | istruzione privata | ~50k | — | ⚠️ | seniority | 15 / 32 / 0 / 0 | 🧪 | 🤖 |
 | 69 | T141 | [CCNL Istituzioni Socio-Assistenziali — UNEBA](uneba-uneba.md) | servizi socio-assistenziali | ~130k | — | ✅ | — | 40 / 9 / 0 / 0 | 🧪 | 🤖 |
 | 70 | T131 | [CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE)](istituzioni-servizi-socio-assistenziali-anaste.md) | servizi socio-assistenziali | ~120k | — | ✅ | — | 66 / 12 / 0 / 0 | 🧪 | 🤖 |
@@ -205,7 +205,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 85 | C018 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | metalmeccanico | ~350k | — | ⚠️ | base_salary, leave, overtime, sickness | 70 / 11 / 0 / 0 | 👁 | 🤖✓ |
 | 86 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | 2025 | ✅ | — | 92 / 18 / 0 / 0 | 🏭 | 🤖✓ |
 | 87 | IC36 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | Trasporti - Noleggio autobus con conducente | ~5422 | 2025 | ⚠️ | seniority, una_tantum | 35 / 34 / 2 / 0 | 🧪 | 🤖 |
-| 88 | D271 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | industria occhialeria e ottica | ~20k | — | ✅ | — | 77 / 12 / 0 / 1 | 🧪 | 🤖 |
+| 88 | D271 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | industria occhialeria e ottica | ~20k | — | ✅ | — | 78 / 12 / 0 / 0 | 🧪 | 🤖 |
 | 89 | A011 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | agricoltura | ~600k | 2026 | ⚠️ | base_salary, bilateral_funds, overtime, seniority | 23 / 11 / 0 / 0 | 🧪 | 🤖 |
 | 90 | A221 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | Agricoltura | ~2k | 2024 | ⚠️ | inps_employer | 44 / 8 / 0 / 0 | 🧪 | 🤖 |
 | 91 | H341 | [CCNL Ortofrutticoli ed Agrumari (Import-Export)](ortofrutticoli-agrumari.md) | ortofrutticoli ed agrumari import-export | ~60000 | 2024 | ⚠️ | base_salary | 64 / 0 / 1 / 0 | 🧪 | 🤖 |
@@ -230,9 +230,9 @@ on unverified sources, or be well sourced and not cleared for production.
 | 110 | H058 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi | — | 2024 | ⚠️ | base_salary | 50 / 8 / 0 / 0 | 🧪 | 🤖 |
 | 111 | H052 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | Turismo | ~220k | 2024 | ⚠️ | base_salary, sickness | 79 / 1 / 0 / 0 | 🏭 | 🤖✓ |
 | 112 | H052 | [CCNL Turismo — Federalberghi/Faita - Alberghi a una e due stelle e campeggi minori](turismo-federalberghi-alberghi-minori.md) | Turismo | ~220k | 2024 | ⚠️ | base_salary, sickness | 69 / 1 / 0 / 0 | 🧪 | 🤖 |
-| 113 | B132 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | vetro industria — settori meccanizzati | ~28k | 2026 | ⚠️ | base_salary | 73 / 0 / 28 / 1 | 🧪 | 🔍 |
-| 114 | HV51 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2026 | ✅ | — | 29 / 6 / 0 / 1 | 🧪 | 🤖 |
-| 115 | HV51 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | vigilanza privata — servizi fiduciari (SF) | — | 2026 | ⚠️ | base_salary, contractual_funds, overtime | 27 / 0 / 0 / 1 | 🧪 | 🤖 |
+| 113 | B132 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | vetro industria — settori meccanizzati | ~28k | 2026 | ⚠️ | base_salary | 74 / 0 / 28 / 0 | 🧪 | 🔍 |
+| 114 | HV51 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2026 | ✅ | — | 30 / 6 / 0 / 0 | 🧪 | 🤖 |
+| 115 | HV51 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | vigilanza privata — servizi fiduciari (SF) | — | 2026 | ⚠️ | base_salary, contractual_funds, overtime | 28 / 0 / 0 / 0 | 🧪 | 🤖 |
 | 116 | H0B1 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | agenzie immobiliari | — | 2025 | ✅ | — | 42 / 2 / 1 / 0 | 🧪 | 🤖 |
 | 117 | IC91 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | autoscuole e consulenza automobilistica | — | 2023 | ✅ | — | 5 / 41 / 0 / 0 | 🧪 | 🤖 |
 | 118 | H05Y | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | turismo | ~350k | — | ⚠️ | base_salary, leave, overtime, sickness | 68 / 4 / 0 / 0 | 🏭 | 🤖✓ |

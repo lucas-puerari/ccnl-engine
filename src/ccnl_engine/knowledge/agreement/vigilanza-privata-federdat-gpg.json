@@ -1205,7 +1205,37 @@
           }
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "vigilanza-privata-federdat-gpg-accrual",
+            "title": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "kind": "associazione",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          "page": "65",
+          "section": "Art. 129, comma 3, sezione guardie particolari giurate",
+          "quote": "Nel caso di inizio o cessazione del rapporto di lavoro nel corso dell’anno, il lavoratore avrà diritto, per i mesi di servizio prestato, a tanti dodicesimi della mensilità di cui al presente articolo per quanti sono i mesi rispettivamente maturati nel corso dei periodi sopracitati. A tal fine le frazioni di mese che superino i 15 giorni saranno considerate mese intero."
+        },
+        "transformation": "A month counts whole when its fraction is more than 15 days.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-accrual-rule"
+        }
+      }
+    }
   },
   "apprenticeship": [
     {
@@ -1236,7 +1266,7 @@
     "effective_until": null,
     "source": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
     "verification_status": "unverified",
-    "source_hash": "d2dbc5ec3859d939c3a23356809ae00942439092f4e20bb7e97ecb946fa9556e",
+    "source_hash": "88a15725156987b23b826321cfe63bc50626aca6808ceec30a91bb965aa05a51",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2252,6 +2282,27 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.travel_allowance"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-accrual-rule",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The clause on the fraction of a month of the extra-month ratei, located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          }
+        ],
+        "findings": [
+          "Sourced: parameters.accrual_rule."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.accrual_rule"
         ]
       }
     ]

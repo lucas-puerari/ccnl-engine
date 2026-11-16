@@ -13,16 +13,7 @@
       "accrual_rule": "missing",
       "seniority_increments": "assumed"
     },
-    "agreement/autorimesse-ic35.json": {
-      "accrual_rule": "missing"
-    },
-    "agreement/autostrade-trafori.json": {
-      "accrual_rule": "missing"
-    },
     "agreement/calzaturiero-assocalzaturifici.json": {
-      "accrual_rule": "missing"
-    },
-    "agreement/ced-assoced.json": {
       "accrual_rule": "missing"
     },
     "agreement/ceramica-industria-confindustria.json": {
@@ -33,7 +24,6 @@
       "accrual_rule": "missing"
     },
     "agreement/chimica-affini-pmi-unionchimica.json": {
-      "accrual_rule": "missing",
       "additional_months[2026-01-01]": "assumed"
     },
     "agreement/consorzi-di-bonifica-snebi.json": {
@@ -112,9 +102,6 @@
     "agreement/noleggio-autobus-conducente-anav.json": {
       "levels[Q1].fixed_allowances[INDENNITA_FUNZIONE]": "assumed",
       "levels[Q2].fixed_allowances[INDENNITA_FUNZIONE]": "assumed"
-    },
-    "agreement/occhiali-occhialeria-industria.json": {
-      "accrual_rule": "missing"
     },
     "agreement/ortofrutticoli-agrumari.json": {
       "work_rules.absence_rules": "assumed"
@@ -228,7 +215,6 @@
       "accrual_rule": "missing"
     },
     "agreement/vetro-meccanizzato-assovetro.json": {
-      "accrual_rule": "missing",
       "additional_months[2023-03-01]": "assumed",
       "employer_funds[FONCHIM].employee_min_rate[2026-01-01]": "assumed",
       "employer_funds[FONCHIM].rate[2023-03-01]": "assumed",
@@ -259,15 +245,8 @@
       "levels[F].base_salary[2026-01-01]": "assumed"
     },
     "agreement/vigilanza-privata-assiv-sf.json": {
-      "accrual_rule": "missing",
       "additional_months[2023-06-01]": "assumed",
       "additional_months[2024-01-01]": "assumed"
-    },
-    "agreement/vigilanza-privata-federdat-gpg.json": {
-      "accrual_rule": "missing"
-    },
-    "agreement/vigilanza-privata-federdat-sf.json": {
-      "accrual_rule": "missing"
     },
     "contribution/2027/agricoltura.json": {
       "apprentice": "assumed",
