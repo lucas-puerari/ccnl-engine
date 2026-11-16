@@ -284,6 +284,27 @@
         "checked": [
           "levels.base_salary"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256, read from the OCR of the page where the PDF is scanned.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/IC36/154242.pdf",
+            "sha256": "7965a7906e87145463589dd5cda2d3aba34412e070de356cf71de1325cc096ac"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
+        ]
       }
     ]
   },
@@ -4051,8 +4072,30 @@
     "effective_until": "2026-12-31",
     "source": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "b3b9fdeea779c1879fa480c00846618994e09b7157ad58cc3b94799a1b691634",
+    "source_hash": "bbae2eab552182df546bd976538ca2b97f9f62e019e24de72cd5a288b9c36f47",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
+  },
+  "work_rules": {
+    "parental_hourly": {
+      "regulated": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "anav-full.pdf",
+            "title": "CCNL noleggio autobus con conducente ANAV, sottoscritto 6 ottobre 2022",
+            "kind": "associazione",
+            "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/IC36/154242.pdf",
+            "sha256": "7965a7906e87145463589dd5cda2d3aba34412e070de356cf71de1325cc096ac"
+          },
+          "page": "63",
+          "section": "Articolo 36, lettera c), Tutela della genitorialità",
+          "quote": "c) la fruizione dei permessi di cui al presente articolo è riconosciuta:\n\ni. in giornate intere non frazionabili per i lavoratori mobili che effettuano servizi rientranti\nnel campo di applicazione del Regolamento CE n. 561/2006 e s.m.i., e del D.Igs. n. 234/2007;\nii. per multipli di un'ora, e comunque non inferiore a 2 (due) ore, per il restante\npersonale."
+        },
+        "transformation": "Mobile workers covered by the cited regulations take whole days; other staff take hourly multiples of at least two hours. The daily duration is determined by the distribution of contractual weekly hours (article 36(a), PDF page 62), not a fixed full-time day-hour number. No explicit part-time scaling or effective date is stated.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
+      }
+    }
   }
 }

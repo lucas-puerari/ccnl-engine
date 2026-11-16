@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-18 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2024-07-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Allegato F (accordo 19 giugno 2018) of the CCNL 18 June 2024, pp. 85-88. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2). | flagged | The third level (70% above 12 months, 80% up to 12) matches.<br>The first level follows 'l'anno scolastico/formativo di effettiva frequenza' (All. F p. 86) through the correspondence table of pp. 86-87, not the year of the contract the data keys it by: recorded as dual_apprenticeship_school_year.<br>Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta'). |
 | 2026-11-15 | claude-opus-5-5 (ai) | Sick pay of art. 39 against the research of a separate model session; quote checked on the source. | corrected | Replaced 100% for 180 days of one episode with the 3+3, 5+5, 6+6 months of art. 39 summed over 12 months. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[0:night], bands[1:holiday], bands[3:night_holiday], none.shift_work.<br>Left out: bands[2:sunday]: quote quote_not_in_file; none.rest_day: skipped. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256, read from the OCR of the page where the PDF is scanned. | corrected | Applied: work_rules.parental_hourly. |
 
 ## Salary table
 
@@ -183,13 +184,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
 
     **Remediation:** Resolved by the decision of 2026-11-15: the employer pays the whole rateo of the extra months.
-
-!!! warning "parental_hourly_ccnl_rule · parental_leave · impact unknown · open"
-    A parental leave by the hour follows the national CCNL rule on the hours of a day of leave (art. 32 c. 1-bis D.Lgs. 151/2001, work_rules.parental_hourly), or without one the general criterion of art. 32 c. 1-ter: half the average daily hours a day, two such days a day of leave, no cumulation with the nursing rests on the same day (INPS circ. 152/2015 par. 2.1-2.2). The run records this limitation while the bundle does not record the rule of the CCNL; a company or territorial agreement is the fact local_hourly_agreement of the event.
-
-    **Applies when:** `parental_leave` applies; the run takes the engine code path.
-
-    **Remediation:** Source the collective rules on the leave by the hour of the CCNL (hours of a day of leave, cumulation) and apply them, then resolve this limitation.
 
 !!! note "disability_permit_tfr · disability_permits · impact unknown · resolved"
     The days of permit under L. 104/1992 art. 33 c. 3 keep the TFR base. Art. 33 c. 4 refers to art. 43 D.Lgs. 151/2001, which applies art. 34 c. 5: the days are paid and counted in the seniority; no primary source states their TFR base, and by the maintainer's decision of 2026-11-15 they stay in it, as payroll practice holds.

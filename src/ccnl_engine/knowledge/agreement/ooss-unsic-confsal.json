@@ -218,6 +218,27 @@
         "checked": [
           "work_rules.sickness_rules.comporto_windows"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256, read from the OCR of the page where the PDF is scanned.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
+            "sha256": "25f8b7efbb81b8eb2dc36c8bbb0157a7125fbcaa0e30c9da0f19e453dcbe9db3"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
+        ]
       }
     ]
   },
@@ -1331,7 +1352,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "df19ed9adc0795ce003bbd7e1566efc543a98d42264c87087ae5526397306a5b",
+    "source_hash": "a4f9e6df41b2fb3a4345b3267d46c6d6adf3bf7b6aedd0e0f905144d237049d4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1758,6 +1779,25 @@
           "verified_at": "2026-11-01T18:33:13Z",
           "review_id": "2026-11-01-ai-notice-3"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "unsic.pdf",
+            "title": "CCNL OO.SS. UNSIC/CONFSAL",
+            "kind": "associazione",
+            "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
+            "sha256": "25f8b7efbb81b8eb2dc36c8bbb0157a7125fbcaa0e30c9da0f19e453dcbe9db3"
+          },
+          "page": "67",
+          "section": "Congedo parentale",
+          "quote": "Congedo parentale\n\nCiascun genitore ha diritto di astenersi dal lavoro, ai sensi e per gli effet-\nti di cui al D.lgs 151/2001 e successive modifiche, per ogni bambino, nei\nsuoi primi dodici anni di vita per un periodo complessivo tra i due geni-\ntori non superiore a dieci mesi."
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
       }
     }
   }

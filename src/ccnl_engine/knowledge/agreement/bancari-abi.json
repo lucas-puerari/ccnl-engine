@@ -1882,7 +1882,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "22ae39a4439449cc3de5324e066670822a9178eda504de8be44e282d869bab6e",
+    "source_hash": "e2dd6694572a9a664ab4b1f28840b6285b7a5c7f525f7dea26df4a9576872a82",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2314,6 +2314,26 @@
         },
         "transformation": "For 4 November, the CCNL provides conditional paid leave for former holidays, not an automatic additional Sunday holiday payment or a fixed monthly ex-holiday payment. CCNL ABI 23 November 2023, art. 61(1), PDF p. 91 (printed p. 89), fabi-ccnl-2023.pdf, sha256 4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933, verbatim: 'che dette ex festività ricorrano in giorni in cui sia prevista la prestazione lavorativa'. Art. 61(3), same page, also provides cash settlement for accrued unused leave by the end of February of the following year, not a fixed payment for 4 November. Art. 59(4), PDF p. 89 (printed p. 87), lists Sunday coincidences only for 25 April, 1 May and 2 June. Therefore leave holidays unchanged; ex_november_fourth remains null. The initial law source and URL remain unchanged; the previous claim that the CCNL was silent on Sunday holidays is corrected."
       }
+    },
+    "parental_hourly": {
+      "day_hours": "7.5",
+      "effective_from": "2016-02-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "fabi-ccnl-2023.pdf",
+            "title": "Contratto collettivo nazionale di lavoro 23 novembre 2023, appendice 4, verbale di accordo del 15 dicembre 2015",
+            "kind": "associazione",
+            "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+            "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+          },
+          "page": "203 (stampata 201); decorrenza a p. 202 (stampata 200)",
+          "section": "Appendice 4, verbale di accordo in tema di fruizione oraria dei congedi parentali, 15 dicembre 2015",
+          "quote": "Il monte ore corrispondente alla giornata lavorativa intera è confermato in 7 ore\n                 e 30 minuti (8 ore nel caso di contratti complementari)."
+        },
+        "transformation": "Il monte ore esplicitamente corrispondente alla giornata intera è 7 ore e 30 minuti, cioè 7.5 ore per il tempo pieno ordinario; 8 ore è l'eccezione per i contratti complementari. Il verbale prevede la fruizione anche per il tempo parziale ma non riproporziona espressamente tale monte ore. La decorrenza è indicata nella frase 'a far tempo dal 1° febbraio 2016' a pagina 202."
+      }
     }
   },
   "verification": {
@@ -2597,6 +2617,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments.in_service_cohort"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour: appendice 4 (verbale 15 dicembre 2015) located in the cited file by sha256, PDF pp. 202-203.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+            "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+          }
+        ],
+        "findings": [
+          "Applied: 7.5 hours a day of leave from 1 February 2016."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
         ]
       }
     ]

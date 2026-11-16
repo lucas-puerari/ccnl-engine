@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-26 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -76,6 +76,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | contract_catering_tranche_dates: 2018 art. 1(1) II covers catering/collective catering; signed 2024 table specifies September 2025 and September 2026 for that scope. The caller-selected sibling pubblici-esercizi-fipe-angem-ristorazione-collettiva.json stores all ten levels with June 2024 -> September 2025 -> Sep |
 | 2026-11-08 | gpt-6-sol (ai) | Artt. 160, 245, 250, 266 of the signed text of 8 February 2018 (scanned, PDF pp. 116, 166-168, 175-176), read on the page images by a separate model session; art. 250 also by the extraction session. | corrected | Added work_rules.subsector_rules for stabilimenti_balneari and alberghi_diurni: carenza paid in full, 28% employer share over INPS, divisor 190 for the balneari non impiegati. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 13 commi 5-13 (renewal of 5 June 2024 pp. 7-8, CCNL 2018 p. 29), the encoding checked against the signed pages by a separate model session. | flagged | Confirmed the amounts by level and their mapping, the November 2027 payment, the part-time of comma 6 and the exclusion of comma 7.<br>Flagged: the quote condensed the table (now verbatim up to the table, the table in the transformation); the eligibility date of comma 5 is a reading, not stated; commi 8 (pre-1993 exception) and 12 (Fon.Te.) were missing from the limitation: added.<br>Kept as approximations under the limitation: trigger of comma 10, days worked, absorption. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256, read from the OCR of the page where the PDF is scanned. | corrected | Applied: work_rules.parental_hourly. |
 
 ## Salary table
 
@@ -245,13 +246,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
 
     **Remediation:** Resolved by the decision of 2026-11-15: the employer pays the whole rateo of the extra months.
-
-!!! warning "parental_hourly_ccnl_rule · parental_leave · impact unknown · open"
-    A parental leave by the hour follows the national CCNL rule on the hours of a day of leave (art. 32 c. 1-bis D.Lgs. 151/2001, work_rules.parental_hourly), or without one the general criterion of art. 32 c. 1-ter: half the average daily hours a day, two such days a day of leave, no cumulation with the nursing rests on the same day (INPS circ. 152/2015 par. 2.1-2.2). The run records this limitation while the bundle does not record the rule of the CCNL; a company or territorial agreement is the fact local_hourly_agreement of the event.
-
-    **Applies when:** `parental_leave` applies; the run takes the engine code path.
-
-    **Remediation:** Source the collective rules on the leave by the hour of the CCNL (hours of a day of leave, cumulation) and apply them, then resolve this limitation.
 
 !!! note "disability_permit_tfr · disability_permits · impact unknown · resolved"
     The days of permit under L. 104/1992 art. 33 c. 3 keep the TFR base. Art. 33 c. 4 refers to art. 43 D.Lgs. 151/2001, which applies art. 34 c. 5: the days are paid and counted in the seniority; no primary source states their TFR base, and by the maintainer's decision of 2026-11-15 they stay in it, as payroll practice holds.

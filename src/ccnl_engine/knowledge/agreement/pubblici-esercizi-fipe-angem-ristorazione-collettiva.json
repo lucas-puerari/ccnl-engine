@@ -2721,7 +2721,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8c1daff19ff323224a5b127294bcd1586fe3a8e05edb3b904dedb57b1850b68c",
+    "source_hash": "9fa833e9c405871defb85a159946933b6065fce94494ea38ab2ed56beffbaf58",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3589,6 +3589,27 @@
           }
         }
       }
+    },
+    "parental_hourly": {
+      "part_time_scaled": true,
+      "effective_from": "2018-02-08",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "fipe2018.pdf",
+            "title": "CCNL pubblici esercizi, ristorazione collettiva e commerciale e turismo, 8 febbraio 2018",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          "page": "141",
+          "section": "Articolo 201 — Congedo parentale, commi 2–3",
+          "quote": "(2) I congedi parentali (astensione facoltativa) possono essere frazionati, anche a ore secondo quanto previsto dalle vigenti disposizioni di legge, in misura pari alla metà dell’orario medio giornaliero del periodo di paga quadrisettimanale o mensile immediatamente precedente a quello nel corso del quale ha inizio il congedo. La contrattazione integrativa potrà stabilire diverse modalità di fruizione. (3) Salvo i casi di oggettiva impossibilità il preavviso per la richiesta di fruizione del congedo parentale è di 5 giorni, ridotto a 2 giorni nei casi di congedo parentale su base oraria."
+        },
+        "transformation": "The CCNL repeats the statutory half-average-daily-hours criterion over the immediately preceding four-week or monthly pay period; it does not equate a fixed number of hours to one day. The criterion uses the worker's average daily hours and thus scales with individual part-time hours. The two-day notice also matches the statutory hourly-leave notice; no distinct hourly modality is established by this clause.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
+      }
     }
   },
   "verification": {
@@ -3867,6 +3888,27 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256, read from the OCR of the page where the PDF is scanned.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
         ]
       }
     ],

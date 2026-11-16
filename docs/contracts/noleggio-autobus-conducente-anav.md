@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-23 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2026-08-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Una Tantum of the signed renewal, PDF p. 1. | confirmed | Confirmed the C2 installments, service-on-signing condition, proportional service and part time, and TFR and Priamo exclusions; narrowed the obsolete exclusion note to the unmodelled effective-work-months condition. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 47 (seniority) and Art. 21 c. 9-10 (apprentice pay and credit) of the renewal of 6 October 2022, against the renewal of 23 May 2025. | confirmed | Read Art. 47 and Art. 21 on the page images: the nine amounts match the file; apprentices take no increment and the whole apprenticeship counts on continuation. Re-sourced the amounts, set the apprentice amount to zero with full credit, closed seniority_from_ic35 and apprentice_seniority, and recorded the c. 3 anticipation and c. 5 promotion rules, which the engine does not apply. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Allegato n. 5 (ott-23 column) and Art. 70 b) of the renewal of 6 October 2022, against the table before July 2025. | corrected | The eleven values from 1 January 2024 were already taken from the ANAV circular, not back-calculated: the limitation was stale and is closed. The signed annex prints C4 796,26 against the circular's 796,25; the file follows the annex. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256, read from the OCR of the page where the PDF is scanned. | corrected | Applied: work_rules.parental_hourly. |
 
 ## Salary table
 
@@ -202,13 +203,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
 
     **Remediation:** Resolved by the decision of 2026-11-15: the employer pays the whole rateo of the extra months.
-
-!!! warning "parental_hourly_ccnl_rule · parental_leave · impact unknown · open"
-    A parental leave by the hour follows the national CCNL rule on the hours of a day of leave (art. 32 c. 1-bis D.Lgs. 151/2001, work_rules.parental_hourly), or without one the general criterion of art. 32 c. 1-ter: half the average daily hours a day, two such days a day of leave, no cumulation with the nursing rests on the same day (INPS circ. 152/2015 par. 2.1-2.2). The run records this limitation while the bundle does not record the rule of the CCNL; a company or territorial agreement is the fact local_hourly_agreement of the event.
-
-    **Applies when:** `parental_leave` applies; the run takes the engine code path.
-
-    **Remediation:** Source the collective rules on the leave by the hour of the CCNL (hours of a day of leave, cumulation) and apply them, then resolve this limitation.
 
 !!! note "disability_permit_tfr · disability_permits · impact unknown · resolved"
     The days of permit under L. 104/1992 art. 33 c. 3 keep the TFR base. Art. 33 c. 4 refers to art. 43 D.Lgs. 151/2001, which applies art. 34 c. 5: the days are paid and counted in the seniority; no primary source states their TFR base, and by the maintainer's decision of 2026-11-15 they stay in it, as payroll practice holds.
