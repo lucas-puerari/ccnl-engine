@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-02-27 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2024-01-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 66 of the CCNL of 23 January 2024 and art. 15 of the CCNL of 27 February 2026, against the research of a separate model session. | corrected | The pre-2025 amount was an estimate of 104.34; the text gives 1,381.49 a year on 13 payments, 106.27 a month, from 1 January 2022; the 2025 amount starts on 1 January 2025. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly divisor of art. 59 against the research of a separate model session; quote checked on the source. | corrected | The hourly divisor is 156 (art. 59 c. 4), not the approximation 165. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel.<br>Left out: bands[0:night]: quote skipped; bands[1:holiday]: quote skipped; none.shift_work: skipped. |
 
 ## Salary table
 

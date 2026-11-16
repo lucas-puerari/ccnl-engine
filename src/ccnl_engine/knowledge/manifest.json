@@ -133,7 +133,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentari-pmi-unionalimentari",
       "ruleset_version": "2026.2",
-      "source_hash": "fb07c65f171c18e068a61ab2280327421d2923307683a95b1a76d1d1ddbd780b",
+      "source_hash": "2e08a2530d58fb446ef3c1da95aa1c7ca7ba41fe7f4c27f1b57224a7017abf9a",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/alimentari-pmi-unionalimentari.json.gz"
@@ -286,7 +286,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/aziende-termali-federterme",
       "ruleset_version": "2024.1",
-      "source_hash": "57320ffd10e6a68ac88d64e0808d8ded14e23ad43a7a6527245d61f454a580b8",
+      "source_hash": "cc3c23768684f03c290484341b94115e4162147174799689a537d42219ecb13d",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/aziende-termali-federterme.json.gz"
@@ -354,7 +354,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/carta-cartone-assocarta",
       "ruleset_version": "2026.2",
-      "source_hash": "e5580b1651b6525bcc3b93763def576fa46c7345a4cd5d7d19d7642104501a9b",
+      "source_hash": "0ca0ff9893496d6496e34e23c058ad7762415e85c6401c1aaa95c7f7ee03a53f",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/carta-cartone-assocarta.json.gz"
@@ -677,7 +677,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-sanitaria-area-sanita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "970a578b25c5ada6b6c621bbea9e36b32ba51314295215587c24bdabe0aa1fe0",
+      "source_hash": "46e6fa7fb7a461b6695ec231423b4d6b7de6525cbc4292abb8044f38e7584abc",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-sanitaria-area-sanita-aran.json.gz"
@@ -1037,7 +1037,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/funivie-anef",
       "ruleset_version": "2026.2",
-      "source_hash": "a93aa967e2c4ed6f9628910399538c65e5335eb357b6b686ea899968ccae7010",
+      "source_hash": "6aa3837d7a040621d3fd3be44d816f2eda496525793e86ee55c478021036b1d9",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/funivie-anef.json.gz"
@@ -1853,7 +1853,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/recapito-corrispondenza-fise",
       "ruleset_version": "2026.2",
-      "source_hash": "7f3301e19c0cfe7d10219553223de80308ba422a3f91c576040357efd9f37d2a",
+      "source_hash": "05d6cb2c8fb3c58d7a665bb46a2363b531795ec341519d391934af7cb51d0ee5",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/recapito-corrispondenza-fise.json.gz"
@@ -1989,7 +1989,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sistemazioni-idraulico-forestali-impiegati",
       "ruleset_version": "2026.1",
-      "source_hash": "c89ab14fee776f85f0928b1811722c9419118f950ed51d2d827370dd98d8f621",
+      "source_hash": "df1b59f4398c1a9f8fe5691e237b39c0d9da650119ff1c68a10836dbc9910e5f",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/sistemazioni-idraulico-forestali-impiegati.json.gz"
@@ -2006,7 +2006,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sistemazioni-idraulico-forestali-operai",
       "ruleset_version": "2026.1",
-      "source_hash": "a531375e872b9b3f7e6cf6a785eb7062af06713d0c347d748cbcbbdd5607aea3",
+      "source_hash": "34f9de01907cf5b2bcc482c02ad5121e3ebc55d571f91b57291b84bea4fdd869",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/sistemazioni-idraulico-forestali-operai.json.gz"
@@ -2346,7 +2346,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vigilanza-privata-federdat-sf",
       "ruleset_version": "2026.1",
-      "source_hash": "6a070296efca9ac44e2f4345a2a6254103a83cc1cb463c5addf4d61d668ea703",
+      "source_hash": "c304ca25cd6f41e401cd3349fba690d4be1bac4d9f3aaae0eab4af206cfb6b71",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vigilanza-privata-federdat-sf.json.gz"
