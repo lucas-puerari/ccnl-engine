@@ -235,7 +235,7 @@ def test_the_page_names_every_ccnl_and_the_totals() -> None:
     page = report.render(built)
 
     assert f"**Complete: 11/{len(built.rows)} CCNLs**" in page
-    assert "complete except declared residuals: 1." in page
+    assert "complete except declared residuals: 2." in page
     assert "| [anas](../contracts/anas.md) | `trasporti-logistica` |" in page
 
 
