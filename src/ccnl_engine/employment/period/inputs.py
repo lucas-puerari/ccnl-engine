@@ -31,7 +31,9 @@ class EmploymentPeriod:
             actual service counted for service-gated awards. State the date from
             employer records when it differs from the hire date (for example,
             after a break or on a group transfer). It must exclude conventional
-            seniority that is not actual service. ``None`` uses ``started_on``.
+            seniority that is not actual service, unless the CCNL extends the
+            award to it (Alimentari saccarifero, dichiarazione aggiuntiva al
+            punto 25). ``None`` uses ``started_on``.
         ended_on: Last day of employment, or ``None`` for an open-ended
             relationship.  Must not precede ``started_on``.
         ended_by: How the employment ends, with ``ended_on``; ``None`` when
@@ -47,6 +49,10 @@ class EmploymentPeriod:
             that leaves out the workers on probation (FASDA, Igiene
             ambientale art. 65 lett. B); ``None`` when there is none or it
             is not stated.
+        permanent_incapacity: Whether the employment ends for the worker's
+            permanent incapacity (invalidità permanente), read by a service
+            award that settles its ratei on it (Alimentari saccarifero,
+            punto 25); ``None`` when not stated.
 
     Raises:
         InvalidInputError: When a date is not a ``date``, ``ended_on`` or
@@ -66,6 +72,7 @@ class EmploymentPeriod:
     probation_until: date | None = None
     uninterrupted_service_started_on: date | None = None
     disciplinary_dismissal: bool | None = None
+    permanent_incapacity: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_date(self.started_on, "EmploymentPeriod.started_on", feature=FEATURE)
@@ -124,6 +131,9 @@ class EmploymentPeriod:
                 raise InvalidInputError(msg, field=path, feature=FEATURE)
         if self.naspi_case is not None:
             object.__setattr__(self, "naspi_case", self._naspi_case())
+        if self.permanent_incapacity is not None:
+            path = "EmploymentPeriod.permanent_incapacity"
+            require_bool(self.permanent_incapacity, path, feature=FEATURE)
 
     def _naspi_case(self) -> NaspiCase | CollectiveDismissal:
         path = "EmploymentPeriod.naspi_case"

@@ -3,18 +3,18 @@
   "ccnl_id": "alimentari-federalimentare",
   "requirements": [
     {
-      "id": "sugar_twenty_five_year_award",
-      "institute": "base_salary",
+      "id": "health_and_bilateral_funds",
+      "institute": "bilateral_funds",
       "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Sugar-industry supplementary rule 25 (PDF p. 230): the once-only award at 25 uninterrupted years is modelled for clerical and manual workers in the sugar branch. Still missing: settlement before the threshold on death or permanent incapacity, qualifying direct transfers between sugar companies, and proof of uninterrupted service within the same company or group from the employment facts.",
+      "discriminant": "applies_when.trigger = owed",
+      "rule": "HEALTH AND BILATERAL FUNDS (artt. 74 bis-quinquies, pp. 155-158): FASA EUR 12 (16 from 2025) for the permanent workers and the fixed terms of at least nine months in the calendar year, Cassa maternità EUR 3.50 (4.50), Cassa rischio vita EUR 30 a year and bilateralità EUR 2 (2.50) a month are modelled, with the EDR of EUR 20 of an employer outside the bilateralità, and the reduced bilateralità of EUR 1.50 (2.00 from 2025) of a company with better union-leave terms (fund bilateralita_aspettativa_sindacale). Not modelled: from 1 June 2029 the worker's optional EUR 2 a month to FASA, without which the enrolment and the company contribution end (art. 74 quater).",
       "calculation": "ccnl/alimentari-federalimentare:coverage.notes",
       "state": "absent",
-      "remediation": "Represent early death or permanent-incapacity settlement, qualifying direct transfers, and uninterrupted company or group service as worker facts.",
+      "remediation": "Model the FASA worker opt-in of 1 June 2029 as a worker fact.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "alimentari-federalimentare/sugar_twenty_five_year_award"
+          "alimentari-federalimentare/health_and_bilateral_funds"
         ]
       }
     }
