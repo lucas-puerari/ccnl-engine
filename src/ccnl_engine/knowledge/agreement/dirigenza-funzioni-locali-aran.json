@@ -377,17 +377,9 @@
         "text": "Contratto applicato a ~13.000 dirigenti: 5.500 dirigenti RAL, 5.200 dirigenti PTA (enti locali sanitari), 2.300 segretari comunali e provinciali (truenumbers.it). Platea GOAL.md (~40k) era sovrastimata."
       },
       {
-        "kind": "simplification",
-        "text": "Retribuzione di posizione: variabile per tipo incarico e ente, non modellata (SIMPLIFICATION). Totale mensile medio include posizione: +491€ RAL, +400€ segretari, +377€ PTA (include tabellare + posizione + altro).",
+        "kind": "info",
         "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "position_pay",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the CCNL minimum of the retribuzione di posizione or accept the amount of the incarico as a caller input, and open a limitation until then."
-        }
+        "text": "RETRIBUZIONE DI POSIZIONE (CCNL Area Funzioni Locali 2022-2024 of 23 February 2026, art. 22 c. 6, https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_23_AREA-FL-2022-2024.pdf, sha256 2f2980b58b803cb535dc8f86c895a491049c7cc835021100e07341dabfa407bd): 'i nuovi valori minimi e massimi a regime della retribuzione di posizione sono rispettivamente rideterminati nel valore minimo di € 14.515,11 e nel valore massimo di € 48.084,81' a year for 13 months for the dirigenti; the segretari comunali and provinciali have the ranges of art. 38 by class of ente (fascia A metropolitan 46,707.00 to 68,139.96, down to 8,829.00 to 11,617.87); the ente grades each incarico within its range. The amount of the incarico is a fact of the employer: the caller states it as a non-absorbable individual element (Employment.individual_elements, monthly = annual / 13, on the extra months), which the engine pays like the stipendio tabellare."
       },
       {
         "kind": "info",
@@ -442,7 +434,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.truenumbers.it/ccnl-dirigenti-enti-locali-aumenti-arretrati/",
     "verification_status": "unverified",
-    "source_hash": "91a82de06d497a35e2a06669959c7d89af22563ce3293b850d77a6ecb3f267dd",
+    "source_hash": "fb57cabecb97430c1a472554c1b74539c1a8975e265ac9c127104830456d73e4",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
