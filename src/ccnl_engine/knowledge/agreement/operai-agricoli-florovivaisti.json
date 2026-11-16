@@ -150,7 +150,7 @@
       },
       {
         "kind": "simplification",
-        "text": "BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and FISA (Fondo Integrativo di Settore Agricolo) bilateral fund contributions are set at provincial level and not modelled. Agrifondo (supplementary pension) contributions also omitted.",
+        "text": "BILATERAL FUNDS. Art. 7 (printed pp. 9-10) charges the employer for EBAN, which funds the FISA health fund of art. 66, 0.30% (OTI) and 0.60% (OTD) of the retribuzione imponibile ai fini previdenziali from 1 January 2014; a separate agreement splits it among the activities, so the FISA share the INPS solidarity contribution of 10% falls on is not known, and the OTD base includes the terzo elemento a fund rate does not read. Not computed; pass them as BilateralFundEvent. The casse extra legem / EBAT of art. 8 are provincial. Agrifondo is modelled as the employer fund AGRIFONDO.",
         "capability": "bilateral_funds",
         "monetary_impact": "yes",
         "limitation": {
@@ -158,7 +158,7 @@
           "applies_when": {
             "trigger": "owed"
           },
-          "remediation": "Pass the provincial EBAN, FISA and Agrifondo contributions as bilateral fund events."
+          "remediation": "Source the FISA share of the EBAN contribution and compute 0.30% / 0.60% of the INPS base, or pass them as bilateral fund events."
         }
       },
       {
@@ -607,7 +607,55 @@
           }
         ]
       }
-    }
+    },
+    "employer_funds": [
+      {
+        "code": "AGRIFONDO",
+        "description": "Agrifondo - Fondo pensione complementare per gli operai agricoli e florovivaisti e per i quadri e gli impiegati agricoli",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2022-06-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2022-06-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-operai-agricoli-florovivaisti-2022-2025",
+              "title": "CCNL operai agricoli e florovivaisti 2022-2025",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+              "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+            },
+            "page": "152",
+            "section": "Allegato n. 15, Accordo istitutivo di Agrifondo (14 December 2006), contribuzione",
+            "quote": "Per i lavoratori nei cui confronti trova applicazione il CCNL per gli operai agricoli e florovivaisti, la contribuzione è stabilita secondo il dettato di cui all’art. 57 del citato contratto, e successive modificazioni e integrazioni, nelle seguenti misure: a) 1% a carico del datore di lavoro commisurato alla retribuzione utile per il calcolo del Tfr nel periodo di riferimento; b) 1% a carico del lavoratore commisurato alla retribuzione utile per il calcolo del Tfr nel periodo di riferimento;"
+          },
+          "transformation": "Employer 1% and worker minimum 1% of the TFR base. The quota of TFR (c: 2% of the TFR base for a worker employed by 28 April 1993; d: 100% for later first employments and for the OTD) is the worker's PensionFundEnrolment.tfr_share. Confirmed in force by the Agrifondo scheda 'I destinatari e i contributi' of 30/07/2026 (https://agrifondo.it/wp-content/uploads/2026/07/4-Parte-I-%E2%80%93-Scheda-I-destinatari-e-i-contributi.pdf, sha256 d5e2e016bdb59397845635a739fddc981c3659af2eeba400f5d079a89089dd32, p. 2): 'Lavoratori a tempo determinato 100% 1,00% 1,00%'.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2022-06-01",
+            "verification_status": "unverified"
+          }
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -1271,7 +1319,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "7fb5c812ef9eb059f0257772d992d27f19f351e6b655d509ab86351883b25970",
+    "source_hash": "ca6ba904b612a9e21a82acc0311fc34ef7393c135e9ff7bc1051160816ecce42",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
