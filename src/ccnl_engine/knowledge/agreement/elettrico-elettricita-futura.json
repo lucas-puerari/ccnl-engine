@@ -289,6 +289,30 @@
         "checked": [
           "levels[].fixed_allowances[].apprenticeship_pct_relevant"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-elettrico-elettricita-futura-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+            "sha256": "ed6009cfc644dddfb5836b427f4c2cbf5bf6d9c0c53bfe90afecaa7a20aebec9"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base.",
+          "Left out: bands[0:night]: quote skipped; bands[1:holiday]: quote skipped; bands[2:rest_day]: quote skipped; bands[3:night_holiday_compensatory_rest]: quote skipped; bands[4:sunday]: quote skipped; bands[5:sunday]: quote skipped; bands[6:night_shift]: quote skipped; bands[7:day_shift]: quote skipped; bands[8:day_shift]: quote skipped; bands[9:day_shift]: quote skipped.",
+          "The hourly divisor is 168.60 (art. 38 c. 2), not the unsourced 173.33; the holidays on a Sunday follow art. 27 c. 36."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -298,7 +322,32 @@
         {
           "valid_from": "2025-04-01",
           "valid_until": null,
-          "value": "173.33"
+          "value": "168.60",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "filctem-ccnl-elettrico-2025",
+                "title": "CCNL settore elettrico 2025-2027, testo integrale (FILCTEM-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+                "sha256": "ed6009cfc644dddfb5836b427f4c2cbf5bf6d9c0c53bfe90afecaa7a20aebec9"
+              },
+              "page": "125",
+              "section": "Art. 38 c. 2",
+              "quote": "A tutti gli effetti, la retribuzione giornaliera ed oraria si ottiene dividendo la retribuzione di cui al comma 1 rispettivamente, per 26 e 168,60."
+            },
+            "transformation": "The hourly pay is the monthly retribuzione of art. 38 c. 1 over 168.60; the former 173.33 had no source.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-elettrico-elettricita-futura-time-supplements"
+            }
+          }
         }
       ]
     },
@@ -3197,13 +3246,13 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
     "verification_status": "unverified",
-    "source_hash": "d53d0bed54b42f48ecd01ed6ff93a0aa721be1f6e563cbcfe4e4400b6c362084",
+    "source_hash": "3c81c771ea0e3bdedc50eaa0041c88613c7afeeaca98212eb45582476f09de0d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -3391,8 +3440,242 @@
               "review_id": "2026-11-15-ai-elettrico-elettricita-futura-time-supplements"
             }
           }
+        },
+        {
+          "code": "U_HOLIDAY_1",
+          "description": "Festività lavorata non coincidente con il riposo settimanale; senza festa sostitutiva.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ntratti-elettrico-251223-20elettrico-ccnl-202025-2027-20-20testo-20integrale-pdf",
+                "title": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+                "sha256": "ed6009cfc644dddfb5836b427f4c2cbf5bf6d9c0c53bfe90afecaa7a20aebec9"
+              },
+              "page": "96",
+              "section": "Art. 28, dichiarazione a verbale n. 1",
+              "quote": "Il lavoro prestato, eccezionalmente o in relazione al turno di lavoro, in giorno festivo che non sia quello di riposo settimanale va compensato con la retribuzione oraria maggiorata del 60% (o del 75% se trattasi di lavoro straordinario notturno) senza la concessione del giorno di festa sostitutivo."
+            },
+            "transformation": "Festività lavorata non coincidente con il riposo settimanale; senza festa sostitutiva.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-elettrico-elettricita-futura-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_REST_DAY_2",
+          "description": "Prestazione nel giorno normale di riposo settimanale, con riposo compensativo; sola maggiorazione sulle ore effettive.",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ntratti-elettrico-251223-20elettrico-ccnl-202025-2027-20-20testo-20integrale-pdf",
+                "title": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+                "sha256": "ed6009cfc644dddfb5836b427f4c2cbf5bf6d9c0c53bfe90afecaa7a20aebec9"
+              },
+              "page": "93",
+              "section": "Art. 27, dichiarazione a verbale n. 1",
+              "quote": "fermo restando il diritto al compenso della sola maggiorazione del 60% (o del 75% per le eventuali ore prestate di notte) della retribuzione oraria per le ore di lavoro effettivamente prestate."
+            },
+            "transformation": "Prestazione nel giorno normale di riposo settimanale, con riposo compensativo; sola maggiorazione sulle ore effettive.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-elettrico-elettricita-futura-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_COMPENSATORY_REST_3",
+          "description": "Ore notturne lavorate nel normale giorno di riposo settimanale, con riposo compensativo: sola maggiorazione.",
+          "work": "night_holiday_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0.75"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ntratti-elettrico-251223-20elettrico-ccnl-202025-2027-20-20testo-20integrale-pdf",
+                "title": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+                "sha256": "ed6009cfc644dddfb5836b427f4c2cbf5bf6d9c0c53bfe90afecaa7a20aebec9"
+              },
+              "page": "90",
+              "section": "Art. 27, commi 30-31",
+              "quote": "le ore di lavoro eventualmente prestate in giorno di domenica - che costituisce per essi il normale giorno di riposo - vanno compensate con la sola maggiorazione del 60% (o del 75% per le eventuali ore prestate di notte) della retribuzione oraria, fermo restando per detti lavoratori il diritto al riposo compensativo in altro giorno non festivo della settimana, da fruire, di norma, nella settimana successiva."
+            },
+            "transformation": "Ore notturne lavorate nel normale giorno di riposo settimanale, con riposo compensativo: sola maggiorazione.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-elettrico-elettricita-futura-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY_4",
+          "description": "Domenica ordinaria dei turnisti continui e dei turnisti a due prestazioni diurne con riposo domenicale spostato; base speciale: valore orario del solo minimo tabellare.",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0.70"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ntratti-elettrico-251223-20elettrico-ccnl-202025-2027-20-20testo-20integrale-pdf",
+                "title": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+                "sha256": "ed6009cfc644dddfb5836b427f4c2cbf5bf6d9c0c53bfe90afecaa7a20aebec9"
+              },
+              "page": "97",
+              "section": "Art. 29, commi 4-5",
+              "quote": "Ai lavoratori addetti a turni continui avvicendati con prestazioni alternate diurne e notturne compete, per ogni ora di lavoro ordinario effettivamente prestato nella giornata di domenica in relazione allo schema di turno, un’indennità pari al 70% del valore orario del minimo tabellare della categoria di inquadramento del lavoratore. 5. Il trattamento di cui sopra compete anche ai lavoratori addetti a turni che impegnano solo due prestazioni diurne con spostamento del riposo domenicale in altro giorno della settimana."
+            },
+            "transformation": "Domenica ordinaria dei turnisti continui e dei turnisti a due prestazioni diurne con riposo domenicale spostato; base speciale: valore orario del solo minimo tabellare.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-elettrico-elettricita-futura-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_SHIFT_6",
+          "description": "Ore notturne ordinarie dei turnisti, maggiorazione della retribuzione oraria; cumulabile con indennità domenicale.",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0.35"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ntratti-elettrico-251223-20elettrico-ccnl-202025-2027-20-20testo-20integrale-pdf",
+                "title": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+                "sha256": "ed6009cfc644dddfb5836b427f4c2cbf5bf6d9c0c53bfe90afecaa7a20aebec9"
+              },
+              "page": "97",
+              "section": "Art. 29, comma 3",
+              "quote": "la maggiorazione del 35% della retribuzione oraria per le ore notturne previste dal piano di turno, nei limiti entro i quali detti compensi sarebbero spettati se gli interessati avessero continuato a prestare servizio in turno al gruppo cui erano addetti al momento della cessazione della loro prestazione lavorativa per i suddetti motivi."
+            },
+            "transformation": "Ore notturne ordinarie dei turnisti, maggiorazione della retribuzione oraria; cumulabile con indennità domenicale.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-elettrico-elettricita-futura-time-supplements"
+            }
+          }
         }
-      ]
+      ],
+      "hourly_base_excluded": [
+        "EDR"
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ntratti-elettrico-251223-20elettrico-ccnl-202025-2027-20-20testo-20integrale-pdf",
+            "title": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+            "sha256": "ed6009cfc644dddfb5836b427f4c2cbf5bf6d9c0c53bfe90afecaa7a20aebec9"
+          },
+          "page": "125",
+          "section": "Art. 38, commi 1-3",
+          "quote": "La retribuzione mensile è composta dalla somma delle seguenti voci: minimo contrattuale integrato di cui alla tabella riportata in calce al presente articolo (risultante dal conglobamento dei minimi tabellari in atto fino alla data del 1° aprile 2013 e dell’ex indennità di contingenza2) e dai corrispettivi eventualmente spettanti a titolo di aumenti periodici di anzianità e di merito, nonché dagli importi “ad personam” riferiti agli ex istituti contrattuali dei supplementi dei minimi, aumenti biennali/scatti di anzianità, dei livelli salariali di categoria. 2. A tutti gli effetti, la retribuzione giornaliera ed oraria si ottiene dividendo la retribuzione di cui al comma 1 rispettivamente, per 26 e 168,60. 3. In aggiunta alla retribuzione, vengono corrisposti i seguenti emolumenti: - tredicesima e quattordicesima mensilità, disciplinate dall’art. 40 (“Tredicesima e quattordicesima mensilità”); - elemento distinto della retribuzione (EDR), pari a € 10,33 di cui al Protocollo 31 luglio 1992."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-elettrico-elettricita-futura-time-supplements"
+        }
+      }
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -3587,6 +3870,43 @@
             "review_id": "2026-11-15-ai-elettrico-elettricita-futura-time-supplements"
           }
         }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "10-04",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": "26",
+      "on_rest_day": true,
+      "fourth_november_on_sunday": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "filctem-ccnl-elettrico-2025",
+            "title": "CCNL settore elettrico 2025-2027, testo integrale (FILCTEM-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+            "sha256": "ed6009cfc644dddfb5836b427f4c2cbf5bf6d9c0c53bfe90afecaa7a20aebec9"
+          },
+          "page": "91",
+          "section": "Art. 27 c. 36",
+          "quote": "Il trattamento spettante ai lavoratori in caso di coincidenza con la domenica delle giornate considerate festive dalla vigente legislazione in materia (legge 27 maggio 1949, n. 260, legge 5 marzo 1977, n. 54, e DPR 28 dicembre 1985, n. 792), nonché della ricorrenza del S. Patrono del luogo dove il dipendente lavora è regolato dalla legge 31 marzo 1954, n. 90, e dagli artt. 1, 3 e 4 dell’Accordo Interconfederale 3 dicembre 1954"
+        },
+        "transformation": "Every holiday of the law in force (4 October from 2026, L. 151/2025; 4 November, celebrated on the first Sunday of November by L. 54/1977) and the patron, falling on a Sunday, are paid with a daily quota of the retribuzione over 26 (art. 38 c. 2); for a worker resting on another day, on the coincidence with the rest day (on_rest_day). The suppressed holidays coinciding with the rest day are not paid (c. 39): they are not in the list."
       }
     }
   }
