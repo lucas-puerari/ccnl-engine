@@ -1,22 +1,5 @@
 {
   "schema_version": 1,
   "ccnl_id": "istituzioni-servizi-socio-assistenziali-anaste",
-  "requirements": [
-    {
-      "id": "maternity_holiday_scope",
-      "institute": "maternity_leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 45 c. 23 (p. 43) also owes, for the compulsory absence for pregnancy and puerperium, 'la 13° mensilità limitatamente all'aliquota corrispondente al 20% della retribuzione': not paid by the engine. The holiday target includes a stated weekday patron day. A Sunday holiday is paid by its own quota rather than this top-up; 4 October, introduced after the text was signed, remains excluded.",
-      "calculation": "ccnl/istituzioni-servizi-socio-assistenziali-anaste:coverage.notes",
-      "state": "absent",
-      "remediation": "Resolve the Sunday holiday's separate quota, 4 October and the 20% thirteenth-month share.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "istituzioni-servizi-socio-assistenziali-anaste/maternity_holiday_scope"
-        ]
-      }
-    }
-  ]
+  "requirements": []
 }

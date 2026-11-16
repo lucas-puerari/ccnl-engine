@@ -8,6 +8,11 @@ from typing import TYPE_CHECKING
 from ccnl_engine.calendar.schedule.models import PayrollSchedule
 from ccnl_engine.employment.change.services import rateo_scale
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.extra_month.leave_share import (
+    LeaveShare,
+    leave_share,
+    with_leave_share,
+)
 from ccnl_engine.extra_month.models import (
     DEFAULT_MONTH_ACCRUAL_RULE,
     ExtraMonthAccrual,
@@ -22,6 +27,7 @@ from ccnl_engine.period.inputs import PeriodInput
 
 if TYPE_CHECKING:
     from datetime import date
+    from decimal import Decimal
 
     from ccnl_engine.balance.models import PeriodState
     from ccnl_engine.calendar.models import WorkCalendar
@@ -69,6 +75,8 @@ class YearPlan:
         extra_months: Extra-month schedule by ``(run kind, payment month)``.
         settlements: Ratei paid on a run before the termination, by run id.
         accrual_rule: Month-qualification rule of the CCNL ratei.
+        leave_share: Days of the compulsory maternity leave the CCNL pays
+            the ratei of at a share, with the share; ``None`` otherwise.
     """
 
     schedule: PayrollSchedule
@@ -77,12 +85,14 @@ class YearPlan:
     settlements: dict[str, tuple[ExtraMonthAccrual, ...]]
     accrual_rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE
     unknown_accrual: frozenset[date] = frozenset()
+    leave_share: LeaveShare | None = None
 
 
 def plan_year(
     plan: CompetenceYearPlan,
     year_calendar: WorkCalendar,
     accrual_rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE,
+    extra_month_share: Decimal | None = None,
 ) -> YearPlan:
     """Select the runs of the year and the ratei their requests carry.
 
@@ -127,6 +137,7 @@ def plan_year(
         ),
         accrual_rule=accrual_rule,
         unknown_accrual=unknown_days,
+        leave_share=leave_share(extra_month_share, events),
     )
 
 
@@ -180,7 +191,13 @@ def run_request(
         scale = rateo_scale(
             lambda outside: accrual(schedule, year, outside), plan.timeline, employment
         )
-        return replace(accrual(schedule, year, frozenset()), scale=scale)
+        scaled_accrual = replace(accrual(schedule, year, frozenset()), scale=scale)
+        return with_leave_share(
+            scaled_accrual,
+            year_plan.non_accruing,
+            year_plan.leave_share,
+            plan.employment.work_pattern,
+        )
 
     def settled(s: ExtraMonthAccrual) -> ExtraMonthAccrual:
         def counted(outside: frozenset[date]) -> ExtraMonthAccrual:
@@ -195,7 +212,13 @@ def run_request(
                 ),
             )
 
-        return replace(s, scale=rateo_scale(counted, plan.timeline, employment))
+        rescaled = replace(s, scale=rateo_scale(counted, plan.timeline, employment))
+        return with_leave_share(
+            rescaled,
+            year_plan.non_accruing,
+            year_plan.leave_share,
+            plan.employment.work_pattern,
+        )
 
     settlements = tuple(settled(s) for s in year_plan.settlements.get(run.run_id, ()))
     return period_input.calculation_request(
