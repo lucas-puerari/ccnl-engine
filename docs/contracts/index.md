@@ -209,7 +209,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 89 | A011 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | agricoltura | ~600k | 2026 | ⚠️ | base_salary, bilateral_funds, overtime, seniority | 23 / 11 / 0 / 0 | 🧪 | 🤖 |
 | 90 | A221 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | Agricoltura | ~2k | 2024 | ⚠️ | inps_employer | 44 / 8 / 0 / 0 | 🧪 | 🤖 |
 | 91 | H341 | [CCNL Ortofrutticoli ed Agrumari (Import-Export)](ortofrutticoli-agrumari.md) | ortofrutticoli ed agrumari import-export | ~60000 | 2024 | ⚠️ | base_salary | 64 / 0 / 1 / 0 | 🧪 | 🤖 |
-| 92 | E023 | [CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)](panificazione-assipan.md) | alimentare | ~20k | 2025 | ✅ | — | 35 / 15 / 0 / 0 | 🧪 | 🤖 |
+| 92 | E023 | [CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)](panificazione-assipan.md) | alimentare | ~20k | 2025 | ✅ | — | 38 / 15 / 0 / 0 | 🧪 | 🤖 |
 | 93 | K700 | [CCNL Poste Italiane S.p.A. (personale non dirigente)](poste-italiane-k700.md) | Servizi postali | ~117k | 2024 | ⚠️ | base_salary, inps_employer, seniority | 1 / 54 / 0 / 0 | 🧪 | 🤖 |
 | 94 | T091 | [CCNL RSA e Strutture Residenziali Socio-Assistenziali (AIOP)](rsa-aiop.md) | residenze sanitarie assistenziali — personale non medico | ~17k | 2012 | ⚠️ | base_salary, seniority | 33 / 9 / 0 / 0 | 🧪 | 🤖 |
 | 95 | G091 | [CCNL Radiotelevisivo — Settore Radiofonico](radiotelevisive-radiofonico.md) | radiotelevisione — settore radiofonico | — | 2026 | ⚠️ | inps_employer, seniority | 13 / 0 / 8 / 0 | 🧪 | 🤖 |

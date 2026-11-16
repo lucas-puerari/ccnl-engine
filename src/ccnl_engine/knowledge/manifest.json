@@ -1700,7 +1700,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "ccnl/panificazione-assipan",
       "ruleset_version": "2026.2",
-      "source_hash": "6e7de70534a5962e11eab93c0b5d63adbfdc9b27f3069261dbf8284fcb7a5d8a",
+      "source_hash": "d9a76e1c6b544ad9037606fe6e7c6479be761fa6013709d9de871f67206ffc14",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/panificazione-assipan.json.gz"
