@@ -116,6 +116,11 @@ class TravelAllowanceAssessment:
                 ),
                 **({"habitual_travel": "true"} if event.habitual_travel else {}),
                 **({"mission_over_month": "true"} if event.mission_over_month else {}),
+                **(
+                    {"mission_over_two_months": "true"}
+                    if event.mission_over_two_months
+                    else {}
+                ),
             },
             source=None if rules.provenance is None else rules.provenance.location,
             amount=self.taxable,
@@ -198,6 +203,7 @@ def _discounted_daily(
     discount = max(
         rules.habitual_discount if event.habitual_travel else _ZERO,
         rules.long_mission_discount if event.mission_over_month else _ZERO,
+        rules.two_month_mission_discount if event.mission_over_two_months else _ZERO,
     )
     return money(daily * (Decimal(1) - discount)) if discount else daily
 

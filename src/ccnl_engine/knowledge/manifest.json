@@ -1207,7 +1207,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/informatica-pmi-unimatica",
       "ruleset_version": "2026.2",
-      "source_hash": "4f01aad96b36df89f2e4f8c01e5e50278922054f732e3ee352859ec571267fc9",
+      "source_hash": "62d19ab241c1eb505cacc0866ebfd7b20c219f2d029aa120c9e2bc57c301c623",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/informatica-pmi-unimatica.json.gz"
